@@ -8,7 +8,7 @@ public class Card {
     private ArrayList<int[]> invMoves = new ArrayList<int[]>();
     private ArrayList<String> cards = new ArrayList<>(Arrays.asList("tiger","crab"));
 
-    public void setMoves(int index) {
+    public Card(int index) {
         String cardString = cards.get(index);
         int[] move1 = {-2,2};
         int[] move2 = {-1,2};
@@ -56,4 +56,6 @@ public class Card {
                 break;
         }      
     }
+
+    
 }
