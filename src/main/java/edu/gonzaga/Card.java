@@ -55,7 +55,5 @@ public class Card {
                 invMoves.add(move11);
                 break;
         }      
-    }
-
-    
+    } 
 }
