@@ -4,42 +4,43 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Card {
-    private ArrayList<int[]> moves = new ArrayList<int[]>();
-    private ArrayList<int[]> invMoves = new ArrayList<int[]>();
-    private ArrayList<String> cards = new ArrayList<>(Arrays.asList("tiger","crab"));
+    private ArrayList<Coordinate> moves = new ArrayList<Coordinate>();
+    private ArrayList<Coordinate> invMoves = new ArrayList<Coordinate>();
+    public String cardName;
 
-    public Card(int index) {
-        String cardString = cards.get(index);
-        int[] move1 = {-2,2};
-        int[] move2 = {-1,2};
-        int[] move3 = {0,2};
-        int[] move4 = {1,2};
-        int[] move5 = {2,2};
+    public Card(String name) {
+        this.cardName = name;
+        Coordinate move1 = new Coordinate(-2,2);
+        Coordinate move2 = new Coordinate(-1,2);
+        Coordinate move3 = new Coordinate(0,2);
+        Coordinate move4 = new Coordinate(1,2);
+        Coordinate move5 = new Coordinate(2,2);
 
-        int[] move6 = {-2,1};
-        int[] move7 = {-1,1};
-        int[] move8 = {0,1};
-        int[] move9 = {1,1};
-        int[] move10 = {2,1};
+        Coordinate move6 = new Coordinate(-2,1);
+        Coordinate move7 = new Coordinate(-1,1);
+        Coordinate move8 = new Coordinate(0,1);
+        Coordinate move9 = new Coordinate(1,1);
+        Coordinate move10 = new Coordinate(2,1);
 
-        int[] move11 = {-2,0};
-        int[] move12 = {-1,0};
-        int[] move13 = {1,0};
-        int[] move14 = {2,0};
+        Coordinate move11 = new Coordinate(-2,0);
+        Coordinate move12 = new Coordinate(-1,0);
+        Coordinate move13 = new Coordinate(1,0);
+        Coordinate move14 = new Coordinate(2,0);
 
-        int[] move15 = {-2,-1};
-        int[] move16 = {-1,-1};
-        int[] move17 = {0,-1};
-        int[] move18 = {1,-1};
-        int[] move19 = {2,-1};
+        Coordinate move15 = new Coordinate(-2,-1);
+        Coordinate move16 = new Coordinate(-1,-1);
+        Coordinate move17 = new Coordinate(0,-1);
+        Coordinate move18 = new Coordinate(1,-1);
+        Coordinate move19 = new Coordinate(2,-1);
 
-        int[] move20 = {-2,-2};
-        int[] move21 = {-1,-2};
-        int[] move22 = {0,-2};
-        int[] move23 = {1,-2};
-        int[] move24 = {2,-2};
+        Coordinate move20 = new Coordinate(-2,-2);
+        Coordinate move21 = new Coordinate(-1,-2);
+        Coordinate move22 = new Coordinate(0,-2);
+        Coordinate move23 = new Coordinate(1,-2);
+        Coordinate move24 = new Coordinate(2,-2);
 
-        switch (cardString) {
+
+        switch (cardName) {
             case "tiger":  
                 moves.add(move3);
                 invMoves.add(move22);
@@ -56,4 +57,15 @@ public class Card {
                 break;
         }      
     } 
+    @Override
+    public String toString() {
+        String ret = "Card name: ";
+        ret += this.cardName;
+        ret += "\nmoves : ";
+        ret += this.moves.toString();
+        ret += "\ninvMoves : ";
+        ret += this.invMoves;
+        ret += "\n";
+        return ret;
+    }
 }
