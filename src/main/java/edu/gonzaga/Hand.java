@@ -7,17 +7,30 @@ import java.util.Random;
 
 public class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<String> cardNames = new ArrayList<>(Arrays.asList("tiger","crab"));
+    private ArrayList<String> cardNames = new ArrayList<>(Arrays.asList("tiger","crab", "monkey", "boar", "ox"));
     private ArrayList<Card> player1Cards = new ArrayList<Card>();
     private ArrayList<Card> player2Cards = new ArrayList<Card>();
     private Card intermediate;
 
     public Hand (int size){
-        Random random = new Random();   
-        for (int i = 0; i < size; i++){
+        Random random = new Random();
+        int j = 0; 
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        while (j < size){
             int x = random.nextInt(cardNames.size());
-            cards.add(new Card(cardNames.get(x)));
+            if(temp.contains(x) != true){
+                temp.add(x);
+                j++;
+            }
         }
+        System.out.println(temp);
+        for (int i = 0; i < size; i++){
+            cards.add(new Card(cardNames.get(temp.get(i))));
+        }
+        //for (int i = 0; i < size; i++){
+        //    int x = random.nextInt(cardNames.size());
+        //    cards.add(new Card(cardNames.get(x)));
+        //}
         for (int i = 0; i < cards.size()/2; i++){
             player1Cards.add(cards.get(i));
         }

@@ -55,8 +55,42 @@ public class Card {
                 moves.add(move14);
                 invMoves.add(move11);
                 break;
+            case "monkey":
+                moves.add(move7);
+                invMoves.add(move18);
+                moves.add(move9);
+                invMoves.add(move16);
+                moves.add(move16);
+                invMoves.add(move9);
+                moves.add(move18);
+                invMoves.add(move7);
+                break;
+            case "boar":
+                moves.add(move8);
+                invMoves.add(move17);
+                moves.add(move12);
+                invMoves.add(move13);
+                moves.add(move13);
+                invMoves.add(move12);
+            case "ox":
+                moves.add(move8);
+                invMoves.add(move17);
+                moves.add(move13);
+                invMoves.add(move12);
+                moves.add(move17);
+                invMoves.add(move8);
         }      
     } 
+
+    public ArrayList<Coordinate> getMoves(){
+        return moves;
+    }
+
+    public ArrayList<Coordinate> getInvMoves(){
+        return invMoves;
+    }
+
+
     @Override
     public String toString() {
         String ret = "Card name: ";

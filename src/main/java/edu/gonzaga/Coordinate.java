@@ -8,6 +8,14 @@ public class Coordinate {
         coords[1] = y;
     }
 
+    public int getX(){
+        return coords[0];
+    }
+
+    public int getY(){
+        return coords[1];
+    }
+
     @Override
     public String toString() {
         String ret = "(";
