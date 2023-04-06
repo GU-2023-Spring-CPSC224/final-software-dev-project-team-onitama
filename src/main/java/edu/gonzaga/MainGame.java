@@ -17,7 +17,8 @@ package edu.gonzaga;
 public class MainGame {
     public static void main(String[] args) {
         System.out.println("Hello Team Game");
-        //Board test = new Board();
+        Onitama test = new Onitama();
+        test.takeTurn();
         //System.out.println(test.toString());
         // Your code here. Good luck!
     }

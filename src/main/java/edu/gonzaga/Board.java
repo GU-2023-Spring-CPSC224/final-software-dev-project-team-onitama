@@ -54,7 +54,7 @@ public class Board {
         return -1;
     }
 
-    private void setDestinations(){
+    public void generateDestinations(){
         destinations.clear();
         int x1 = currPiece.getX();
         int y1 = currPiece.getY();
@@ -86,11 +86,15 @@ public class Board {
         }
     }
 
+    public void chooseDestination(int choice){
+        makeMove(destinations.get(choice));
+    }
+
     public void setCurrCard(Card currCard) {
         this.currCard = currCard;
     }
 
-    private void setCurrPiece(Coordinate currPeice){
+    public void setCurrPiece(Coordinate currPeice){
         this.currPiece = currPeice;
     }
 
