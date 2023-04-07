@@ -2,6 +2,8 @@ package edu.gonzaga;
 
 import java.util.ArrayList;
 
+import edu.gonzaga.CardDeck.Card;
+
 public class Player {
     private ArrayList<Card> cards = new ArrayList<Card>();
     int num;

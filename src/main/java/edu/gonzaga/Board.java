@@ -2,12 +2,14 @@ package edu.gonzaga;
 
 import java.util.ArrayList;
 
+import edu.gonzaga.CardDeck.Card;
+
 public class Board {
-    private int[][] board = {{3,0,0,0,1},{3,0,0,0,1},{4,0,0,0,2},{3,0,0,0,1},{3,0,0,0,1}};
+    private char[][] board = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
-    private Card currCard;
-    private Coordinate currPiece;
+    private Card curCard;
+    private Coordinate curPiece;
 
     public Board(int size){
         this.size = size;
@@ -32,23 +34,23 @@ public class Board {
         //same team
         if (board[x1][y1] == board[x2][y2])
             return false;
-        if (board[x1][y1] == 1 && board[x2][y2] == 2)
+        if (board[x1][y1] == 'b' && board[x2][y2] == 'B')
             return false;
-        if (board[x1][y1] == 2 && board[x2][y2] == 1)
+        if (board[x1][y1] == 'B' && board[x2][y2] == 'b')
             return false;
-        if (board[x1][y1] == 3 && board[x2][y2] == 4)
+        if (board[x1][y1] == 'r' && board[x2][y2] == 'R')
             return false;
-        if (board[x1][y1] == 4 && board[x2][y2] == 3)
+        if (board[x1][y1] == 'R' && board[x2][y2] == 'r')
             return false;
         return true;
     }
 
     public int makeMove(Coordinate destCoord){
-        if (checkValidMove(currPiece, destCoord)){
-            int piece = board[currPiece.getX()][currPiece.getY()];
-            int dest = board[destCoord.getX()][destCoord.getY()];
+        if (checkValidMove(curPiece, destCoord)){
+            char piece = board[curPiece.getX()][curPiece.getY()];
+            char dest = board[destCoord.getX()][destCoord.getY()];
             board[destCoord.getX()][destCoord.getY()] = piece;
-            board[currPiece.getX()][currPiece.getY()] = 0;
+            board[curPiece.getX()][curPiece.getY()] = '0';
             return dest;
         }
         return -1;
@@ -56,17 +58,17 @@ public class Board {
 
     public void generateDestinations(){
         destinations.clear();
-        int x1 = currPiece.getX();
-        int y1 = currPiece.getY();
-        if (board[x1][y1] == 1 || board[x1][y1] == 2 ){
-            for (int i = 0; i < currCard.getInvMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + currCard.getInvMoves().get(i).getX(), y1 + currCard.getInvMoves().get(i).getY());
+        int x1 = curPiece.getX();
+        int y1 = curPiece.getY();
+        if (board[x1][y1] == 'b' || board[x1][y1] == 'B' ){
+            for (int i = 0; i < curCard.getInvMoves().size(); i++){
+                Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
-        else if (board[x1][y1] == 3 || board[x1][y1] == 4 ){
-            for (int i = 0; i < currCard.getMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + currCard.getMoves().get(i).getX(), y1 + currCard.getMoves().get(i).getY());
+        else if (board[x1][y1] == 'r' || board[x1][y1] == 'R' ){
+            for (int i = 0; i < curCard.getMoves().size(); i++){
+                Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
@@ -76,7 +78,7 @@ public class Board {
         //find invalid destinations
         ArrayList<Integer> invalids = new ArrayList<Integer>();
         for (int i = 0; i < destinations.size(); i++){
-            if(checkValidMove(currPiece, destinations.get(i)) != true){
+            if(checkValidMove(curPiece, destinations.get(i)) != true){
                 invalids.add(0,i);
             }
         }
@@ -90,12 +92,12 @@ public class Board {
         makeMove(destinations.get(choice));
     }
 
-    public void setCurrCard(Card currCard) {
-        this.currCard = currCard;
+    public void setCurCard(Card curCard) {
+        this.curCard = curCard;
     }
 
-    public void setCurrPiece(Coordinate currPeice){
-        this.currPiece = currPeice;
+    public void setCurPiece(Coordinate curPeice){
+        this.curPiece = curPeice;
     }
 
     @Override

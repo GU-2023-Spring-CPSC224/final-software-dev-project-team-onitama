@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
+import edu.gonzaga.CardDeck.*;
+
 public class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<String> cardNames = new ArrayList<>(Arrays.asList("tiger","crab", "monkey", "boar", "ox"));
     private ArrayList<Card> player1Cards = new ArrayList<Card>();
     private ArrayList<Card> player2Cards = new ArrayList<Card>();
     private Card intermediate;
@@ -17,7 +18,7 @@ public class Hand {
         int j = 0; 
         ArrayList<Integer> temp = new ArrayList<Integer>();
         while (j < size){
-            int x = random.nextInt(cardNames.size());
+            int x = random.nextInt(15);
             if(temp.contains(x) != true){
                 temp.add(x);
                 j++;
@@ -25,7 +26,57 @@ public class Hand {
         }
         System.out.println(temp);
         for (int i = 0; i < size; i++){
-            cards.add(new Card(cardNames.get(temp.get(i))));
+            switch(i) {
+                case 0:
+                    cards.add(new TigerCard("Tiger"));
+                    break;
+                case 1:
+                    cards.add(new CrabCard("Crab"));
+                    break;
+                case 2:
+                    cards.add(new MonkeyCard("Monkey"));
+                    break;
+                case 3:
+                    cards.add(new CraneCard("Crane"));
+                    break;
+                case 4:
+                    cards.add(new DragonCard("Dragon"));
+                    break;
+                case 5:
+                    cards.add(new ElephantCard("Elephant"));
+                    break;
+                case 6:
+                    cards.add(new MantisCard("Mantis"));
+                    break;
+                case 7:
+                    cards.add(new BoarCard("Boar"));
+                    break;
+                case 8:
+                    cards.add(new FrogCard("Frog"));
+                    break;
+                case 9:
+                    cards.add(new GooseCard("Goose"));
+                    break;
+                case 10:
+                    cards.add(new HorseCard("Horse"));
+                    break;
+                case 11:
+                    cards.add(new EelCard("Eel"));
+                    break;
+                case 12:
+                    cards.add(new RabbitCard("Rabbit"));
+                    break;
+                case 13:
+                    cards.add(new RoosterCard("Rooster"));
+                    break;
+                case 14:
+                    cards.add(new OxCard("Ox"));
+                    break;
+                case 15:
+                    cards.add(new CobraCard("Cobra"));
+                    break;
+            }
+
         }
         //for (int i = 0; i < size; i++){
         //    int x = random.nextInt(cardNames.size());
