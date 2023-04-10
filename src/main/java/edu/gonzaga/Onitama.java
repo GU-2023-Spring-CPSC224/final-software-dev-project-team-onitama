@@ -1,5 +1,7 @@
 package edu.gonzaga;
 
+import edu.gonzaga.CardDeck.Card;
+
 public class Onitama {
     Hand hand;
     Player player1;
@@ -26,10 +28,10 @@ public class Onitama {
     public void takeTurn(){
         Card selected = player1.selectCard(0); //button press returns 0 for first card 1 for second ect
         hand.swap(selected);
-        board.setCurrCard(selected);
-        //need coordinate of peice to be moved
+        board.setCurCard(selected);
+        //need coordinate of piece to be moved
         Coordinate temp = new Coordinate(0, 4);
-        board.setCurrPiece(temp);
+        board.setCurPiece(temp);
         board.generateDestinations();
         System.out.println(board.toString());
         //display generated Destinations
