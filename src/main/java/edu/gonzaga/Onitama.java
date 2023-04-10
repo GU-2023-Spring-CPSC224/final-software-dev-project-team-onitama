@@ -33,7 +33,7 @@ public class Onitama {
         board.generateDestinations();
         System.out.println(board.toString());
         //display generated Destinations
-        board.chooseDestination(0);
+        board.chooseDestination(2);
         System.out.println(board.toString());
         player1.updateCards(hand.getPlayer1Cards());
         /* 

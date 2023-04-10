@@ -81,9 +81,11 @@ public class Board {
             }
         }
         //remove invalid destinations
+         
         for (int i = 0; i < invalids.size(); i++){
             destinations.remove(invalids.get(i));
         }
+        
     }
 
     public void chooseDestination(int choice){
