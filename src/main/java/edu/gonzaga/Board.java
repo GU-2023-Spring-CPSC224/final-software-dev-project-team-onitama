@@ -69,7 +69,6 @@ public class Board {
         else if (board[x1][y1] == 'r' || board[x1][y1] == 'R' ){
             for (int i = 0; i < curCard.getMoves().size(); i++){
                 Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
-                System.out.println(temp.getX() + ", " + temp.getY());
                 destinations.add(temp);
             }
         }
@@ -77,16 +76,17 @@ public class Board {
             System.out.println("Choose a different spot?");
         }
         //find invalid destinations
-        ArrayList<Integer> invalids = new ArrayList<Integer>();
+        //ArrayList<Coordinate> invalids = new ArrayList<Coordinate>();
         for (int i = 0; i < destinations.size(); i++){
             if(checkValidMove(curPiece, destinations.get(i)) != true){
-                invalids.add(0,i);
+                destinations.remove(i);
+                i = i-1;
             }
         }
-        //remove invalid destinations
-        for (int i = 0; i < invalids.size(); i++){
-            destinations.remove(invalids.get(i));
-        }
+        // //remove invalid destinations
+        // for (int i = 0; i < invalids.size(); i++){
+        //     destinations.remove(invalids.get(i));
+        // }
     }
 
     public void chooseDestination(int choice){

@@ -24,9 +24,8 @@ public class Hand {
                 j++;
             }
         }
-        System.out.println(temp);
         for (int i = 0; i < size; i++){
-            switch(i) {
+            switch(temp.get(i)) {
                 case 0:
                     cards.add(new TigerCard("Tiger"));
                     break;
@@ -78,6 +77,8 @@ public class Hand {
             }
 
         }
+        for(Integer i = 0; i < cards.size(); i++)
+            System.out.println(cards.get(i).getName());
         //for (int i = 0; i < size; i++){
         //    int x = random.nextInt(cardNames.size());
         //    cards.add(new Card(cardNames.get(x)));

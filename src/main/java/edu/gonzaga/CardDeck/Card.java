@@ -26,6 +26,10 @@ public abstract class Card {
         return color;
     }
 
+    public String getName() {
+        return cardName;
+    }
+
     @Override
     public String toString() {
         String ret = "Card name: ";
