@@ -30,7 +30,7 @@ public class Onitama {
         hand.swap(selected);
         board.setCurCard(selected);
         //need coordinate of piece to be moved
-        Coordinate temp = new Coordinate(0, 4);
+        Coordinate temp = new Coordinate(2, 4);
         board.setCurPiece(temp);
         board.generateDestinations();
         System.out.println(board.toString());

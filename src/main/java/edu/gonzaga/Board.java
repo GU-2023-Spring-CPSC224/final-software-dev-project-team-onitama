@@ -69,11 +69,12 @@ public class Board {
         else if (board[x1][y1] == 'r' || board[x1][y1] == 'R' ){
             for (int i = 0; i < curCard.getMoves().size(); i++){
                 Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
+                System.out.println(temp.getX() + ", " + temp.getY());
                 destinations.add(temp);
             }
         }
         else{
-            //error
+            System.out.println("Choose a different spot?");
         }
         //find invalid destinations
         ArrayList<Integer> invalids = new ArrayList<Integer>();
@@ -96,8 +97,12 @@ public class Board {
         this.curCard = curCard;
     }
 
-    public void setCurPiece(Coordinate curPeice){
-        this.curPiece = curPeice;
+    public void setCurPiece(Coordinate curPiece){
+        this.curPiece = curPiece;
+    }
+
+    public Integer getNumDest() {
+        return destinations.size();
     }
 
     @Override
