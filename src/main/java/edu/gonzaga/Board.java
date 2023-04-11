@@ -18,18 +18,18 @@ public class Board {
         int x1 = pieceCoord.getX();
         int y1 = pieceCoord.getY();
         int x2 = destCoord.getX();
-        int y2 = destCoord.getX();
+        int y2 = destCoord.getY();
         //no movement
         if (pieceCoord == destCoord)
             return false;
         //out of bounds
-        if (x1 > size || x1 < 0)
+        if (x1 >= size || x1 < 0)
             return false;
-        if (y1 > size || y1 < 0)
+        if (y1 >= size || y1 < 0)
             return false;
-        if (x2 > size || x2 < 0)
+        if (x2 >= size || x2 < 0)
             return false;
-        if (y2 > size || y2 < 0)
+        if (y2 >= size || y2 < 0)
             return false;
         //same team
         if (board[x1][y1] == board[x2][y2])
@@ -89,8 +89,13 @@ public class Board {
         // }
     }
 
+    public ArrayList<Coordinate> getDest(){
+        return destinations;
+    }
+    
     public void chooseDestination(int choice){
-        makeMove(destinations.get(choice));
+        if(destinations.isEmpty() != true)
+            makeMove(destinations.get(choice));
     }
 
     public void setCurCard(Card curCard) {
