@@ -28,7 +28,6 @@ public class BoardTest {
         board.setCurCard(dragon);
         board.setCurPiece(piece);
         board.generateDestinations();
-        System.out.println(board.getDest());
         assertEquals(expectedValue, board.getNumDest());
     }
 

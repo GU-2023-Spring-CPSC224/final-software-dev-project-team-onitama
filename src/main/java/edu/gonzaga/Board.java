@@ -122,4 +122,8 @@ public class Board {
         }
         return ret;
     }
+
+    public char[][] getBoard() {
+        return board;
+    }
 }
