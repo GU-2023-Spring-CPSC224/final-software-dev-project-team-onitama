@@ -130,4 +130,11 @@ public class Hand {
         ret += "\n";
         return ret;
     }
+
+    public String[] getNames() {
+        String[] names = new String[cards.size()];
+        for(Integer i = 0; i < cards.size(); i++)
+            names[i] = cards.get(i).getName();
+        return names;
+    }
 }

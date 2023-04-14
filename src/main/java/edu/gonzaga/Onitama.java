@@ -2,12 +2,10 @@ package edu.gonzaga;
 
 import edu.gonzaga.CardDeck.Card;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class Onitama {
     Hand hand;
@@ -20,9 +18,15 @@ public class Onitama {
      * Swing Stuff
      */
     JFrame mainWindowFrame;
+    JPanel northPanel;
+    JPanel eastPanel;
+    JPanel southPanel;
+    JPanel westPanel;
     JPanel boardPanel;
     JButton[][] boardButtons;
+    JButton[] cardButtons;
     Boolean isPieceSelected = false;
+    Boolean isCardSelected = false;
 
 
     public Onitama(){
@@ -78,14 +82,24 @@ public class Onitama {
         this.mainWindowFrame.setLocation(100,100);
         
         this.boardPanel = new JPanel();
+        this.northPanel = new JPanel();
+        this.eastPanel = new JPanel();
+        this.southPanel = new JPanel();
+        this.westPanel = new JPanel();
 
         // Board panel setup
         this.boardPanel = genBoardPanel();
+        // tmp card setup
+        this.southPanel = genCardPanel();
         // Listener setup
         addButtonCallbackHandlers();
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
         mainWindowFrame.pack();
     }
     
@@ -110,6 +124,26 @@ public class Onitama {
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newBoardPanel.setLayout(new GridLayout(5, 5));    // Making it pretty
         return newBoardPanel;
+    }
+
+    //this is a temp way to display cards
+    private JPanel genCardPanel() {
+        JPanel newCardPanel = new JPanel();
+        newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+        // making array of buttons
+        String[] tmp = hand.getNames();
+        this.cardButtons = new JButton[5];
+        for(Integer i=0; i < cardButtons.length; i++)
+            cardButtons[i] = new JButton("" + tmp[i]);
+
+        for(Integer i=0; i < cardButtons.length; i++)    
+            newCardPanel.add(cardButtons[i]);
+
+        // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
+        newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
+        return newCardPanel;
     }
 
     private void addButtonCallbackHandlers() {
@@ -144,6 +178,32 @@ public class Onitama {
                     }
                 });
             }   
+        }
+
+
+        for(Integer i=0; i < cardButtons.length; i++) {
+            final Integer insideI = i;
+            this.cardButtons[insideI].addActionListener(new ActionListener() {
+                Boolean pressed = false;
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(pressed == false) {
+                        if(isCardSelected == false) {
+                            System.out.println("You clicked: " + cardButtons[insideI].getText());
+                            cardButtons[insideI].setBackground(Color.GRAY);
+                            pressed = true;
+                            isCardSelected = true;
+                        }
+                    }
+                    else if(pressed == true) {
+                        System.out.println("You un-clicked space: " + cardButtons[insideI].getText());
+                        cardButtons[insideI].setBackground(null);
+                        pressed = false;
+                        isCardSelected = false;
+                    }
+                }
+            });
+              
         }
 
 
