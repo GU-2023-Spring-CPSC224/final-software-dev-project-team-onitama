@@ -161,25 +161,27 @@ public class Onitama {
                     Boolean pressed = false;
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                    if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
-                        System.out.println("No piece here");
-                    }
-                    else{
-                        if(pressed == false) {
-                            if(isPieceSelected == false) {
-                                System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
-                                boardButtons[insideI][insideJ].setBackground(Color.GRAY);
-                                pressed = true;
-                                isPieceSelected = true;
+                        //checks for empty space
+                        if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
+                            System.out.println("No piece here");
+                        }
+                        //if piece, add check for red/blue
+                        else{
+                            if(pressed == false) {
+                                if(isPieceSelected == false) {
+                                    System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
+                                    boardButtons[insideI][insideJ].setBackground(Color.GRAY);
+                                    pressed = true;
+                                    isPieceSelected = true;
+                                }
+                            }
+                            else if(pressed == true) {
+                                System.out.println("You un-clicked space: [" + insideJ + "," + insideI + "]");
+                                boardButtons[insideI][insideJ].setBackground(null);
+                                pressed = false;
+                                isPieceSelected = false;
                             }
                         }
-                        else if(pressed == true) {
-                            System.out.println("You un-clicked space: [" + insideJ + "," + insideI + "]");
-                            boardButtons[insideI][insideJ].setBackground(null);
-                            pressed = false;
-                            isPieceSelected = false;
-                        }
-                    }
                     }
                 });
             }   
