@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewGame {
+public class BoardUI {
     Hand hand;
     Player player1;
     Player player2;
@@ -34,15 +34,11 @@ public class NewGame {
     Boolean isCardSelected = false;
 
 
-    public NewGame(){
+    public BoardUI(){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5);
-        BoardUI app = new BoardUI();    // Create, then run GUI
-
-        app.runGUI();
-
 
 
         /*
@@ -89,7 +85,6 @@ public class NewGame {
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
         this.mainWindowFrame.setLocation(100,100);
-        this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
