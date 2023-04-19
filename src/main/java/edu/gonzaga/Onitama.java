@@ -113,8 +113,14 @@ public class Onitama {
         char[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
+        {
             for(Integer j=0; j < boardButtons.length; j++)
+            {
                 boardButtons[i][j] = new JButton("" + tmp[i][j]);
+                boardButtons[i][j].setFocusable(false);
+            }
+        }
+            
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)

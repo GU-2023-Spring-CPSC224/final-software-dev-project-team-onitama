@@ -1,3 +1,5 @@
+package edu.gonzaga.BasicGUI;
+
 import javax.swing.*;
 import java.awt.*;
 

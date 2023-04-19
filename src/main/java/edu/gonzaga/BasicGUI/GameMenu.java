@@ -1,3 +1,5 @@
+package edu.gonzaga.BasicGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -70,8 +72,6 @@ public class GameMenu extends JFrame implements ActionListener
         quitButton.setFocusable(false);
         quitButton.addActionListener(this);
         quitButton.setForeground(Color.RED);
-
-
 
 
         //startMenuPanel.add(newGameButton);
