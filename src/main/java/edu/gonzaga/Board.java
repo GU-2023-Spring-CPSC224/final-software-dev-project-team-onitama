@@ -9,14 +9,16 @@ public class Board {
     private char[][] board = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
+    private Hand hand;
     private Card curCard;
     private Coordinate curPiece;
     private char curPlayer = 'r';
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
 
-    public Board(int size){
+    public Board(int size, Hand h){
         this.size = size;
+        hand = h;
     }
     public boolean checkValidMove(Coordinate pieceCoord, Coordinate destCoord){
         int x1 = pieceCoord.getX();
@@ -103,8 +105,10 @@ public class Board {
     }
 
     public void setCurCard(Card curCard) {
-        this.curCard = curCard;
-        cardSelected = true;
+        if(hand.whosHand(curCard) == curPlayer) {
+            this.curCard = curCard;
+            cardSelected = true;
+        }
     }
 
     public void setCurPiece(Coordinate curPiece){
@@ -148,5 +152,6 @@ public class Board {
     public Boolean isPieceSelected() {
         return pieceSelected;
     }
+
 
 }

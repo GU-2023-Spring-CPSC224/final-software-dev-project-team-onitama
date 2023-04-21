@@ -1,5 +1,6 @@
 package edu.gonzaga;
 
+import java.io.CharArrayReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -137,4 +138,22 @@ public class Hand {
             names[i] = cards.get(i).getName();
         return names;
     }
+
+    public Card getCardByName(String name) {
+        for(int i = 0; i < cards.size(); i++)
+            if(name == cards.get(i).getName())
+                return cards.get(i);
+        //doesnt like me otherwise
+        return cards.get(0);
+    }
+
+    public Character whosHand(Card card) {
+        if(player1Cards.contains(card))
+            return 'r';
+        if(player2Cards.contains(card))
+            return 'b';
+        else
+            return '0';
+    }
+
 }

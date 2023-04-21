@@ -13,13 +13,13 @@ import edu.gonzaga.CardDeck.Card;
 public class CardButton extends JButton{
     private Board board;
     private Hand hand;
-    private Coordinate cord;
-    private int cardNum;
+    private String name;
 
-    CardButton(Board b, Hand h) {
-        super("" + h[cardNum]);
+    CardButton(Board b, Hand h, int n) {
+        super("" + h.getNames()[n]);
         board = b;
-        cord = new Coordinate(x, y);
+        hand = h;
+        name = h.getNames()[n];
         setupCallback();
     }
 
@@ -29,24 +29,20 @@ public class CardButton extends JButton{
             public void actionPerformed(ActionEvent e) {
                 
                 // if no piece is selected yet, set piece
-                if(!board.isPieceSelected()) {
-                    board.setCurPiece(cord);
+                if(!board.isCardSelected()) {
+                    board.setCurCard(hand.getCardByName(name));
                     // if a card is also selected, generate the destinations
-                    if(board.isCardSelected()) {
+                    if(board.isPieceSelected()) {
                         board.generateDestinations();
                     }
                 }
                 // if there already is a piece selected
                 else {
                     // if a card hasn't been selected, switch cur piece
-                    if(!board.isCardSelected()) {
-                        board.setCurPiece(cord);
+                    if(!board.isPieceSelected()) {
+                        board.setCurCard(hand.getCardByName(name));
                     }
-                    // else if() check for same piece to switch
-                    // otherwise, make move
-                    else {
-                        board.makeMove(cord);
-                    }
+                    // else if() check for same card to switch
                 }
             }   
         });
