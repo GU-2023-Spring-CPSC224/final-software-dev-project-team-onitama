@@ -89,7 +89,7 @@ public class NewGame {
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
         this.mainWindowFrame.setLocation(100,100);
-        this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
