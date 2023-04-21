@@ -32,6 +32,7 @@ public class BoardUI {
     JButton[] cardButtons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
+    Integer playerTurn = 1;
 
 
     public BoardUI(){
@@ -83,7 +84,8 @@ public class BoardUI {
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainWindowFrame.setSize(400, 400);
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //this.mainWindowFrame.setPreferredSize(screenSize);
         this.mainWindowFrame.setLocation(100,100);
 
         this.boardPanel = new JPanel();
@@ -128,6 +130,7 @@ public class BoardUI {
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newBoardPanel.setLayout(new GridLayout(5, 5));    // Making it pretty
+        newBoardPanel.setSize(400, 400);
         return newBoardPanel;
     }
 
@@ -164,14 +167,33 @@ public class BoardUI {
                 final Integer insideJ = j;
                 this.boardButtons[insideI][insideJ].addActionListener(new ActionListener() {
                     Boolean pressed = false;
+                    // String smallPiece = " ";
+                    // String bigPiece = " ";
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //checks for empty space
-                        if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
-                            System.out.println("No piece here");
+                        
+                        if(playerTurn == 1) {
+                            for(int i = 0; i < 5; i++) {
+                                for(int j = 0; j < 5; j++) {
+                                    if(board.getBoard()[i][j] != 'r' && board.getBoard()[i][j] != 'R')
+                                        boardButtons[i][j].setEnabled(false);
+                                }
+                            }
                         }
+                        else if(playerTurn == 2) {
+                            for(int i = 0; i < 5; i++) {
+                                for(int j = 0; j < 5; j++) {
+                                    if(board.getBoard()[i][j] != 'b' && board.getBoard()[i][j] != 'B')
+                                        boardButtons[i][j].setEnabled(false);
+                                }
+                            }
+                        }
+                        //checks for empty space
+                        // if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
+                        //     System.out.println("No piece here");
+                        // }
                         //if piece, add check for red/blue
-                        else{
+                        //else if(boardButtons[insideI][insideJ].getText().compareTo(smallPiece) == 0 || boardButtons[insideI][insideJ].getText().compareTo(bigPiece) == 0){
                             if(pressed == false) {
                                 if(isPieceSelected == false) {
                                     System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
@@ -188,7 +210,7 @@ public class BoardUI {
                                 pressed = false;
                                 isPieceSelected = false;
                             }
-                        }
+                        //}
                     }
                 });
             }
@@ -232,5 +254,6 @@ public class BoardUI {
         mainWindowFrame.setVisible(true);
         System.out.println("Done in GUI app");
     }
+    
 
 }
