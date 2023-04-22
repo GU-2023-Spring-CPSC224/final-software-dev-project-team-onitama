@@ -7,11 +7,16 @@ public class Square {
 
     char piece;
     int player;
+    boolean possible;
+    boolean selected;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);    
 
     public Square() {
         piece = '0';
+        player = 0;
+        possible = false;
+        selected = false;
     }
 
 
@@ -39,12 +44,36 @@ public class Square {
         this.pcs.firePropertyChange("squarePiece", oldPiece, newPiece);
     }
 
+    private void updatePossible(boolean p){
+        boolean oldPossible = this.possible;
+        this.possible = p;
+        this.pcs.firePropertyChange("possible", oldPossible, p);
+    }
+
+    private void updateSelected(boolean s){
+        boolean oldSelected = this.selected;
+        this.selected = s;
+        this.pcs.firePropertyChange("selected", oldSelected, s);
+    }
+
+    public void setSelected(boolean s){
+        updateSelected(s);
+    }
+
     public void setPiece(char newPiece) {
         this.updatePiece(newPiece);
     }
 
     public char getPiece() {
         return piece;
+    }
+
+    public int getPlayer() {
+        return player;
+    }
+
+    public void setPossible(boolean p){
+        updatePossible(p);
     }
 
     @Override

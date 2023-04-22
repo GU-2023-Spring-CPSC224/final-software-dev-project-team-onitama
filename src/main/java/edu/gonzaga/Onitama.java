@@ -1,6 +1,9 @@
 package edu.gonzaga;
 
+import edu.gonzaga.CardDeck.BoarCard;
 import edu.gonzaga.CardDeck.Card;
+import edu.gonzaga.CardDeck.DragonCard;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -34,6 +37,8 @@ public class Onitama {
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5);
+        Card dragon = new DragonCard("Dragon");
+        board.setCurCard(dragon);
 
 
         /* 
@@ -159,6 +164,7 @@ public class Onitama {
          * If you guys can do it better pls do, but this should actually work 
          * Quite well
          */ 
+/* 
         for(Integer i=0; i < boardButtons.length; i++) {
             for(Integer j=0; j < boardButtons.length; j++) {
                 final Integer insideI = i;
@@ -192,7 +198,7 @@ public class Onitama {
                 });
             }   
         }
-
+*/
 
         for(Integer i=0; i < cardButtons.length; i++) {
             final Integer insideI = i;

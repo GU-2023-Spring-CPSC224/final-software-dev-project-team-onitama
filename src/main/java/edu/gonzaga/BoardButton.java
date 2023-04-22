@@ -15,6 +15,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
     String text;
     Board board;
     Coordinate cord;
+    boolean border;
+    boolean selected;
 
     public BoardButton(Board b, Coordinate c) {
         super("");
@@ -28,9 +30,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(board.isPiece(cord))
-                        board.buttonPressed(cord);
-
+                        board.boardButtonPressed(cord);
                 }
             }
         );
@@ -56,9 +56,27 @@ public class BoardButton extends JButton implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent e) {
         String propertyName = e.getPropertyName();
         if ("squarePiece".equals(propertyName)) {
-            System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+            //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
             text = e.getNewValue().toString();
             this.setText(text);
+        }
+        if ("possible".equals(propertyName)) {
+            border = ((boolean)e.getNewValue());
+            if(border){
+                this.setBackground(Color.BLACK);
+            }
+            else{
+                this.setBackground(null);
+            }
+        }
+        if ("selected".equals(propertyName)) {
+            selected = ((boolean)e.getNewValue());
+            if(selected){
+                this.setBackground(Color.BLUE);
+            }
+            else{
+                this.setBackground(null);
+            }
         }
     }
 

@@ -121,8 +121,14 @@ public class Board {
         this.curCard = curCard;
     }
 
-    public void setCurPiece(Coordinate curPiece){
-        this.curPiece = curPiece;
+    public void setCurPiece(Coordinate newCurPiece){
+        if (curPiece != null){
+            Square temp1 = getSquare(curPiece);
+            temp1.setSelected(false);
+        }
+        this.curPiece = newCurPiece;
+        Square temp = getSquare(curPiece);
+        temp.setSelected(true);
     }
 
     public Integer getNumDest() {
@@ -137,18 +143,29 @@ public class Board {
         return board[cord.getX()][cord.getY()].getPiece();
     }
 
-    public void buttonPressed(Coordinate cord){
+    public void boardButtonPressed(Coordinate cord){
         if(isPiece(cord)){
-            setCurPiece(cord);
+            if(curPiece == null){
+                setCurPiece(cord);
+            }  
+            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){
+                setCurPiece(cord);
+                for(int i = 0; i < destinations.size(); i++){
+                    Square temp = getSquare(destinations.get(i));
+                    temp.setPossible(false);
+                }
+            }
         }
-        if(curCard != null){
-
+        if(curCard != null && curPiece != null){
+            generateDestinations();
+            System.out.println(destinations.size());
+            for(int i = 0; i < destinations.size(); i++){
+                Square temp = getSquare(destinations.get(i));
+                temp.setPossible(true);
+            }
         }
     }
 
-    private Boolean isSametype(Coordinate cord){
-        if(getBoardVal(cord) == )
-    }
 
     @Override
     public String toString() {
