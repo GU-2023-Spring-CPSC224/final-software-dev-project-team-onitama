@@ -28,7 +28,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    board.buttonPressed(cord);
+                    if(board.isPiece(cord))
+                        board.buttonPressed(cord);
 
                 }
             }
