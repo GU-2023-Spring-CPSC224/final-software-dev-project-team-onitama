@@ -125,8 +125,14 @@ public class BoardUI {
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
+        {
             for(Integer j=0; j < boardButtons.length; j++)
+            {
                 newBoardPanel.add(boardButtons[j][i]);
+                boardButtons[j][i].setFocusable(false);
+            }
+
+        }
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newBoardPanel.setLayout(new GridLayout(5, 5));    // Making it pretty
