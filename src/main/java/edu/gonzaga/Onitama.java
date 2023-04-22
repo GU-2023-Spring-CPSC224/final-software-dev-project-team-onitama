@@ -110,13 +110,13 @@ public class Onitama {
 
 
         // making array of buttons
-        char[][] tmp = board.getBoard();
-        this.boardButtons = new JButton[5][5];
-        for(Integer i=0; i < boardButtons.length; i++)
+        this.boardButtons = new BoardButton[5][5];
+        for(int i=0; i < boardButtons.length; i++)
         {
-            for(Integer j=0; j < boardButtons.length; j++)
+            for(int j=0; j < boardButtons.length; j++)
             {
-                boardButtons[i][j] = new JButton("" + tmp[i][j]);
+                Coordinate temp = new Coordinate(i, j);
+                boardButtons[i][j] = new BoardButton(board, temp);
                 boardButtons[i][j].setFocusable(false);
             }
         }

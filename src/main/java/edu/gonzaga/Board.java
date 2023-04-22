@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {
-    private char[][] board = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
+    private char[][] boardStartValues = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
+    private Square[][] board;
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
     private Card curCard;
@@ -13,6 +14,17 @@ public class Board {
 
     public Board(int size){
         this.size = size;
+        this.board = new Square[size][size];
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                board[i][j] = new Square();
+            }
+        }
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                this.board[i][j].setPiece(boardStartValues[i][j]);
+            }
+        }
     }
     public boolean checkValidMove(Coordinate pieceCoord, Coordinate destCoord){
         int x1 = pieceCoord.getX();
@@ -32,25 +44,25 @@ public class Board {
         if (y2 >= size || y2 < 0)
             return false;
         //same team
-        if (board[x1][y1] == board[x2][y2])
+        if (board[x1][y1].getPiece() == board[x2][y2].getPiece())
             return false;
-        if (board[x1][y1] == 'b' && board[x2][y2] == 'B')
+        if (board[x1][y1].getPiece() == 'b' && board[x2][y2].getPiece() == 'B')
             return false;
-        if (board[x1][y1] == 'B' && board[x2][y2] == 'b')
+        if (board[x1][y1].getPiece() == 'B' && board[x2][y2].getPiece() == 'b')
             return false;
-        if (board[x1][y1] == 'r' && board[x2][y2] == 'R')
+        if (board[x1][y1].getPiece() == 'r' && board[x2][y2].getPiece() == 'R')
             return false;
-        if (board[x1][y1] == 'R' && board[x2][y2] == 'r')
+        if (board[x1][y1].getPiece() == 'R' && board[x2][y2].getPiece() == 'r')
             return false;
         return true;
     }
 
     public int makeMove(Coordinate destCoord){
         if (checkValidMove(curPiece, destCoord)){
-            char piece = board[curPiece.getX()][curPiece.getY()];
-            char dest = board[destCoord.getX()][destCoord.getY()];
-            board[destCoord.getX()][destCoord.getY()] = piece;
-            board[curPiece.getX()][curPiece.getY()] = '0';
+            char piece = board[curPiece.getX()][curPiece.getY()].getPiece();
+            char dest = board[destCoord.getX()][destCoord.getY()].getPiece();
+            board[destCoord.getX()][destCoord.getY()].setPiece(piece);
+            board[curPiece.getX()][curPiece.getY()].setPiece('0');
             return dest;
         }
         return -1;
@@ -60,13 +72,13 @@ public class Board {
         destinations.clear();
         int x1 = curPiece.getX();
         int y1 = curPiece.getY();
-        if (board[x1][y1] == 'b' || board[x1][y1] == 'B' ){
+        if (board[x1][y1].getPiece() == 'b' || board[x1][y1].getPiece() == 'B' ){
             for (int i = 0; i < curCard.getInvMoves().size(); i++){
                 Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
-        else if (board[x1][y1] == 'r' || board[x1][y1] == 'R' ){
+        else if (board[x1][y1].getPiece() == 'r' || board[x1][y1].getPiece() == 'R' ){
             for (int i = 0; i < curCard.getMoves().size(); i++){
                 Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
                 destinations.add(temp);
@@ -87,6 +99,13 @@ public class Board {
         // for (int i = 0; i < invalids.size(); i++){
         //     destinations.remove(invalids.get(i));
         // }
+    }
+
+    public boolean isPiece(Coordinate cord){
+        if(getBoardVal(cord) == '0'){
+            return false;
+        }
+        return true;
     }
 
     public ArrayList<Coordinate> getDest(){
@@ -110,6 +129,27 @@ public class Board {
         return destinations.size();
     }
 
+    public Square getSquare(Coordinate cord){
+        return board[cord.getX()][cord.getY()];
+    }
+
+    private char getBoardVal(Coordinate cord){
+        return board[cord.getX()][cord.getY()].getPiece();
+    }
+
+    public void buttonPressed(Coordinate cord){
+        if(isPiece(cord)){
+            setCurPiece(cord);
+        }
+        if(curCard != null){
+
+        }
+    }
+
+    private Boolean isSametype(Coordinate cord){
+        if(getBoardVal(cord) == )
+    }
+
     @Override
     public String toString() {
         String ret = "";
@@ -123,7 +163,7 @@ public class Board {
         return ret;
     }
 
-    public char[][] getBoard() {
+    public Square[][] getBoard() {
         return board;
     }
 }
