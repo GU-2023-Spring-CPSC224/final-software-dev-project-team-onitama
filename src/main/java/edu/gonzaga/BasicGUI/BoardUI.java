@@ -1,13 +1,18 @@
-package edu.gonzaga;
+package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
+import edu.gonzaga.Board;
+import edu.gonzaga.Coordinate;
+import edu.gonzaga.Hand;
+import edu.gonzaga.Player;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Onitama {
+public class BoardUI {
     Hand hand;
     Player player1;
     Player player2;
@@ -27,16 +32,17 @@ public class Onitama {
     JButton[] cardButtons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
+    Integer playerTurn = 1;
 
 
-    public Onitama(){
+    public BoardUI(){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand);
 
 
-        /* 
+        /*
         System.out.println(hand);
         System.out.println(player1);
         System.out.println(player2);
@@ -49,8 +55,8 @@ public class Onitama {
     }
 
     public static void main(String [] args) {
-        Onitama app = new Onitama();    // Create, then run GUI
-        app.runGUI();        
+        BoardUI app = new BoardUI();    // Create, then run GUI
+        app.runGUI();
     }
 
     public void takeTurn(){
@@ -66,7 +72,7 @@ public class Onitama {
         board.chooseDestination(0);
         System.out.println(board.toString());
         player1.updateCards(hand.getPlayer1Cards());
-        /* 
+        /*
         if (player.getNum() == 1)
             player.updateCards(hand.getPlayer1Cards());
         else if (player.getNum() == 2)
@@ -78,9 +84,10 @@ public class Onitama {
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainWindowFrame.setSize(400, 400);
+        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        //this.mainWindowFrame.setPreferredSize(screenSize);
         this.mainWindowFrame.setLocation(100,100);
-        
+
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
         this.eastPanel = new JPanel();
@@ -102,7 +109,7 @@ public class Onitama {
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
         mainWindowFrame.pack();
     }
-    
+
     // Makes the board
     private JPanel genBoardPanel() {
         JPanel newBoardPanel = new JPanel();
@@ -113,22 +120,23 @@ public class Onitama {
         char[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
-        {
             for(Integer j=0; j < boardButtons.length; j++)
-            {
                 boardButtons[i][j] = new JButton("" + tmp[i][j]);
-                boardButtons[i][j].setFocusable(false);
-            }
-        }
-            
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
+        {
             for(Integer j=0; j < boardButtons.length; j++)
+            {
                 newBoardPanel.add(boardButtons[j][i]);
+                boardButtons[j][i].setFocusable(false);
+            }
+
+        }
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newBoardPanel.setLayout(new GridLayout(5, 5));    // Making it pretty
+        newBoardPanel.setSize(400, 400);
         return newBoardPanel;
     }
 
@@ -144,7 +152,7 @@ public class Onitama {
         for(Integer i=0; i < cardButtons.length; i++)
             cardButtons[i] = new JButton("" + tmp[i]);
 
-        for(Integer i=0; i < cardButtons.length; i++)    
+        for(Integer i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
@@ -154,25 +162,44 @@ public class Onitama {
 
     private void addButtonCallbackHandlers() {
 
-        /*  
+        /*
          * This looks scary but its just the set up for the button listeners
-         * If you guys can do it better pls do, but this should actually work 
+         * If you guys can do it better pls do, but this should actually work
          * Quite well
-         */ 
+         */
         for(Integer i=0; i < boardButtons.length; i++) {
             for(Integer j=0; j < boardButtons.length; j++) {
                 final Integer insideI = i;
                 final Integer insideJ = j;
                 this.boardButtons[insideI][insideJ].addActionListener(new ActionListener() {
                     Boolean pressed = false;
+                    // String smallPiece = " ";
+                    // String bigPiece = " ";
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //checks for empty space
-                        if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
-                            System.out.println("No piece here");
+                        
+                        if(playerTurn == 1) {
+                            for(int i = 0; i < 5; i++) {
+                                for(int j = 0; j < 5; j++) {
+                                    if(board.getBoard()[i][j] != 'r' && board.getBoard()[i][j] != 'R')
+                                        boardButtons[i][j].setEnabled(false);
+                                }
+                            }
                         }
+                        else if(playerTurn == 2) {
+                            for(int i = 0; i < 5; i++) {
+                                for(int j = 0; j < 5; j++) {
+                                    if(board.getBoard()[i][j] != 'b' && board.getBoard()[i][j] != 'B')
+                                        boardButtons[i][j].setEnabled(false);
+                                }
+                            }
+                        }
+                        //checks for empty space
+                        // if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
+                        //     System.out.println("No piece here");
+                        // }
                         //if piece, add check for red/blue
-                        else{
+                        //else if(boardButtons[insideI][insideJ].getText().compareTo(smallPiece) == 0 || boardButtons[insideI][insideJ].getText().compareTo(bigPiece) == 0){
                             if(pressed == false) {
                                 if(isPieceSelected == false) {
                                     System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
@@ -189,10 +216,10 @@ public class Onitama {
                                 pressed = false;
                                 isPieceSelected = false;
                             }
-                        }
+                        //}
                     }
                 });
-            }   
+            }
         }
 
 
@@ -218,7 +245,7 @@ public class Onitama {
                     }
                 }
             });
-              
+
         }
 
 
@@ -234,4 +261,5 @@ public class Onitama {
         System.out.println("Done in GUI app");
     }
     
+
 }

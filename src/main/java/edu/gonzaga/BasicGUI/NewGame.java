@@ -1,13 +1,18 @@
-package edu.gonzaga;
+package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
+import edu.gonzaga.Board;
+import edu.gonzaga.Coordinate;
+import edu.gonzaga.Hand;
+import edu.gonzaga.Player;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Onitama {
+public class NewGame {
     Hand hand;
     Player player1;
     Player player2;
@@ -29,14 +34,18 @@ public class Onitama {
     Boolean isCardSelected = false;
 
 
-    public Onitama(){
+    public NewGame(){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand);
+        BoardUI app = new BoardUI();    // Create, then run GUI
+
+        app.runGUI();
 
 
-        /* 
+
+        /*
         System.out.println(hand);
         System.out.println(player1);
         System.out.println(player2);
@@ -49,8 +58,8 @@ public class Onitama {
     }
 
     public static void main(String [] args) {
-        Onitama app = new Onitama();    // Create, then run GUI
-        app.runGUI();        
+        BoardUI app = new BoardUI();    // Create, then run GUI
+        app.runGUI();
     }
 
     public void takeTurn(){
@@ -66,7 +75,7 @@ public class Onitama {
         board.chooseDestination(0);
         System.out.println(board.toString());
         player1.updateCards(hand.getPlayer1Cards());
-        /* 
+        /*
         if (player.getNum() == 1)
             player.updateCards(hand.getPlayer1Cards());
         else if (player.getNum() == 2)
@@ -80,7 +89,8 @@ public class Onitama {
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
         this.mainWindowFrame.setLocation(100,100);
-        
+        //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
         this.eastPanel = new JPanel();
@@ -102,7 +112,7 @@ public class Onitama {
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
         mainWindowFrame.pack();
     }
-    
+
     // Makes the board
     private JPanel genBoardPanel() {
         JPanel newBoardPanel = new JPanel();
@@ -113,14 +123,8 @@ public class Onitama {
         char[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
-        {
             for(Integer j=0; j < boardButtons.length; j++)
-            {
                 boardButtons[i][j] = new JButton("" + tmp[i][j]);
-                boardButtons[i][j].setFocusable(false);
-            }
-        }
-            
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
@@ -144,7 +148,7 @@ public class Onitama {
         for(Integer i=0; i < cardButtons.length; i++)
             cardButtons[i] = new JButton("" + tmp[i]);
 
-        for(Integer i=0; i < cardButtons.length; i++)    
+        for(Integer i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
@@ -154,11 +158,11 @@ public class Onitama {
 
     private void addButtonCallbackHandlers() {
 
-        /*  
+        /*
          * This looks scary but its just the set up for the button listeners
-         * If you guys can do it better pls do, but this should actually work 
+         * If you guys can do it better pls do, but this should actually work
          * Quite well
-         */ 
+         */
         for(Integer i=0; i < boardButtons.length; i++) {
             for(Integer j=0; j < boardButtons.length; j++) {
                 final Integer insideI = i;
@@ -192,7 +196,7 @@ public class Onitama {
                         }
                     }
                 });
-            }   
+            }
         }
 
 
@@ -218,7 +222,7 @@ public class Onitama {
                     }
                 }
             });
-              
+
         }
 
 
@@ -233,5 +237,5 @@ public class Onitama {
         mainWindowFrame.setVisible(true);
         System.out.println("Done in GUI app");
     }
-    
+
 }
