@@ -29,8 +29,6 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton = new JButton();
         optionsButton = new JButton();
         quitButton = new JButton();
-
-
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
@@ -90,7 +88,6 @@ public class GameMenu extends JFrame implements ActionListener
         if (e.getSource() == newGameButton)
         {
             CharacterSelect c = new CharacterSelect();
-            //NewGame n = new NewGame();
         }
         if (e.getSource() == instructionsButton)
         {

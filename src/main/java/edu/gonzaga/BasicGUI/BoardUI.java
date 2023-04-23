@@ -118,7 +118,6 @@ public class BoardUI {
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
         for(int i=0; i < boardButtons.length; i++)
@@ -130,7 +129,7 @@ public class BoardUI {
                 boardButtons[i][j].setFocusable(false);
             }
         }
-            
+
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
@@ -142,6 +141,7 @@ public class BoardUI {
         return newBoardPanel;
 
     }
+    
 
     // //this is a temp way to display cards
     private JPanel genCardPanel() {
@@ -154,6 +154,7 @@ public class BoardUI {
         for(Integer i=0; i < cardButtons.length; i++)
             cardButtons[i] = new CardButton(board, hand, i);
 
+
         for(Integer i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
@@ -162,9 +163,8 @@ public class BoardUI {
         return newCardPanel;
     }
 
+
     private void addButtonCallbackHandlers() {
-
-
         for(Integer i=0; i < cardButtons.length; i++) {
             final Integer insideI = i;
             this.cardButtons[insideI].addActionListener(new ActionListener() {
