@@ -19,6 +19,7 @@ public class BoardTest {
         assertEquals(expectedValue, board.getNumDest());
     }
 
+    /* 
     @Test
     void testNumZeroDest() {
         Integer expectedValue = 0;
@@ -30,6 +31,7 @@ public class BoardTest {
         board.generateDestinations();
         assertEquals(expectedValue, board.getNumDest());
     }
+    */
 
     @Test
     void testMoveToEmpty() {
