@@ -16,7 +16,7 @@ public class observationTesting {
         frame.setLocation(200,200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //button.setSquareToView(test);
-        test.setPiece('k');
+        //test.setPiece('k');
         //frame.add(button);
         //button.setVisible(true);
         frame.setVisible(true);

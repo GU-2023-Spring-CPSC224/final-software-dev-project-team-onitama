@@ -5,7 +5,7 @@ import java.beans.PropertyChangeSupport;
 
 public class Square {
 
-    char piece;
+    String piece;
     int player;
     boolean possible;
     boolean selected;
@@ -13,7 +13,7 @@ public class Square {
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);    
 
     public Square() {
-        piece = '0';
+        piece = "0";
         player = 0;
         possible = false;
         selected = false;
@@ -28,16 +28,16 @@ public class Square {
         this.pcs.removePropertyChangeListener(listener);
     }
 
-    private void updatePiece(char newPiece) {
-        char oldPiece = this.piece;
+    private void updatePiece(String newPiece) {
+        String oldPiece = this.piece;
         this.piece = newPiece;
-        if (newPiece == '0'){
+        if (newPiece == "0"){
             this.player = 0;
         }
-        else if(newPiece == 'R' || newPiece == 'r'){
+        else if(newPiece == "R" || newPiece == "r"){
             this.player = 1;
         }
-        else if(newPiece == 'B' || newPiece == 'b'){
+        else if(newPiece == "B" || newPiece == "b"){
             this.player = 2;
         }
 
@@ -60,11 +60,11 @@ public class Square {
         updateSelected(s);
     }
 
-    public void setPiece(char newPiece) {
+    public void setPiece(String newPiece) {
         this.updatePiece(newPiece);
     }
 
-    public char getPiece() {
+    public String getPiece() {
         return piece;
     }
 

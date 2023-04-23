@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {
-    private char[][] boardStartValues = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
+    private String[][] boardStartValues = {{"b","0","0","0","r"},{"b","0","0","0","r"},{"B","0","0","0","R"},{"b","0","0","0","r"},{"b","0","0","0","r"}};
     private Square[][] board;
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
@@ -46,26 +46,18 @@ public class Board {
         //same team
         if (board[x1][y1].getPiece() == board[x2][y2].getPiece())
             return false;
-        if (board[x1][y1].getPiece() == 'b' && board[x2][y2].getPiece() == 'B')
-            return false;
-        if (board[x1][y1].getPiece() == 'B' && board[x2][y2].getPiece() == 'b')
-            return false;
-        if (board[x1][y1].getPiece() == 'r' && board[x2][y2].getPiece() == 'R')
-            return false;
-        if (board[x1][y1].getPiece() == 'R' && board[x2][y2].getPiece() == 'r')
+        if (board[x1][y1].getPlayer() == board[x2][y2].getPlayer())
             return false;
         return true;
     }
 
-    public int makeMove(Coordinate destCoord){
+    public void makeMove(Coordinate destCoord){
         if (checkValidMove(curPiece, destCoord)){
-            char piece = board[curPiece.getX()][curPiece.getY()].getPiece();
-            char dest = board[destCoord.getX()][destCoord.getY()].getPiece();
+            String piece = board[curPiece.getX()][curPiece.getY()].getPiece();
+            //String dest = board[destCoord.getX()][destCoord.getY()].getPiece();
             board[destCoord.getX()][destCoord.getY()].setPiece(piece);
-            board[curPiece.getX()][curPiece.getY()].setPiece('0');
-            return dest;
+            board[curPiece.getX()][curPiece.getY()].setPiece("0");
         }
-        return -1;
     }
 
     public void generateDestinations(){
@@ -102,7 +94,7 @@ public class Board {
     }
 
     public boolean isPiece(Coordinate cord){
-        if(getBoardVal(cord) == '0'){
+        if(getBoardVal(cord) == "0"){
             return false;
         }
         return true;
@@ -139,7 +131,7 @@ public class Board {
         return board[cord.getX()][cord.getY()];
     }
 
-    private char getBoardVal(Coordinate cord){
+    private String getBoardVal(Coordinate cord){
         return board[cord.getX()][cord.getY()].getPiece();
     }
 
@@ -163,6 +155,8 @@ public class Board {
                         Square temp = getSquare(destinations.get(i));
                         temp.setPossible(false);
                     }
+                    getSquare(curPiece).setSelected(false);
+                    curPiece = null;
                 }
             }
         if(curCard != null && curPiece != null){
