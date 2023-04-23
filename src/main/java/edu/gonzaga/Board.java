@@ -114,7 +114,7 @@ public class Board {
             makeMove(destinations.get(choice));
     }
     public void setCurCard(Card curCard) {
-        curCard
+        this.curCard = curCard;
     }
 /* 
     public void setCurCard(Card curCard) {
