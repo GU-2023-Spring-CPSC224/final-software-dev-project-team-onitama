@@ -76,9 +76,14 @@ public class Square {
         updatePossible(p);
     }
 
+    public boolean getPossible(){
+        return possible;
+    }
+
     @Override
     public String toString() {
         return "" + piece;
     }
+
 
 }

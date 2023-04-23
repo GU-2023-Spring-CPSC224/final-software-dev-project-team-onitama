@@ -72,15 +72,15 @@ public class Board {
         destinations.clear();
         int x1 = curPiece.getX();
         int y1 = curPiece.getY();
-        if (board[x1][y1].getPiece() == 'b' || board[x1][y1].getPiece() == 'B' ){
+        if (board[x1][y1].getPlayer() == 2){
             for (int i = 0; i < curCard.getInvMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
+                Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
-        else if (board[x1][y1].getPiece() == 'r' || board[x1][y1].getPiece() == 'R' ){
+        else if (board[x1][y1].getPlayer() == 1){
             for (int i = 0; i < curCard.getMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
+                Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
@@ -156,9 +156,18 @@ public class Board {
                 }
             }
         }
+        else{ 
+                if (getSquare(cord).getPossible()){
+                    makeMove(cord);
+                    for(int i = 0; i < destinations.size(); i++){
+                        Square temp = getSquare(destinations.get(i));
+                        temp.setPossible(false);
+                    }
+                }
+            }
         if(curCard != null && curPiece != null){
             generateDestinations();
-            System.out.println(destinations.size());
+            //System.out.println(destinations.size());
             for(int i = 0; i < destinations.size(); i++){
                 Square temp = getSquare(destinations.get(i));
                 temp.setPossible(true);
