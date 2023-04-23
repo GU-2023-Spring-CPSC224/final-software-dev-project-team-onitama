@@ -1,11 +1,14 @@
 package edu.gonzaga;
 
-public class Coordinate {
+public class Coordinate implements Comparable<Coordinate> {
     int [] coords = new int [2];
+    String compair;
 
     public Coordinate(int x, int y){
         coords[0] = x;
         coords[1] = y;
+        compair += x;
+        compair += y;
     }
 
     public int getX(){
@@ -24,5 +27,10 @@ public class Coordinate {
         ret += this.coords[1];
         ret += ")";
         return ret;
+    }
+
+    @Override
+    public int compareTo(Coordinate otherCord) {
+        return this.toString().compareTo(otherCord.toString());
     }
 }

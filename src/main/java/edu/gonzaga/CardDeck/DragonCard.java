@@ -14,7 +14,7 @@ public class DragonCard extends Card{
         Coordinate invMove1 = new Coordinate(2,-1);
         Coordinate invMove2 = new Coordinate(1,1);
         Coordinate invMove3 = new Coordinate(-1,1);
-        Coordinate invMove4 = new Coordinate(-2,1);
+        Coordinate invMove4 = new Coordinate(-2,-1);
 
         moves.add(move1);
         moves.add(move2);

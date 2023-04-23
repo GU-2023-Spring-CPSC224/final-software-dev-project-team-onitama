@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {
-    private char[][] board = {{'b','0','0','0','r'},{'b','0','0','0','r'},{'B','0','0','0','R'},{'b','0','0','0','r'},{'b','0','0','0','r'}};
+    private String[][] boardStartValues = {{"b","0","0","0","r"},{"b","0","0","0","r"},{"B","0","0","0","R"},{"b","0","0","0","r"},{"b","0","0","0","r"}};
+    private Square[][] board;
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
     private Hand hand;
@@ -18,7 +19,17 @@ public class Board {
 
     public Board(int size, Hand h){
         this.size = size;
-        hand = h;
+        this.board = new Square[size][size];
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                board[i][j] = new Square();
+            }
+        }
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                this.board[i][j].setPiece(boardStartValues[i][j]);
+            }
+        }
     }
     public boolean checkValidMove(Coordinate pieceCoord, Coordinate destCoord){
         int x1 = pieceCoord.getX();
@@ -38,43 +49,35 @@ public class Board {
         if (y2 >= size || y2 < 0)
             return false;
         //same team
-        if (board[x1][y1] == board[x2][y2])
+        if (board[x1][y1].getPiece() == board[x2][y2].getPiece())
             return false;
-        if (board[x1][y1] == 'b' && board[x2][y2] == 'B')
-            return false;
-        if (board[x1][y1] == 'B' && board[x2][y2] == 'b')
-            return false;
-        if (board[x1][y1] == 'r' && board[x2][y2] == 'R')
-            return false;
-        if (board[x1][y1] == 'R' && board[x2][y2] == 'r')
+        if (board[x1][y1].getPlayer() == board[x2][y2].getPlayer())
             return false;
         return true;
     }
 
-    public int makeMove(Coordinate destCoord){
+    public void makeMove(Coordinate destCoord){
         if (checkValidMove(curPiece, destCoord)){
-            char piece = board[curPiece.getX()][curPiece.getY()];
-            char dest = board[destCoord.getX()][destCoord.getY()];
-            board[destCoord.getX()][destCoord.getY()] = piece;
-            board[curPiece.getX()][curPiece.getY()] = '0';
-            return dest;
+            String piece = board[curPiece.getX()][curPiece.getY()].getPiece();
+            //String dest = board[destCoord.getX()][destCoord.getY()].getPiece();
+            board[destCoord.getX()][destCoord.getY()].setPiece(piece);
+            board[curPiece.getX()][curPiece.getY()].setPiece("0");
         }
-        return -1;
     }
 
     public void generateDestinations(){
         destinations.clear();
         int x1 = curPiece.getX();
         int y1 = curPiece.getY();
-        if (board[x1][y1] == 'b' || board[x1][y1] == 'B' ){
+        if (board[x1][y1].getPlayer() == 2){
             for (int i = 0; i < curCard.getInvMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
+                Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
-        else if (board[x1][y1] == 'r' || board[x1][y1] == 'R' ){
+        else if (board[x1][y1].getPlayer() == 1){
             for (int i = 0; i < curCard.getMoves().size(); i++){
-                Coordinate temp = new Coordinate(x1 + curCard.getMoves().get(i).getX(), y1 + curCard.getMoves().get(i).getY());
+                Coordinate temp = new Coordinate(x1 + curCard.getInvMoves().get(i).getX(), y1 + curCard.getInvMoves().get(i).getY());
                 destinations.add(temp);
             }
         }
@@ -95,6 +98,13 @@ public class Board {
         // }
     }
 
+    public boolean isPiece(Coordinate cord){
+        if(getBoardVal(cord) == "0"){
+            return false;
+        }
+        return true;
+    }
+
     public ArrayList<Coordinate> getDest(){
         return destinations;
     }
@@ -111,18 +121,61 @@ public class Board {
         }
     }
 
-    public void setCurPiece(Coordinate curPiece){
-        //checks to see if location selected is an available piece
-        int x = curPiece.getX();
-        int y = curPiece.getY();
-        if(board[x][y] == curPlayer || board[x][y] == curPlayer - 32)
-            this.curPiece = curPiece;
-        pieceSelected = true;
+    public void setCurPiece(Coordinate newCurPiece){
+        if (curPiece != null){
+            Square temp1 = getSquare(curPiece);
+            temp1.setSelected(false);
+        }
+        this.curPiece = newCurPiece;
+        Square temp = getSquare(curPiece);
+        temp.setSelected(true);
     }
 
     public Integer getNumDest() {
         return destinations.size();
     }
+
+    public Square getSquare(Coordinate cord){
+        return board[cord.getX()][cord.getY()];
+    }
+
+    private String getBoardVal(Coordinate cord){
+        return board[cord.getX()][cord.getY()].getPiece();
+    }
+
+    public void boardButtonPressed(Coordinate cord){
+        if(isPiece(cord)){ // if the button press is a peice
+            if(curPiece == null){ // if there is no current peice 
+                setCurPiece(cord); // current peice = the button press
+            }  
+            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){ // if there already is a current peice only change if a piece from the same team is selected
+                setCurPiece(cord);
+                for(int i = 0; i < destinations.size(); i++){
+                    Square temp = getSquare(destinations.get(i));
+                    temp.setPossible(false);
+                }
+            }
+        }
+        else{ // if the square is not a piece and if possible moves have been generated move current peice to the button press (need to allow captures still)
+                if (getSquare(cord).getPossible()){
+                    makeMove(cord);
+                    for(int i = 0; i < destinations.size(); i++){
+                        Square temp = getSquare(destinations.get(i));
+                        temp.setPossible(false);
+                    }
+                    getSquare(curPiece).setSelected(false);
+                    curPiece = null;
+                }
+            }
+        if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
+            generateDestinations();
+            for(int i = 0; i < destinations.size(); i++){
+                Square temp = getSquare(destinations.get(i));
+                temp.setPossible(true);
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
@@ -137,7 +190,7 @@ public class Board {
         return ret;
     }
 
-    public char[][] getBoard() {
+    public Square[][] getBoard() {
         return board;
     }
 

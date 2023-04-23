@@ -1,6 +1,9 @@
 package edu.gonzaga;
 
+import edu.gonzaga.CardDeck.BoarCard;
 import edu.gonzaga.CardDeck.Card;
+import edu.gonzaga.CardDeck.DragonCard;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -33,6 +36,9 @@ public class Onitama {
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
+        board = new Board(5);
+        Card dragon = new DragonCard("Dragon");
+        board.setCurCard(dragon);
         board = new Board(5, hand);
 
 
@@ -110,13 +116,13 @@ public class Onitama {
 
 
         // making array of buttons
-        char[][] tmp = board.getBoard();
-        this.boardButtons = new JButton[5][5];
-        for(Integer i=0; i < boardButtons.length; i++)
+        this.boardButtons = new BoardButton[5][5];
+        for(int i=0; i < boardButtons.length; i++)
         {
-            for(Integer j=0; j < boardButtons.length; j++)
+            for(int j=0; j < boardButtons.length; j++)
             {
-                boardButtons[i][j] = new JButton("" + tmp[i][j]);
+                Coordinate temp = new Coordinate(i, j);
+                boardButtons[i][j] = new BoardButton(board, temp);
                 boardButtons[i][j].setFocusable(false);
             }
         }
@@ -159,6 +165,7 @@ public class Onitama {
          * If you guys can do it better pls do, but this should actually work 
          * Quite well
          */ 
+/* 
         for(Integer i=0; i < boardButtons.length; i++) {
             for(Integer j=0; j < boardButtons.length; j++) {
                 final Integer insideI = i;
@@ -194,7 +201,7 @@ public class Onitama {
                 });
             }   
         }
-
+*/
 
         for(Integer i=0; i < cardButtons.length; i++) {
             final Integer insideI = i;

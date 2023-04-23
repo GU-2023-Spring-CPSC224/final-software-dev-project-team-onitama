@@ -5,6 +5,7 @@ import edu.gonzaga.Board;
 import edu.gonzaga.Coordinate;
 import edu.gonzaga.Hand;
 import edu.gonzaga.Player;
+import edu.gonzaga.Square;
 
 import javax.swing.*;
 
@@ -117,7 +118,7 @@ public class BoardUI {
 
 
         // making array of buttons
-        char[][] tmp = board.getBoard();
+        Square[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
             for(Integer j=0; j < boardButtons.length; j++)
