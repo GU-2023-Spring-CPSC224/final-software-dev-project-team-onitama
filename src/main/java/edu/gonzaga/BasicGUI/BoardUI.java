@@ -2,6 +2,7 @@ package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
 import edu.gonzaga.Board;
+import edu.gonzaga.BoardButton;
 import edu.gonzaga.Coordinate;
 import edu.gonzaga.Hand;
 import edu.gonzaga.Player;
@@ -30,7 +31,7 @@ public class BoardUI {
     JPanel westPanel;
     JPanel boardPanel;
     JButton[][] boardButtons;
-    JButton[] cardButtons;
+    CardButton[] cardButtons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
     Integer playerTurn = 1;
@@ -113,45 +114,45 @@ public class BoardUI {
 
     // Makes the board
     private JPanel genBoardPanel() {
+
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
         // making array of buttons
-        Square[][] tmp = board.getBoard();
-        this.boardButtons = new JButton[5][5];
-        for(Integer i=0; i < boardButtons.length; i++)
-            for(Integer j=0; j < boardButtons.length; j++)
-                boardButtons[i][j] = new JButton("" + tmp[i][j]);
+        this.boardButtons = new BoardButton[5][5];
+        for(int i=0; i < boardButtons.length; i++)
+        {
+            for(int j=0; j < boardButtons.length; j++)
+            {
+                Coordinate temp = new Coordinate(i, j);
+                boardButtons[i][j] = new BoardButton(board, temp);
+                boardButtons[i][j].setFocusable(false);
+            }
+        }
+            
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
-        {
             for(Integer j=0; j < boardButtons.length; j++)
-            {
                 newBoardPanel.add(boardButtons[j][i]);
-                boardButtons[j][i].setFocusable(false);
-            }
-
-        }
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newBoardPanel.setLayout(new GridLayout(5, 5));    // Making it pretty
-        newBoardPanel.setSize(400, 400);
         return newBoardPanel;
+
     }
 
-    //this is a temp way to display cards
+    // //this is a temp way to display cards
     private JPanel genCardPanel() {
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
         // making array of buttons
-        String[] tmp = hand.getNames();
-        this.cardButtons = new JButton[5];
+        this.cardButtons = new CardButton[5];
         for(Integer i=0; i < cardButtons.length; i++)
-            cardButtons[i] = new JButton("" + tmp[i]);
+            cardButtons[i] = new CardButton(board, hand, i);
 
         for(Integer i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
@@ -162,66 +163,6 @@ public class BoardUI {
     }
 
     private void addButtonCallbackHandlers() {
-
-        /*
-         * This looks scary but its just the set up for the button listeners
-         * If you guys can do it better pls do, but this should actually work
-         * Quite well
-         */
-        for(Integer i=0; i < boardButtons.length; i++) {
-            for(Integer j=0; j < boardButtons.length; j++) {
-                final Integer insideI = i;
-                final Integer insideJ = j;
-                this.boardButtons[insideI][insideJ].addActionListener(new ActionListener() {
-                    Boolean pressed = false;
-                    // String smallPiece = " ";
-                    // String bigPiece = " ";
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        
-                        if(playerTurn == 1) {
-                            for(int i = 0; i < 5; i++) {
-                                for(int j = 0; j < 5; j++) {
-                                    //if(board.getBoard()[i][j] != 'r' && board.getBoard()[i][j] != 'R')
-                                        boardButtons[i][j].setEnabled(false);
-                                }
-                            }
-                        }
-                        else if(playerTurn == 2) {
-                            for(int i = 0; i < 5; i++) {
-                                for(int j = 0; j < 5; j++) {
-                                    //if(board.getBoard()[i][j] != 'b' && board.getBoard()[i][j] != 'B')
-                                        boardButtons[i][j].setEnabled(false);
-                                }
-                            }
-                        }
-                        //checks for empty space
-                        // if(boardButtons[insideI][insideJ].getText().compareTo("0") == 0) {
-                        //     System.out.println("No piece here");
-                        // }
-                        //if piece, add check for red/blue
-                        //else if(boardButtons[insideI][insideJ].getText().compareTo(smallPiece) == 0 || boardButtons[insideI][insideJ].getText().compareTo(bigPiece) == 0){
-                            if(pressed == false) {
-                                if(isPieceSelected == false) {
-                                    System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
-                                    boardButtons[insideI][insideJ].setBackground(Color.GRAY);
-                                    Coordinate pieceCoordinate = new Coordinate(insideJ, insideI);
-                                    board.setCurPiece(pieceCoordinate);
-                                    pressed = true;
-                                    isPieceSelected = true;
-                                }
-                            }
-                            else if(pressed == true) {
-                                System.out.println("You un-clicked space: [" + insideJ + "," + insideI + "]");
-                                boardButtons[insideI][insideJ].setBackground(null);
-                                pressed = false;
-                                isPieceSelected = false;
-                            }
-                        //}
-                    }
-                });
-            }
-        }
 
 
         for(Integer i=0; i < cardButtons.length; i++) {
@@ -246,9 +187,8 @@ public class BoardUI {
                     }
                 }
             });
-
+              
         }
-
 
     }
 

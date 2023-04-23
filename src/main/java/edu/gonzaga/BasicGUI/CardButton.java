@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import edu.gonzaga.Board;
-import edu.gonzaga.Coordinate;
 import edu.gonzaga.Hand;
-import edu.gonzaga.CardDeck.Card;
+
 
 public class CardButton extends JButton{
     private Board board;
