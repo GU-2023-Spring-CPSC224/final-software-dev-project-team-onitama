@@ -39,6 +39,7 @@ public class Onitama {
         board = new Board(5);
         Card dragon = new DragonCard("Dragon");
         board.setCurCard(dragon);
+        board = new Board(5, hand);
 
 
         /* 
@@ -183,6 +184,8 @@ public class Onitama {
                                 if(isPieceSelected == false) {
                                     System.out.println("You clicked space: [" + insideJ + "," + insideI + "]");
                                     boardButtons[insideI][insideJ].setBackground(Color.GRAY);
+                                    Coordinate pieceCoordinate = new Coordinate(insideJ, insideI);
+                                    board.setCurPiece(pieceCoordinate);
                                     pressed = true;
                                     isPieceSelected = true;
                                 }

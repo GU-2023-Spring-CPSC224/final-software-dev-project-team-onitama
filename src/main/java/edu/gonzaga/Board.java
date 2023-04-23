@@ -1,5 +1,6 @@
 package edu.gonzaga;
 
+import java.lang.management.PlatformManagedObject;
 import java.util.ArrayList;
 
 import edu.gonzaga.CardDeck.Card;
@@ -9,10 +10,14 @@ public class Board {
     private Square[][] board;
     private int size;
     private ArrayList<Coordinate> destinations = new ArrayList<Coordinate>();
+    private Hand hand;
     private Card curCard;
     private Coordinate curPiece;
+    private char curPlayer = 'r';
+    private Boolean cardSelected = false;
+    private Boolean pieceSelected = false;
 
-    public Board(int size){
+    public Board(int size, Hand h){
         this.size = size;
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
@@ -110,7 +115,10 @@ public class Board {
     }
 
     public void setCurCard(Card curCard) {
-        this.curCard = curCard;
+        if(hand.whosHand(curCard) == curPlayer) {
+            this.curCard = curCard;
+            cardSelected = true;
+        }
     }
 
     public void setCurPiece(Coordinate newCurPiece){
@@ -185,4 +193,18 @@ public class Board {
     public Square[][] getBoard() {
         return board;
     }
+
+    public Card getCard() {
+        return curCard;
+    }
+
+    public Boolean isCardSelected() {
+        return cardSelected;
+    }
+
+    public Boolean isPieceSelected() {
+        return pieceSelected;
+    }
+
+
 }
