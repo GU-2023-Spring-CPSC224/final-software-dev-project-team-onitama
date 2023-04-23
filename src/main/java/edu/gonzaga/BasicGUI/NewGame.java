@@ -65,7 +65,7 @@ public class NewGame {
 
     public void takeTurn(){
         Card selected = player1.selectCard(0); //button press returns 0 for first card 1 for second ect
-        hand.swap(selected);
+        //hand.swap(selected);
         board.setCurCard(selected);
         //need coordinate of piece to be moved
         Coordinate temp = new Coordinate(2, 4);

@@ -107,18 +107,35 @@ public class Hand {
     }
 
     public void swap(Card playerCard){
-        ArrayList<Card> oldHand = cards;
         int location = -1;
         for(int i = 0; i < cards.size() - 1; i++){
             if (playerCard == cards.get(i)){
                 location = i;
             }
         }
-        Card temp = cards.get(location);
+        Card oldCard = cards.get(location);
         cards.set(location, cards.get(cards.size() - 1));
-        cards.set(cards.size() - 1, temp);
+        cards.set(cards.size() - 1, oldCard);
+        Card newCard = cards.get(location);
         update();
-        this.pcs.firePropertyChange("hand", oldHand, cards);
+        switch(location){
+            case 0:
+                this.pcs.firePropertyChange("spot0", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 1:
+                this.pcs.firePropertyChange("spot1", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 2:
+                this.pcs.firePropertyChange("spot2", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 3:
+                this.pcs.firePropertyChange("spot3", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+        }
     }
     public Card getCardAt(int location){
         return cards.get(location);
