@@ -147,7 +147,11 @@ public class BoardUI {
         // making array of buttons
         this.cardButtons = new CardButton[5];
         for(Integer i=0; i < cardButtons.length; i++)
+        {
             cardButtons[i] = new CardButton(board, hand, i);
+            cardButtons[i].setFocusable(false);
+        }
+
 
 
         for(Integer i=0; i < cardButtons.length; i++)
