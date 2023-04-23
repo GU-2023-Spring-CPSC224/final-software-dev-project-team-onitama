@@ -18,7 +18,8 @@ public class Board {
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
 
-    public Board(int size){
+    public Board(int size, Hand h){
+        this.hand = h;
         this.size = size;
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
@@ -188,9 +189,10 @@ public class Board {
     }
 
     public void cardButtonPressed(int location){
-        System.out.println(location);
-        //setCurCard(hand.getCardAt(location));
-        /* 
+        for(int i = 0; i < destinations.size(); i++){
+            Square temp = getSquare(destinations.get(i));
+            temp.setPossible(false);
+        }
         if(lastPlayer == 2 && location < 2){
             setCurCard(hand.getCardAt(location));
             System.out.println(curCard);
@@ -198,7 +200,13 @@ public class Board {
         if(lastPlayer == 1 && location > 1 && location < 4){
             setCurCard(hand.getCardAt(location));
         }
-        */
+        if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
+            generateDestinations();
+            for(int i = 0; i < destinations.size(); i++){
+                Square temp = getSquare(destinations.get(i));
+                temp.setPossible(true);
+            }
+        }
     }
 
 
