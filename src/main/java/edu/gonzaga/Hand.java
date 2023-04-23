@@ -7,12 +7,15 @@ import java.util.Collections;
 import java.util.Random;
 
 import edu.gonzaga.CardDeck.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Card> player1Cards = new ArrayList<Card>();
     private ArrayList<Card> player2Cards = new ArrayList<Card>();
     private Card intermediate;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Hand (int size){
         Random random = new Random();
@@ -104,6 +107,7 @@ public class Hand {
     }
 
     public void swap(Card playerCard){
+        ArrayList<Card> oldHand = cards;
         int location = -1;
         for(int i = 0; i < cards.size() - 1; i++){
             if (playerCard == cards.get(i)){
@@ -114,6 +118,10 @@ public class Hand {
         cards.set(location, cards.get(cards.size() - 1));
         cards.set(cards.size() - 1, temp);
         update();
+        this.pcs.firePropertyChange("hand", oldHand, cards);
+    }
+    public Card getCardAt(int location){
+        return cards.get(location);
     }
 
     public ArrayList<Card> getPlayer1Cards(){
@@ -122,6 +130,14 @@ public class Hand {
 
     public ArrayList<Card> getPlayer2Cards(){
         return player2Cards;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
     }
 
     @Override

@@ -8,18 +8,36 @@ import javax.swing.JButton;
 import edu.gonzaga.Board;
 import edu.gonzaga.Hand;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class CardButton extends JButton{
+
+
+
+public class CardButton extends JButton implements PropertyChangeListener{
     private Board board;
     private Hand hand;
     private String name;
+    int location;
+    
 
     CardButton(Board b, Hand h, int n) {
         super("" + h.getNames()[n]);
         board = b;
         hand = h;
+        location = n;
         name = h.getNames()[n];
-        setupCallback();
+        hand.addPropertyChangeListener(this::propertyChange);
+        addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    board.cardButtonPressed(location);
+                }
+            }
+        );
+        //setupCallback();
     }
 
     public void setupCallback() {
@@ -45,5 +63,14 @@ public class CardButton extends JButton{
                 }
             }   
         });
+    }
+
+    public void propertyChange(PropertyChangeEvent e) {
+        String propertyName = e.getPropertyName();
+        if ("hand".equals(propertyName)) {
+            //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+            hand = ((Hand)e.getNewValue());
+            name = hand.getNames()[location];
+        }
     }
 }

@@ -101,7 +101,7 @@ public class BoardUI {
         // tmp card setup
         this.southPanel = genCardPanel();
         // Listener setup
-        addButtonCallbackHandlers();
+        //addButtonCallbackHandlers();
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
@@ -151,11 +151,11 @@ public class BoardUI {
 
         // making array of buttons
         this.cardButtons = new CardButton[5];
-        for(Integer i=0; i < cardButtons.length; i++)
+        for(int i=0; i < cardButtons.length; i++)
             cardButtons[i] = new CardButton(board, hand, i);
 
 
-        for(Integer i=0; i < cardButtons.length; i++)
+        for(int i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
@@ -163,7 +163,7 @@ public class BoardUI {
         return newCardPanel;
     }
 
-
+    /* 
     private void addButtonCallbackHandlers() {
         for(Integer i=0; i < cardButtons.length; i++) {
             final Integer insideI = i;
@@ -191,7 +191,7 @@ public class BoardUI {
         }
 
     }
-
+    */
     //runs GUI
     void runGUI() {
         System.out.println("Starting GUI app");

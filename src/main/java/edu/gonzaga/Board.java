@@ -14,6 +14,7 @@ public class Board {
     private Card curCard;
     private Coordinate curPiece;
     private char curPlayer = 'r';
+    private int lastPlayer = 2;
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
 
@@ -113,8 +114,8 @@ public class Board {
         if(destinations.isEmpty() != true)
             makeMove(destinations.get(choice));
     }
-    public void setCurCard(Card curCard) {
-        this.curCard = curCard;
+    public void setCurCard(Card newCurCard) {
+        this.curCard = newCurCard;
     }
 /* 
     public void setCurCard(Card curCard) {
@@ -146,8 +147,12 @@ public class Board {
         return board[cord.getX()][cord.getY()].getPiece();
     }
 
+    private int getPlayer(Coordinate cord){
+        return board[cord.getX()][cord.getY()].getPlayer();
+    }
+
     public void boardButtonPressed(Coordinate cord){
-        if(isPiece(cord)){ // if the button press is a peice
+        if(isPiece(cord) && getPlayer(cord) != lastPlayer){ // if the button press is a peice
             if(curPiece == null){ // if there is no current peice 
                 setCurPiece(cord); // current peice = the button press
             }  
@@ -159,8 +164,9 @@ public class Board {
                 }
             }
         }
-        else{ // if the square is not a piece and if possible moves have been generated move current peice to the button press (need to allow captures still)
+        else if (!isPiece(cord) || getPlayer(cord) == lastPlayer) { // if the square is not a piece and if possible moves have been generated move current peice to the button press (need to allow captures still)
                 if (getSquare(cord).getPossible()){
+                    lastPlayer = getPlayer(curPiece);
                     makeMove(cord);
                     for(int i = 0; i < destinations.size(); i++){
                         Square temp = getSquare(destinations.get(i));
@@ -168,6 +174,8 @@ public class Board {
                     }
                     getSquare(curPiece).setSelected(false);
                     curPiece = null;
+                    hand.swap(curCard);
+                    curCard = null;
                 }
             }
         if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
@@ -177,6 +185,20 @@ public class Board {
                 temp.setPossible(true);
             }
         }
+    }
+
+    public void cardButtonPressed(int location){
+        System.out.println(location);
+        //setCurCard(hand.getCardAt(location));
+        /* 
+        if(lastPlayer == 2 && location < 2){
+            setCurCard(hand.getCardAt(location));
+            System.out.println(curCard);
+        }
+        if(lastPlayer == 1 && location > 1 && location < 4){
+            setCurCard(hand.getCardAt(location));
+        }
+        */
     }
 
 
