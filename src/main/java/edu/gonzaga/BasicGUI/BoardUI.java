@@ -40,7 +40,7 @@ public class BoardUI {
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
+        board = new Board(5);
 
 
         /*
@@ -182,7 +182,7 @@ public class BoardUI {
                         if(playerTurn == 1) {
                             for(int i = 0; i < 5; i++) {
                                 for(int j = 0; j < 5; j++) {
-                                    if(board.getBoard()[i][j] != 'r' && board.getBoard()[i][j] != 'R')
+                                    //if(board.getBoard()[i][j] != 'r' && board.getBoard()[i][j] != 'R')
                                         boardButtons[i][j].setEnabled(false);
                                 }
                             }
@@ -190,7 +190,7 @@ public class BoardUI {
                         else if(playerTurn == 2) {
                             for(int i = 0; i < 5; i++) {
                                 for(int j = 0; j < 5; j++) {
-                                    if(board.getBoard()[i][j] != 'b' && board.getBoard()[i][j] != 'B')
+                                    //if(board.getBoard()[i][j] != 'b' && board.getBoard()[i][j] != 'B')
                                         boardButtons[i][j].setEnabled(false);
                                 }
                             }

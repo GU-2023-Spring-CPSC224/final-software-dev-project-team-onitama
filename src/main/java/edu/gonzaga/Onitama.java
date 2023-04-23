@@ -39,7 +39,6 @@ public class Onitama {
         board = new Board(5);
         Card dragon = new DragonCard("Dragon");
         board.setCurCard(dragon);
-        board = new Board(5, hand);
 
 
         /* 

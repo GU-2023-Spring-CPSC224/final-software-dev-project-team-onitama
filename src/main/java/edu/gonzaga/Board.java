@@ -17,7 +17,7 @@ public class Board {
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
 
-    public Board(int size, Hand h){
+    public Board(int size){
         this.size = size;
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
@@ -113,14 +113,17 @@ public class Board {
         if(destinations.isEmpty() != true)
             makeMove(destinations.get(choice));
     }
-
+    public void setCurCard(Card curCard) {
+        curCard
+    }
+/* 
     public void setCurCard(Card curCard) {
         if(hand.whosHand(curCard) == curPlayer) {
             this.curCard = curCard;
             cardSelected = true;
         }
     }
-
+*/
     public void setCurPiece(Coordinate newCurPiece){
         if (curPiece != null){
             Square temp1 = getSquare(curPiece);
