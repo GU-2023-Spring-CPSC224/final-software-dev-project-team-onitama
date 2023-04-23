@@ -136,11 +136,11 @@ public class Board {
     }
 
     public void boardButtonPressed(Coordinate cord){
-        if(isPiece(cord)){
-            if(curPiece == null){
-                setCurPiece(cord);
+        if(isPiece(cord)){ // if the button press is a peice
+            if(curPiece == null){ // if there is no current peice 
+                setCurPiece(cord); // current peice = the button press
             }  
-            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){
+            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){ // if there already is a current peice only change if a piece from the same team is selected
                 setCurPiece(cord);
                 for(int i = 0; i < destinations.size(); i++){
                     Square temp = getSquare(destinations.get(i));
@@ -148,7 +148,7 @@ public class Board {
                 }
             }
         }
-        else{ 
+        else{ // if the square is not a piece and if possible moves have been generated move current peice to the button press (need to allow captures still)
                 if (getSquare(cord).getPossible()){
                     makeMove(cord);
                     for(int i = 0; i < destinations.size(); i++){
@@ -159,9 +159,8 @@ public class Board {
                     curPiece = null;
                 }
             }
-        if(curCard != null && curPiece != null){
+        if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
             generateDestinations();
-            //System.out.println(destinations.size());
             for(int i = 0; i < destinations.size(); i++){
                 Square temp = getSquare(destinations.get(i));
                 temp.setPossible(true);
