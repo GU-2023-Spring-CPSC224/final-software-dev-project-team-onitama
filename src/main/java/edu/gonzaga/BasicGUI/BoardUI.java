@@ -118,6 +118,7 @@ public class BoardUI {
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        ImageIcon background = new ImageIcon("boardBackground.png");
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
         for(int i=0; i < boardButtons.length; i++)
@@ -126,6 +127,7 @@ public class BoardUI {
             {
                 Coordinate temp = new Coordinate(i, j);
                 boardButtons[i][j] = new BoardButton(board, temp);
+                boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }
         }
