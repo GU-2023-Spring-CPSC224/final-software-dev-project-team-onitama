@@ -111,7 +111,7 @@ public class BoardUI {
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-
+        ImageIcon background = new ImageIcon("boardBackground.png");
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
         for(int i=0; i < boardButtons.length; i++)
@@ -120,10 +120,11 @@ public class BoardUI {
             {
                 Coordinate temp = new Coordinate(i, j);
                 boardButtons[i][j] = new BoardButton(board, temp);
+                boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }
         }
-            
+
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
@@ -135,6 +136,7 @@ public class BoardUI {
         return newBoardPanel;
 
     }
+    
 
     // //this is a temp way to display cards
     private JPanel genCardPanel() {
@@ -147,12 +149,42 @@ public class BoardUI {
         for(Integer i=0; i < cardButtons.length; i++)
             cardButtons[i] = new CardButton(board, hand, i);
 
+
         for(Integer i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
         return newCardPanel;
+    }
+
+
+    private void addButtonCallbackHandlers() {
+        for(Integer i=0; i < cardButtons.length; i++) {
+            final Integer insideI = i;
+            this.cardButtons[insideI].addActionListener(new ActionListener() {
+                Boolean pressed = false;
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(pressed == false) {
+                        if(isCardSelected == false) {
+                            System.out.println("You clicked: " + cardButtons[insideI].getText());
+                            cardButtons[insideI].setBackground(Color.GRAY);
+                            pressed = true;
+                            isCardSelected = true;
+                        }
+                    }
+                    else if(pressed == true) {
+                        System.out.println("You un-clicked space: " + cardButtons[insideI].getText());
+                        cardButtons[insideI].setBackground(null);
+                        pressed = false;
+                        isCardSelected = false;
+                    }
+                }
+            });
+              
+        }
+
     }
 
     //runs GUI
