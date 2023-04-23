@@ -1,8 +1,9 @@
-package edu.gonzaga;
-
+package edu.gonzaga.BasicGUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+
+import edu.gonzaga.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

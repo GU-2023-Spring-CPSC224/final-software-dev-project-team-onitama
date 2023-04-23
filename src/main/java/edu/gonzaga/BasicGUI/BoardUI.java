@@ -1,12 +1,7 @@
 package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
-import edu.gonzaga.Board;
-import edu.gonzaga.BoardButton;
-import edu.gonzaga.Coordinate;
-import edu.gonzaga.Hand;
-import edu.gonzaga.Player;
-import edu.gonzaga.Square;
+import edu.gonzaga.*;
 
 import javax.swing.*;
 
@@ -100,8 +95,6 @@ public class BoardUI {
         this.boardPanel = genBoardPanel();
         // tmp card setup
         this.southPanel = genCardPanel();
-        // Listener setup
-        addButtonCallbackHandlers();
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
@@ -160,36 +153,6 @@ public class BoardUI {
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
         return newCardPanel;
-    }
-
-    private void addButtonCallbackHandlers() {
-
-
-        for(Integer i=0; i < cardButtons.length; i++) {
-            final Integer insideI = i;
-            this.cardButtons[insideI].addActionListener(new ActionListener() {
-                Boolean pressed = false;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(pressed == false) {
-                        if(isCardSelected == false) {
-                            System.out.println("You clicked: " + cardButtons[insideI].getText());
-                            cardButtons[insideI].setBackground(Color.GRAY);
-                            pressed = true;
-                            isCardSelected = true;
-                        }
-                    }
-                    else if(pressed == true) {
-                        System.out.println("You un-clicked space: " + cardButtons[insideI].getText());
-                        cardButtons[insideI].setBackground(null);
-                        pressed = false;
-                        isCardSelected = false;
-                    }
-                }
-            });
-              
-        }
-
     }
 
     //runs GUI
