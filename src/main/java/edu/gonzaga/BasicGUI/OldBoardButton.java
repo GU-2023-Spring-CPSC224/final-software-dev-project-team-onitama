@@ -8,11 +8,11 @@ import javax.swing.JButton;
 import edu.gonzaga.Board;
 import edu.gonzaga.Coordinate;
 
-public class BoardButton extends JButton{
+public class OldBoardButton extends JButton{
     private Board board;
     private Coordinate cord;
 
-    BoardButton(Board b, int x, int y) {
+    OldBoardButton(Board b, int x, int y) {
         super("" + b.getBoard()[x][y]);
         board = b;
         cord = new Coordinate(x, y);
