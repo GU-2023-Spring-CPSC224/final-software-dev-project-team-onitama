@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.io.File;
 
 public class CharacterSelect extends JFrame implements ActionListener
 {
@@ -12,8 +13,14 @@ public class CharacterSelect extends JFrame implements ActionListener
     JButton backButton;
     JButton readyButton;
 
-    JButton playerOneCharacterA;
-    JButton playerOneCharacterB;
+    JButton bluePieceButton;
+    JButton blackPieceButton;
+    JButton whitePieceButton;
+    JButton pinkPieceButton;
+    JButton orangePieceButton;
+    JButton tealPieceButton;
+    JButton purplePieceButton;
+    JButton redPieceButton;
 
     JButton playerTwoCharacterA;
     JButton playerTwoCharacterB;
@@ -62,6 +69,7 @@ public class CharacterSelect extends JFrame implements ActionListener
         characterSelectLabel.setBounds(640, 100, 400, 100);
         characterSelectLabel.setFont(new Font("MV Boli", Font.BOLD, 30));
         characterSelectLabel.setText("Character Select");
+
 
 
         this.add(leftCharacterPanel);
@@ -119,27 +127,48 @@ public class CharacterSelect extends JFrame implements ActionListener
         }
     }
 
+    public JButton createCharacterPieces(String fileName)
+    {
+        JButton characterButton = new JButton();
+        String filePath = new String();
+        filePath += "GameArt/" + fileName + ".png";
+        characterButton = new JButton();
+        ImageIcon characterButtonImageIcon = new ImageIcon(filePath);
+        characterButton.setIcon(characterButtonImageIcon);
+        characterButton.addActionListener(this);
+        characterButton.putClientProperty("color", fileName);
+        return characterButton;
+    }
+
     public JPanel createLeftCharacterPanel()
     {
         JPanel leftCharacterPanel = new JPanel();
         leftCharacterPanel.setBounds(100, 290, 400, 200);
         leftCharacterPanel.setLayout(new GridLayout(0,2));
 
-        playerOneCharacterA = new JButton();
-        ImageIcon playerOneCharacterAImage = new ImageIcon("blueA.png");
-        playerOneCharacterA.setIcon(playerOneCharacterAImage);
-        playerOneCharacterA.addActionListener(this);
+        String imagePath = "gameart/blue.png";
+        File imageFile = new File(imagePath);
+        ImageIcon icon = new ImageIcon(imageFile.getAbsolutePath());
 
-        playerOneCharacterB = new JButton();
+
+
+        // bluePieceButton = new JButton();
+        // ImageIcon blueImageIcon = new ImageIcon("GameArt/blue.png");
+        // bluePieceButton.setIcon(blueImageIcon);
+        // bluePieceButton.addActionListener(this);
+
+        bluePieceButton = createCharacterPieces("blue");
+
+        blackPieceButton = new JButton();
         ImageIcon playerOneCharacterBImage = new ImageIcon("blueB.png");
-        playerOneCharacterB.setIcon(playerOneCharacterBImage);
-        playerOneCharacterB.addActionListener(this);
+        blackPieceButton.setIcon(playerOneCharacterBImage);
+        blackPieceButton.addActionListener(this);
     
-        leftCharacterPanel.add(playerOneCharacterA);
-        leftCharacterPanel.add(playerOneCharacterB);
+        leftCharacterPanel.add(bluePieceButton);
+        leftCharacterPanel.add(blackPieceButton);
 
-        characterButtonsArrayList.add(playerOneCharacterA);
-        characterButtonsArrayList.add(playerOneCharacterB);
+        characterButtonsArrayList.add(bluePieceButton);
+        characterButtonsArrayList.add(blackPieceButton);
 
         return leftCharacterPanel;
     }
@@ -195,6 +224,23 @@ public class CharacterSelect extends JFrame implements ActionListener
         return backButton;
     }
 
+    public void gamePieceButtonClicked(JButton buttonIn, boolean selected, int playerNum)
+    {
+        if (playerNum == 1)
+        {
+            if (selected == false)
+            {
+                buttonIn.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                buttonIn.setBorderPainted(true);
+                playerOneCharacterSelected = true;
+                setButtonsNotClickable(buttonIn, 1);
+                //selectedBlueImage = "blueA";
+            }
+        }
+        
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -203,39 +249,41 @@ public class CharacterSelect extends JFrame implements ActionListener
             dispose();
         }
 
-        if (e.getSource() == playerOneCharacterA)
+        if (e.getSource() == bluePieceButton)
         {
+            gamePieceButtonClicked(bluePieceButton, playerOneCharacterSelected, 1);
+
             if (playerOneCharacterSelected == false)
             {
-                playerOneCharacterA.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                playerOneCharacterA.setBorderPainted(true);
+                bluePieceButton.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                bluePieceButton.setBorderPainted(true);
                 playerOneCharacterSelected = true;
-                setButtonsNotClickable(playerOneCharacterA, 1);
-                selectedBlueImage = "blueA";
+                setButtonsNotClickable(bluePieceButton, 1);
+                selectedBlueImage = "blue";
             }
             else
             {
-                playerOneCharacterA.setBorderPainted(false);
+                bluePieceButton.setBorderPainted(false);
                 playerOneCharacterSelected = false;
-                setButtonsClickable(playerOneCharacterA, 1);
+                setButtonsClickable(bluePieceButton, 1);
             }
         }
 
-        if (e.getSource() == playerOneCharacterB)
+        if (e.getSource() == blackPieceButton)
         {
             if (playerOneCharacterSelected == false)
             {
-                playerOneCharacterB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
-                playerOneCharacterB.setBorderPainted(true);
+                blackPieceButton.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+                blackPieceButton.setBorderPainted(true);
                 playerOneCharacterSelected = true;
-                setButtonsNotClickable(playerOneCharacterB, 1);
+                setButtonsNotClickable(blackPieceButton, 1);
                 selectedBlueImage = "blueB";
             }
             else
             {
-                playerOneCharacterB.setBorderPainted(false);
+                blackPieceButton.setBorderPainted(false);
                 playerOneCharacterSelected = false;
-                setButtonsClickable(playerOneCharacterB, 1);
+                setButtonsClickable(blackPieceButton, 1);
             }
         }
 
