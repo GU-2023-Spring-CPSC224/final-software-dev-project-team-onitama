@@ -36,7 +36,7 @@ public class BoardUI {
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5);
+        board = new Board(5, hand);
 
 
         /*
@@ -95,6 +95,8 @@ public class BoardUI {
         this.boardPanel = genBoardPanel();
         // tmp card setup
         this.southPanel = genCardPanel();
+        // Listener setup
+        //addButtonCallbackHandlers();
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
@@ -154,7 +156,7 @@ public class BoardUI {
 
 
 
-        for(Integer i=0; i < cardButtons.length; i++)
+        for(int i=0; i < cardButtons.length; i++)
             newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
@@ -163,6 +165,7 @@ public class BoardUI {
     }
 
 
+    /* 
     private void addButtonCallbackHandlers() {
         for(Integer i=0; i < cardButtons.length; i++) {
             final Integer insideI = i;
@@ -190,7 +193,7 @@ public class BoardUI {
         }
 
     }
-
+    */
     //runs GUI
     void runGUI() {
         System.out.println("Starting GUI app");

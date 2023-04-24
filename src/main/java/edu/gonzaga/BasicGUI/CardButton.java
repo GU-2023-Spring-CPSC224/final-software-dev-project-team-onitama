@@ -7,19 +7,39 @@ import javax.swing.JButton;
 
 import edu.gonzaga.Board;
 import edu.gonzaga.Hand;
+import edu.gonzaga.CardDeck.Card;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 
-public class CardButton extends JButton{
+
+
+public class CardButton extends JButton implements PropertyChangeListener{
     private Board board;
     private Hand hand;
     private String name;
+    int location;
+    Card card;
+    
 
     CardButton(Board b, Hand h, int n) {
         super("" + h.getNames()[n]);
         board = b;
         hand = h;
+        location = n;
         name = h.getNames()[n];
-        setupCallback();
+        hand.addPropertyChangeListener(this::propertyChange);
+        addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    board.cardButtonPressed(location);
+                }
+            }
+        );
+        //setupCallback();
     }
 
     public void setupCallback() {
@@ -45,5 +65,51 @@ public class CardButton extends JButton{
                 }
             }   
         });
+    }
+
+    public void propertyChange(PropertyChangeEvent e) {
+        String propertyName = e.getPropertyName();
+        switch (location){
+            case 0:
+                if ("spot0".equals(propertyName)) {
+                    //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+                    card = ((Card)e.getNewValue());
+                    name = card.getName();
+                    this.setText(name);
+                }
+                break;
+            case 1:
+                if ("spot1".equals(propertyName)) {
+                    //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+                    card = ((Card)e.getNewValue());
+                    name = card.getName();
+                    this.setText(name);
+                }
+                break;
+            case 2:
+                if ("spot2".equals(propertyName)) {
+                    //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+                    card = ((Card)e.getNewValue());
+                    name = card.getName();
+                    this.setText(name);
+                }
+                break;
+            case 3:
+                if ("spot3".equals(propertyName)) {
+                    //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+                    card = ((Card)e.getNewValue());
+                    name = card.getName();
+                    this.setText(name);
+                } 
+                break;
+            case 4:
+                if ("inter".equals(propertyName)) {
+                    //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
+                    card = ((Card)e.getNewValue());
+                    name = card.getName();
+                    this.setText(name);
+                } 
+                break;
+        }
     }
 }
