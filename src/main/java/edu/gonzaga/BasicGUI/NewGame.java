@@ -12,6 +12,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+import java.awt.Dialog;
+
 
 public class NewGame {
     Hand hand;
@@ -43,9 +48,7 @@ public class NewGame {
         BoardUI app = new BoardUI();    // Create, then run GUI
 
         app.runGUI();
-
-
-
+        
         /*
         System.out.println(hand);
         System.out.println(player1);
@@ -62,6 +65,7 @@ public class NewGame {
         BoardUI app = new BoardUI();    // Create, then run GUI
         app.runGUI();
     }
+
 
     public void takeTurn(){
         Card selected = player1.selectCard(0); //button press returns 0 for first card 1 for second ect
@@ -87,7 +91,7 @@ public class NewGame {
     // GUI Setup
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
-        this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.mainWindowFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
         this.mainWindowFrame.setLocation(100,100);
         //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -113,6 +117,29 @@ public class NewGame {
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
         mainWindowFrame.pack();
     }
+
+    // public void windowClosing(WindowEvent e) {
+    //     Dialog d = new Dialog(this, "Exit", true);
+    //     d.setLayout(new FlowLayout());
+    //     Label label = new Label("Are you sure you want to exit?");
+    //     d.add(label);
+    //     Button yesButton = new Button("Yes");
+    //     yesButton.addActionListener(new ActionListener() {
+    //         public void actionPerformed(ActionEvent e) {
+    //             System.exit(0);
+    //         }
+    //     });
+    //     Button noButton = new Button("No");
+    //     noButton.addActionListener(new ActionListener() {
+    //         public void actionPerformed(ActionEvent e) {
+    //             d.dispose();
+    //         }
+    //     });
+    //     d.add(yesButton);
+    //     d.add(noButton);
+    //     d.setSize(300, 100);
+    //     d.setVisible(true);
+    // }
 
     // Makes the board
     private JPanel genBoardPanel() {

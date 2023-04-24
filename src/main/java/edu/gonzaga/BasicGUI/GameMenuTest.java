@@ -1,12 +1,14 @@
 package edu.gonzaga.BasicGUI;
 
+import java.awt.event.*;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameMenu extends JFrame implements ActionListener
-{
+public class GameMenuTest extends JFrame implements ActionListener {
+    
     JButton newGameButton;
     JButton instructionsButton;
     JButton optionsButton;
@@ -15,13 +17,8 @@ public class GameMenu extends JFrame implements ActionListener
     JPanel startMenuPanel;
     JLabel gameTitleLabel;
 
-    public static void main(String[] args)
-    {
-        new GameMenu();
-    }
+    public GameMenuTest() {
 
-    GameMenu()
-    {
         frame = new GameFrame();
         gameTitleLabel = new JLabel("Onitama: A two player strategy game");
         startMenuPanel = new JPanel();
@@ -30,7 +27,8 @@ public class GameMenu extends JFrame implements ActionListener
         optionsButton = new JButton();
         quitButton = new JButton();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        frame.setLayout(null);
+        frame.setVisible(true);
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
@@ -68,16 +66,49 @@ public class GameMenu extends JFrame implements ActionListener
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
-        quitButton.addActionListener(this);
         quitButton.setForeground(Color.RED);
+        quitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                int confirm = JOptionPane.showConfirmDialog(GameMenuTest.this,
+                    "Are you sure you want to quit?",
+                    "Confirm Quit", JOptionPane.YES_NO_OPTION);
 
+                if (confirm == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
+        getContentPane().add(quitButton);
+        this.setBounds(500,500,250,250);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent event) {
+                int confirm = JOptionPane.showConfirmDialog(GameMenuTest.this,
+                    "Are you sure you want to quit?",
+                    "Confirm Quit", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
 
+        
+        
+        startMenuPanel.add(newGameButton);
         frame.add(gameTitleLabel);
+        frame.add(quitButton);
         frame.add(newGameButton);
         frame.add(optionsButton);
         frame.add(instructionsButton);
-        frame.add(quitButton);
+        
     }
+    
+    public static void main(String[] args) {
+        new GameMenuTest();
+    }
+
+
+
 
 
     @Override
