@@ -177,6 +177,11 @@ public class Board {
                     curPiece = null;
                     hand.swap(curCard);
                     curCard = null;
+                    if (checkWin() != 0){
+                        System.out.print("player");
+                        System.out.print(checkWin());
+                        System.out.println(" Wins!");
+                    }
                 }
             }
         if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
@@ -195,7 +200,6 @@ public class Board {
         }
         if(lastPlayer == 2 && location < 2){
             setCurCard(hand.getCardAt(location));
-            System.out.println(curCard);
         }
         if(lastPlayer == 1 && location > 1 && location < 4){
             setCurCard(hand.getCardAt(location));
@@ -207,6 +211,38 @@ public class Board {
                 temp.setPossible(true);
             }
         }
+    }
+
+    public int checkWin(){
+        boolean found = false;
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                if (board[i][j].getPiece() == "R"){
+                    found = true;
+                }
+            }
+        }
+        if (found == false){
+            return 2;
+        }
+        found = false;
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                if (board[i][j].getPiece() == "B"){
+                    found = true;
+                }
+            }
+        }
+        if (found == false){
+            return 1;
+        }
+        if(board[2][0].getPiece() == "R"){
+            return 1;
+        }
+        if(board[2][4].getPiece() == "B"){
+            return 2;
+        }
+        return 0;
     }
 
 

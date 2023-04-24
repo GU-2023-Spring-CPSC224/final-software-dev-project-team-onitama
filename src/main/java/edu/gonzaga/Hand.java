@@ -22,7 +22,7 @@ public class Hand {
         int j = 0; 
         ArrayList<Integer> temp = new ArrayList<Integer>();
         while (j < size){
-            int x = random.nextInt(15);
+            int x = random.nextInt(16);
             if(temp.contains(x) != true){
                 temp.add(x);
                 j++;
