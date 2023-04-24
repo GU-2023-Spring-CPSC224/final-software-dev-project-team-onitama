@@ -118,28 +118,6 @@ public class NewGame {
         mainWindowFrame.pack();
     }
 
-    // public void windowClosing(WindowEvent e) {
-    //     Dialog d = new Dialog(this, "Exit", true);
-    //     d.setLayout(new FlowLayout());
-    //     Label label = new Label("Are you sure you want to exit?");
-    //     d.add(label);
-    //     Button yesButton = new Button("Yes");
-    //     yesButton.addActionListener(new ActionListener() {
-    //         public void actionPerformed(ActionEvent e) {
-    //             System.exit(0);
-    //         }
-    //     });
-    //     Button noButton = new Button("No");
-    //     noButton.addActionListener(new ActionListener() {
-    //         public void actionPerformed(ActionEvent e) {
-    //             d.dispose();
-    //         }
-    //     });
-    //     d.add(yesButton);
-    //     d.add(noButton);
-    //     d.setSize(300, 100);
-    //     d.setVisible(true);
-    // }
 
     // Makes the board
     private JPanel genBoardPanel() {
