@@ -14,10 +14,12 @@ public class Board {
     private Card curCard;
     private Coordinate curPiece;
     private char curPlayer = 'r';
+    private int lastPlayer = 2;
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
 
-    public Board(int size){
+    public Board(int size, Hand h){
+        this.hand = h;
         this.size = size;
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
@@ -113,8 +115,8 @@ public class Board {
         if(destinations.isEmpty() != true)
             makeMove(destinations.get(choice));
     }
-    public void setCurCard(Card curCard) {
-        this.curCard = curCard;
+    public void setCurCard(Card newCurCard) {
+        this.curCard = newCurCard;
     }
 /* 
     public void setCurCard(Card curCard) {
@@ -146,10 +148,14 @@ public class Board {
         return board[cord.getX()][cord.getY()].getPiece();
     }
 
+    private int getPlayer(Coordinate cord){
+        return board[cord.getX()][cord.getY()].getPlayer();
+    }
+
     public void boardButtonPressed(Coordinate cord){
-        if(isPiece(cord)){ // if the button press is a piece
-            if(curPiece == null){ // if there is no current piece 
-                setCurPiece(cord); // current piece = the button press
+        if(isPiece(cord) && getPlayer(cord) != lastPlayer){ // if the button press is a peice
+            if(curPiece == null){ // if there is no current peice 
+                setCurPiece(cord); // current peice = the button press
             }  
             else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){ // if there already is a current piece only change if a piece from the same team is selected
                 setCurPiece(cord);
@@ -159,8 +165,9 @@ public class Board {
                 }
             }
         }
-        else{ // if the square is not a piece and if possible moves have been generated move current piece to the button press (need to allow captures still)
+        else if (!isPiece(cord) || getPlayer(cord) == lastPlayer) { // if the square is not a piece and if possible moves have been generated move current peice to the button press (need to allow captures still)
                 if (getSquare(cord).getPossible()){
+                    lastPlayer = getPlayer(curPiece);
                     makeMove(cord);
                     for(int i = 0; i < destinations.size(); i++){
                         Square temp = getSquare(destinations.get(i));
@@ -168,6 +175,13 @@ public class Board {
                     }
                     getSquare(curPiece).setSelected(false);
                     curPiece = null;
+                    hand.swap(curCard);
+                    curCard = null;
+                    if (checkWin() != 0){
+                        System.out.print("player");
+                        System.out.print(checkWin());
+                        System.out.println(" Wins!");
+                    }
                 }
             }
         if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
@@ -177,6 +191,58 @@ public class Board {
                 temp.setPossible(true);
             }
         }
+    }
+
+    public void cardButtonPressed(int location){
+        for(int i = 0; i < destinations.size(); i++){
+            Square temp = getSquare(destinations.get(i));
+            temp.setPossible(false);
+        }
+        if(lastPlayer == 2 && location < 2){
+            setCurCard(hand.getCardAt(location));
+        }
+        if(lastPlayer == 1 && location > 1 && location < 4){
+            setCurCard(hand.getCardAt(location));
+        }
+        if(curCard != null && curPiece != null){ // if there is a card and a piece selected generate destinations and set the squares at those locations to possible 
+            generateDestinations();
+            for(int i = 0; i < destinations.size(); i++){
+                Square temp = getSquare(destinations.get(i));
+                temp.setPossible(true);
+            }
+        }
+    }
+
+    public int checkWin(){
+        boolean found = false;
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                if (board[i][j].getPiece() == "R"){
+                    found = true;
+                }
+            }
+        }
+        if (found == false){
+            return 2;
+        }
+        found = false;
+        for (int i = 0; i < size; i++){
+            for (int j = 0; j < size; j++){
+                if (board[i][j].getPiece() == "B"){
+                    found = true;
+                }
+            }
+        }
+        if (found == false){
+            return 1;
+        }
+        if(board[2][0].getPiece() == "R"){
+            return 1;
+        }
+        if(board[2][4].getPiece() == "B"){
+            return 2;
+        }
+        return 0;
     }
 
 

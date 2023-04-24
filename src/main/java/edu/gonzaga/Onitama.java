@@ -32,7 +32,7 @@ public class Onitama {
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5);
+        board = new Board(5, hand);
         Card dragon = new DragonCard("Dragon");
         board.setCurCard(dragon);
 

@@ -7,19 +7,22 @@ import java.util.Collections;
 import java.util.Random;
 
 import edu.gonzaga.CardDeck.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Card> player1Cards = new ArrayList<Card>();
     private ArrayList<Card> player2Cards = new ArrayList<Card>();
     private Card intermediate;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Hand (int size){
         Random random = new Random();
         int j = 0; 
         ArrayList<Integer> temp = new ArrayList<Integer>();
         while (j < size){
-            int x = random.nextInt(15);
+            int x = random.nextInt(16);
             if(temp.contains(x) != true){
                 temp.add(x);
                 j++;
@@ -110,10 +113,32 @@ public class Hand {
                 location = i;
             }
         }
-        Card temp = cards.get(location);
+        Card oldCard = cards.get(location);
         cards.set(location, cards.get(cards.size() - 1));
-        cards.set(cards.size() - 1, temp);
+        cards.set(cards.size() - 1, oldCard);
+        Card newCard = cards.get(location);
         update();
+        switch(location){
+            case 0:
+                this.pcs.firePropertyChange("spot0", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 1:
+                this.pcs.firePropertyChange("spot1", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 2:
+                this.pcs.firePropertyChange("spot2", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+            case 3:
+                this.pcs.firePropertyChange("spot3", oldCard, newCard);
+                this.pcs.firePropertyChange("inter", newCard, oldCard);
+                break;
+        }
+    }
+    public Card getCardAt(int location){
+        return cards.get(location);
     }
 
     public ArrayList<Card> getPlayer1Cards(){
@@ -122,6 +147,14 @@ public class Hand {
 
     public ArrayList<Card> getPlayer2Cards(){
         return player2Cards;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
     }
 
     @Override
