@@ -1,12 +1,7 @@
 package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
-import edu.gonzaga.Board;
-import edu.gonzaga.BoardButton;
-import edu.gonzaga.Coordinate;
-import edu.gonzaga.Hand;
-import edu.gonzaga.Player;
-import edu.gonzaga.Square;
+import edu.gonzaga.*;
 
 import javax.swing.*;
 
@@ -118,6 +113,7 @@ public class BoardUI {
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        ImageIcon background = new ImageIcon("boardBackground.png");
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
         for(int i=0; i < boardButtons.length; i++)
@@ -126,6 +122,7 @@ public class BoardUI {
             {
                 Coordinate temp = new Coordinate(i, j);
                 boardButtons[i][j] = new BoardButton(board, temp);
+                boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }
         }
@@ -162,6 +159,7 @@ public class BoardUI {
         newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
         return newCardPanel;
     }
+
 
     /* 
     private void addButtonCallbackHandlers() {

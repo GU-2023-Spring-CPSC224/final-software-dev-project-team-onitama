@@ -1,8 +1,9 @@
-package edu.gonzaga;
-
+package edu.gonzaga.BasicGUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
+
+import edu.gonzaga.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         squareToView = board.getSquare(cord);
         text = squareToView.toString();
         this.setText(text);
+        this.setHorizontalTextPosition(SwingConstants.CENTER);
+        this.setVerticalTextPosition(SwingConstants.CENTER);
         squareToView.addPropertyChangeListener(this::propertyChange);
         addActionListener(
             new ActionListener() {
@@ -59,6 +62,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
             text = e.getNewValue().toString();
             this.setText(text);
+            this.setHorizontalTextPosition(SwingConstants.CENTER);
+            this.setVerticalTextPosition(SwingConstants.CENTER);
         }
         if ("possible".equals(propertyName)) {
             border = ((boolean)e.getNewValue());

@@ -157,7 +157,7 @@ public class Board {
             if(curPiece == null){ // if there is no current peice 
                 setCurPiece(cord); // current peice = the button press
             }  
-            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){ // if there already is a current peice only change if a piece from the same team is selected
+            else if(getSquare(cord).getPlayer() == getSquare(curPiece).getPlayer()){ // if there already is a current piece only change if a piece from the same team is selected
                 setCurPiece(cord);
                 for(int i = 0; i < destinations.size(); i++){
                     Square temp = getSquare(destinations.get(i));
@@ -256,7 +256,7 @@ public class Board {
                 ret += ",";
             }
         }
-        return ret;
+        return ret;//
     }
 
     public Square[][] getBoard() {
