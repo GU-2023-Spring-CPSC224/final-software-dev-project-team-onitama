@@ -14,13 +14,13 @@ public class CharacterSelect extends JFrame implements ActionListener
     JButton backButton;
     JButton readyButton;
     JButton bluePieceButton;
-    JButton blackPieceButton;
+    JButton purplePieceButton;
+    JButton tealPieceButton;
     JButton whitePieceButton;
+    JButton redPieceButton;
     JButton pinkPieceButton;
     JButton orangePieceButton;
-    JButton tealPieceButton;
-    JButton purplePieceButton;
-    JButton redPieceButton;
+    JButton blackPieceButton;
     JButton playerOneSelectedButton;
     JButton playerTwoSelectedButton;
 
@@ -142,19 +142,19 @@ public class CharacterSelect extends JFrame implements ActionListener
         leftCharacterPanel.setLayout(new GridLayout(2,2));
 
         bluePieceButton = createCharacterButtons("blue");
-        blackPieceButton = createCharacterButtons("black");
-        orangePieceButton= createCharacterButtons("orange");
-        pinkPieceButton= createCharacterButtons("pink");
+        purplePieceButton= createCharacterButtons("purple");
+        tealPieceButton= createCharacterButtons("teal");
+        whitePieceButton = createCharacterButtons("white");
         
         leftCharacterPanel.add(bluePieceButton);
-        leftCharacterPanel.add(blackPieceButton);
-        leftCharacterPanel.add(orangePieceButton);
-        leftCharacterPanel.add(pinkPieceButton);
+        leftCharacterPanel.add(purplePieceButton);
+        leftCharacterPanel.add(tealPieceButton);
+        leftCharacterPanel.add(whitePieceButton);
 
         characterButtonsArrayList.add(bluePieceButton);
-        characterButtonsArrayList.add(blackPieceButton);
-        characterButtonsArrayList.add(orangePieceButton);
-        characterButtonsArrayList.add(pinkPieceButton);
+        characterButtonsArrayList.add(purplePieceButton);
+        characterButtonsArrayList.add(tealPieceButton);
+        characterButtonsArrayList.add(whitePieceButton);
 
         return leftCharacterPanel;
     }
@@ -165,20 +165,20 @@ public class CharacterSelect extends JFrame implements ActionListener
         rightCharacterPanel.setBounds(1030, 190, 400, 400);
         rightCharacterPanel.setLayout(new GridLayout(2,2));
 
-        purplePieceButton= createCharacterButtons("purple");
-        tealPieceButton= createCharacterButtons("teal");
         redPieceButton= createCharacterButtons("red");
-        whitePieceButton = createCharacterButtons("white");
+        pinkPieceButton= createCharacterButtons("pink");
+        orangePieceButton= createCharacterButtons("orange");
+        blackPieceButton = createCharacterButtons("black");
 
-        rightCharacterPanel.add(purplePieceButton);
-        rightCharacterPanel.add(tealPieceButton);
         rightCharacterPanel.add(redPieceButton);
-        rightCharacterPanel.add(whitePieceButton);
+        rightCharacterPanel.add(pinkPieceButton);
+        rightCharacterPanel.add(orangePieceButton);
+        rightCharacterPanel.add(blackPieceButton);
 
-        characterButtonsArrayList.add(purplePieceButton);
-        characterButtonsArrayList.add(tealPieceButton);
         characterButtonsArrayList.add(redPieceButton);
-        characterButtonsArrayList.add(whitePieceButton);
+        characterButtonsArrayList.add(pinkPieceButton);
+        characterButtonsArrayList.add(orangePieceButton);
+        characterButtonsArrayList.add(blackPieceButton);
 
         return rightCharacterPanel;
     }
@@ -262,35 +262,35 @@ public class CharacterSelect extends JFrame implements ActionListener
         {
             gamePieceButtonClicked(bluePieceButton, playerOneCharacterSelected, 1);
         }
-        if (e.getSource() == blackPieceButton)
-        {
-            gamePieceButtonClicked(blackPieceButton, playerOneCharacterSelected, 1);
-        }
-        if (e.getSource() == orangePieceButton)
-        {
-            gamePieceButtonClicked(orangePieceButton, playerOneCharacterSelected, 1);
-        }
-        if (e.getSource() == pinkPieceButton)
-        {
-            gamePieceButtonClicked(pinkPieceButton, playerOneCharacterSelected, 1);
-        }
-
-
         if (e.getSource() == purplePieceButton)
         {
-            gamePieceButtonClicked(purplePieceButton, playerTwoCharacterSelected, 2);
+            gamePieceButtonClicked(purplePieceButton, playerOneCharacterSelected, 1);
         }
         if (e.getSource() == tealPieceButton)
         {
-            gamePieceButtonClicked(tealPieceButton, playerTwoCharacterSelected, 2);
+            gamePieceButtonClicked(tealPieceButton, playerOneCharacterSelected, 1);
         }
+        if (e.getSource() == whitePieceButton)
+        {
+            gamePieceButtonClicked(whitePieceButton, playerOneCharacterSelected, 1);
+        }
+
+
         if (e.getSource() == redPieceButton)
         {
             gamePieceButtonClicked(redPieceButton, playerTwoCharacterSelected, 2);
         }
-        if (e.getSource() == whitePieceButton)
+        if (e.getSource() == pinkPieceButton)
         {
-            gamePieceButtonClicked(whitePieceButton, playerTwoCharacterSelected, 2);
+            gamePieceButtonClicked(pinkPieceButton, playerTwoCharacterSelected, 2);
+        }
+        if (e.getSource() == orangePieceButton)
+        {
+            gamePieceButtonClicked(orangePieceButton, playerTwoCharacterSelected, 2);
+        }
+        if (e.getSource() == blackPieceButton)
+        {
+            gamePieceButtonClicked(blackPieceButton, playerTwoCharacterSelected, 2);
         }
 
 
