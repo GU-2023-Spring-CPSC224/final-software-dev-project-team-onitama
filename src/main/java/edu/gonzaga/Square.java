@@ -3,14 +3,25 @@ package edu.gonzaga;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import javax.swing.ImageIcon;
+
 public class Square {
 
     String piece;
     int player;
     boolean possible;
     boolean selected;
+    ImageIcon[] pieceIcons;
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);    
+
+    public Square(ImageIcon[] arr) {
+        piece = "0";
+        player = 0;
+        possible = false;
+        selected = false;
+        pieceIcons = arr;
+    }
 
     public Square() {
         piece = "0";
@@ -18,7 +29,6 @@ public class Square {
         possible = false;
         selected = false;
     }
-
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(listener);
@@ -33,6 +43,7 @@ public class Square {
         this.piece = newPiece;
         if (newPiece == "0"){
             this.player = 0;
+            
         }
         else if(newPiece == "R" || newPiece == "r"){
             this.player = 1;

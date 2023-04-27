@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 public class observationTesting {
     public static void main(String[] args) {
     
-        Square test = new Square();
+        //Square test = new Square();
         JFrame frame = new JFrame();
         //BoardButton button = new BoardButton(test);
         frame.setTitle("Yahtzee game by Crandall");

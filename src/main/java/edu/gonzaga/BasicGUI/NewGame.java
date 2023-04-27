@@ -23,6 +23,8 @@ public class NewGame {
     Player player1;
     Player player2;
     Board board;
+    String p1color;
+    String p2color;
 
 
     /*
@@ -36,16 +38,19 @@ public class NewGame {
     JPanel boardPanel;
     JButton[][] boardButtons;
     JButton[] cardButtons;
+    ImageIcon[] pieceIcons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
 
 
-    public NewGame(){
+    public NewGame(String c1, String c2){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
+        board = new Board(5, hand, pieceIcons);
         BoardUI app = new BoardUI();    // Create, then run GUI
+        p1color = c1;
+        p2color = c2;
 
         app.runGUI();
         
@@ -102,6 +107,8 @@ public class NewGame {
         this.southPanel = new JPanel();
         this.westPanel = new JPanel();
 
+        // sets up icons
+        makeIconArray();
         // Board panel setup
         this.boardPanel = genBoardPanel();
         // tmp card setup
@@ -118,6 +125,15 @@ public class NewGame {
         mainWindowFrame.pack();
     }
 
+    private void makeIconArray(){
+        pieceIcons = new ImageIcon[6];
+        pieceIcons[0] = new ImageIcon("boardBackground.png");   // Empty space
+        pieceIcons[1] = new ImageIcon(p1color + ".png");                 // p1 pawn
+        pieceIcons[2] = new ImageIcon(p1color + "King.png");             // p1 king
+        pieceIcons[3] = new ImageIcon(p2color + ".png");                 // p2 pawn
+        pieceIcons[4] = new ImageIcon(p2color + "King.png");             // p2 king
+        pieceIcons[5] = new ImageIcon("possibleMove.png");      // possible move indicator
+    }
 
     // Makes the board
     private JPanel genBoardPanel() {
@@ -129,8 +145,26 @@ public class NewGame {
         Square[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
-            for(Integer j=0; j < boardButtons.length; j++)
+            for(Integer j=0; j < boardButtons.length; j++){
                 boardButtons[i][j] = new JButton("" + tmp[i][j]);
+                switch(boardButtons[i][j].getText()){
+                    case "0":
+                        boardButtons[i][j].setIcon(pieceIcons[0]);
+                        break;
+                    case "r":
+                        boardButtons[i][j].setIcon(pieceIcons[1]);
+                        break;
+                    case "R":
+                        boardButtons[i][j].setIcon(pieceIcons[2]);
+                        break;
+                    case "b":
+                        boardButtons[i][j].setIcon(pieceIcons[3]);
+                        break;
+                    case "B":
+                        boardButtons[i][j].setIcon(pieceIcons[4]);
+                        break;
+                }
+            }
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)

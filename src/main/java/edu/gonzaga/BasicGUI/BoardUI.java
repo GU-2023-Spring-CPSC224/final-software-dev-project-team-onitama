@@ -32,23 +32,18 @@ public class BoardUI {
     Integer playerTurn = 1;
 
 
+    public BoardUI(ImageIcon[] arr){
+        hand = new Hand(5);
+        player1 = new Player(1,hand.getPlayer1Cards());
+        player2 = new Player(2,hand.getPlayer2Cards());
+        board = new Board(5, hand, arr);
+    }
+
     public BoardUI(){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand);
-
-
-        /*
-        System.out.println(hand);
-        System.out.println(player1);
-        System.out.println(player2);
-        hand.swap(player1.selectCard(1));
-        player1.updateCards(hand.getPlayer1Cards());
-        System.out.println(hand);
-        System.out.println(player1);
-        System.out.println(player2);
-        */
     }
 
     public static void main(String [] args) {
@@ -97,6 +92,7 @@ public class BoardUI {
         this.southPanel = genCardPanel();
         // Listener setup
         //addButtonCallbackHandlers();
+        
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
@@ -106,6 +102,7 @@ public class BoardUI {
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
         mainWindowFrame.pack();
     }
+
 
     // Makes the board
     private JPanel genBoardPanel() {

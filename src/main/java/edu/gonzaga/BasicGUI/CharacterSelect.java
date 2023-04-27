@@ -298,7 +298,7 @@ public class CharacterSelect extends JFrame implements ActionListener
         {
             if (playerOneCharacterSelected && playerTwoCharacterSelected)
             {
-                new NewGame();
+                new NewGame(playerOneSelectedButton.getClientProperty("color").toString(), playerTwoSelectedButton.getClientProperty("color").toString());
                 System.out.println((String) playerOneSelectedButton.getClientProperty("color"));
                 System.out.println((String) playerTwoSelectedButton.getClientProperty("color"));
             }
