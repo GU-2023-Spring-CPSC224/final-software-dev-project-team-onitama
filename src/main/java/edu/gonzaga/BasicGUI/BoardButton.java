@@ -92,7 +92,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             border = ((boolean)e.getNewValue());
             if(border){
                 this.setBackground(Color.BLACK);
-                this.setIcon(pieceIcons[5]);
+                //this.setIcon(pieceIcons[5]);
             }
             else{
                 this.setBackground(null);
