@@ -14,6 +14,7 @@ public class HowToPlay extends JFrame implements ActionListener
 
     JLabel optionsMenuLabel;
     JButton backButton;
+    JTextArea instructionsTextArea;
 
 
     HowToPlay()
@@ -31,13 +32,12 @@ public class HowToPlay extends JFrame implements ActionListener
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
+        this.setLayout(new BorderLayout());
 
 
         optionsMenuLabel.setBounds(690, 100, 400, 100);
         optionsMenuLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
         optionsMenuLabel.setText("How to play");
-
-
 
 
         backButton = new JButton();
@@ -48,6 +48,9 @@ public class HowToPlay extends JFrame implements ActionListener
         backButton.setFocusable(false);
         backButton.setForeground(Color.BLACK);
 
+        instructionsTextArea = new JTextArea();
+
+        this.getContentPane();
         this.add(optionsMenuLabel);
         this.add(backButton);
 
