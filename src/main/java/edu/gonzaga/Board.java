@@ -177,6 +177,7 @@ public class Board {
         return board[cord.getX()][cord.getY()].getPlayer();
     }
 
+    /*
     public Icon getPlayer1Icon(){
         return player1Icon;
     }
@@ -184,7 +185,7 @@ public class Board {
     public Icon getPlayer2Icon(){
         return player2Icon;
     }
-
+    */
     public void boardButtonPressed(Coordinate cord){
         if(isPiece(cord) && getPlayer(cord) != lastPlayer){ // if the button press is a peice
             if(curPiece == null){ // if there is no current peice 

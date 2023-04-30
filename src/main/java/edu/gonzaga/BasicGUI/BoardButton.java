@@ -28,8 +28,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         pieceIcons = arr;
         squareToView = board.getSquare(cord);
         text = squareToView.toString();
-        icon = getSquareIcon(text);
-        this.setIcon(icon);
+        //icon = getSquareIcon(text);
+        //this.setIcon(icon);
         this.setText(text);
         switch(text){
             case "0":
@@ -84,7 +84,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             System.out.println(text);
             this.setIcon(getSquareIcon(text));
             this.setText(text);
-            this.setIcon(icon);
+            //this.setIcon(icon);
             this.setHorizontalTextPosition(SwingConstants.CENTER);
             this.setVerticalTextPosition(SwingConstants.CENTER);
         }
