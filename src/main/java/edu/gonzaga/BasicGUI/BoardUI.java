@@ -93,8 +93,11 @@ public class BoardUI {
 
         // Board panel setup
         this.boardPanel = genBoardPanel();
+        genCardButtons();
         // tmp card setup
-        this.southPanel = genCardPanel();
+        this.southPanel = genBottomCardPanel();
+        this.westPanel.add(cardButtons[4]);
+        this.northPanel = genTopCardPanel();
         // Listener setup
         //addButtonCallbackHandlers();
         
@@ -145,9 +148,9 @@ public class BoardUI {
     
 
     // //this is a temp way to display cards
-    private JPanel genCardPanel() {
-        JPanel newCardPanel = new JPanel();
-        newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+    private void genCardButtons() {
+        //JPanel newCardPanel = new JPanel();
+        //newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
         // making array of buttons
@@ -160,11 +163,35 @@ public class BoardUI {
 
 
 
-        for(int i=0; i < cardButtons.length; i++)
-            newCardPanel.add(cardButtons[i]);
+        //for(int i=0; i < cardButtons.length; i++)
+            //newCardPanel.add(cardButtons[i]);
 
         // Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
-        newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
+        //newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
+        //return newCardPanel;
+    }
+    private JPanel genBottomCardPanel(){
+        JPanel newCardPanel = new JPanel();
+        newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+        for(int i=0; i < 2; i++)
+            newCardPanel.add(cardButtons[i]);
+
+        //Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
+        newCardPanel.setLayout(new GridLayout(1, 2));    // Making it pretty
+        return newCardPanel;
+    }
+    private JPanel genTopCardPanel(){
+        JPanel newCardPanel = new JPanel();
+        newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+        for(int i=2; i < 4; i++)
+            newCardPanel.add(cardButtons[i]);
+
+        //Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
+        newCardPanel.setLayout(new GridLayout(1, 2));    // Making it pretty
         return newCardPanel;
     }
 
