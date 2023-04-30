@@ -3,6 +3,8 @@ package edu.gonzaga;
 import java.lang.management.PlatformManagedObject;
 import java.util.ArrayList;
 
+
+
 import javax.swing.ImageIcon;
 
 import edu.gonzaga.CardDeck.Card;
@@ -42,6 +44,7 @@ public class Board {
     public Board(int size, Hand h){
         this.hand = h;
         this.size = size;  
+
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
@@ -172,6 +175,14 @@ public class Board {
 
     private int getPlayer(Coordinate cord){
         return board[cord.getX()][cord.getY()].getPlayer();
+    }
+
+    public Icon getPlayer1Icon(){
+        return player1Icon;
+    }
+
+    public Icon getPlayer2Icon(){
+        return player2Icon;
     }
 
     public void boardButtonPressed(Coordinate cord){

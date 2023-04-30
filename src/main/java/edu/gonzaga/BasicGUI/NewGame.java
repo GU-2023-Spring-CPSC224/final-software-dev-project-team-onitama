@@ -53,6 +53,7 @@ public class NewGame {
         board = new Board(5, hand, pieceIcons);
         BoardUI app = new BoardUI(pieceIcons);    // Create, then run GUI
         
+
         app.runGUI();
         
         /*
@@ -68,8 +69,9 @@ public class NewGame {
     }
 
     public static void main(String [] args) {
-        BoardUI app = new BoardUI();    // Create, then run GUI
-        app.runGUI();
+        //BoardUI app = new BoardUI();    // Create, then run GUI
+        //app.runGUI();
+        //NewGame app = new NewGame(null, null)
     }
 
 

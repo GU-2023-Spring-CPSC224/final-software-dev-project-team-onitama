@@ -20,6 +20,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
     boolean selected;
     ImageIcon[] pieceIcons;
 
+
     public BoardButton(Board b, Coordinate c, ImageIcon[] arr) {
         super("");
         board = b;
@@ -27,6 +28,8 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         pieceIcons = arr;
         squareToView = board.getSquare(cord);
         text = squareToView.toString();
+        icon = getSquareIcon(text);
+        this.setIcon(icon);
         this.setText(text);
         switch(text){
             case "0":
@@ -72,6 +75,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         return pieceIcons[0];
     }
 
+
     public void propertyChange(PropertyChangeEvent e) {
         String propertyName = e.getPropertyName();
         if ("squarePiece".equals(propertyName)) {
@@ -80,6 +84,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             System.out.println(text);
             this.setIcon(getSquareIcon(text));
             this.setText(text);
+            this.setIcon(icon);
             this.setHorizontalTextPosition(SwingConstants.CENTER);
             this.setVerticalTextPosition(SwingConstants.CENTER);
         }
