@@ -34,13 +34,6 @@ public class HowToPlay extends JFrame implements ActionListener
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
         this.setLayout(null);
-        ImageIcon imageIcon = new ImageIcon("boardBackground.png");
-        JLabel backgroundLabel = new JLabel(imageIcon);
-        this.setContentPane(backgroundLabel);
-
-        //BufferedImage myImage = ImageIO.read();
-        JFrame myJFrame = new JFrame("boardBackground.png");
-        //myJFrame.setContentPane(new ImagePanel(myImage));
 
 
         howToPlayLabel.setBounds(690, 100, 400, 100);
@@ -72,8 +65,14 @@ public class HowToPlay extends JFrame implements ActionListener
         this.add(backButton);
         this.add(instructionsTextArea);
 
-        
-
+        ImageIcon background = new ImageIcon("boardBackground.png");
+        Image img = background.getImage();
+        Image temp = img.getScaledInstance(1000,600,Image.SCALE_SMOOTH);
+        background = new ImageIcon(temp);
+        JLabel back = new JLabel(background);
+        back.setLayout(null);
+        back.setBounds(0,0,1000,600);
+        this.add(back);
     }
 
     @Override

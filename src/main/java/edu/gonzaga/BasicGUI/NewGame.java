@@ -94,7 +94,7 @@ public class NewGame {
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
         this.mainWindowFrame.setLocation(100,100);
-        //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
@@ -115,7 +115,9 @@ public class NewGame {
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
-        mainWindowFrame.pack();
+        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //mainWindowFrame.pack();
     }
 
     // public void windowClosing(WindowEvent e) {
@@ -262,6 +264,7 @@ public class NewGame {
         setupGUI();
 
         // Run the main window - begins GUI activity
+        //mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainWindowFrame.setVisible(true);
         System.out.println("Done in GUI app");
     }
