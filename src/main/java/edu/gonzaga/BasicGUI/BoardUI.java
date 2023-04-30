@@ -83,6 +83,7 @@ public class BoardUI {
         //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         //this.mainWindowFrame.setPreferredSize(screenSize);
         this.mainWindowFrame.setLocation(100,100);
+        this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
         this.northPanel = new JPanel();
@@ -99,11 +100,13 @@ public class BoardUI {
         
 
         // Window add panels and layout
+        boardPanel.setPreferredSize(new Dimension(500, 400));
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainWindowFrame.pack();
     }
 
@@ -202,6 +205,7 @@ public class BoardUI {
 
         // Run the main window - begins GUI activity
         mainWindowFrame.setVisible(true);
+        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         System.out.println("Done in GUI app");
     }
     

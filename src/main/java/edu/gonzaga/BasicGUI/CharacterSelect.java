@@ -41,7 +41,6 @@ public class CharacterSelect extends JFrame implements ActionListener
     {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);//this makes the frame visible
-        //this.setSize(600,600);//sets x & y dimensions
         this.setTitle("Onitama");//setting title
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//what happens when we close the window
         this.setResizable(true);//we can change whether frame may be resized
@@ -64,7 +63,6 @@ public class CharacterSelect extends JFrame implements ActionListener
         characterSelectLabel.setBounds(640, 100, 400, 100);
         characterSelectLabel.setFont(new Font("MV Boli", Font.BOLD, 30));
         characterSelectLabel.setText("Character Select");
-
 
 
         this.add(leftCharacterPanel);
