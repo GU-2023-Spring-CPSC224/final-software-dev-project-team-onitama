@@ -134,6 +134,9 @@ public class NewGame {
         pieceIcons[3] = new ImageIcon("GameArt/" + p2color + ".png");                 // p2 pawn
         pieceIcons[4] = new ImageIcon("GameArt/" + p2color + "King.png");             // p2 king
         pieceIcons[5] = new ImageIcon("GameArt/possibleMove.png");      // possible move indicator
+        for(int i = 0; i < pieceIcons.length; i++){
+            pieceIcons[i] = new ImageIcon(pieceIcons[i].getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+        }
     }
 
     // Makes the board

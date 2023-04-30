@@ -65,6 +65,23 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             text = e.getNewValue().toString();
             System.out.println(text);
             this.setText(text);
+            switch(text){
+                case "0":
+                    this.setIcon(pieceIcons[0]);
+                    break;
+                case "r":
+                    this.setIcon(pieceIcons[1]);
+                    break;
+                case "R":
+                    this.setIcon(pieceIcons[2]);
+                    break;
+                case "b":
+                    this.setIcon(pieceIcons[3]);
+                    break;
+                case "B":
+                    this.setIcon(pieceIcons[4]);
+                    break;
+                }
             this.setHorizontalTextPosition(SwingConstants.CENTER);
             this.setVerticalTextPosition(SwingConstants.CENTER);
         }
@@ -72,9 +89,11 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             border = ((boolean)e.getNewValue());
             if(border){
                 this.setBackground(Color.BLACK);
+                this.setIcon(pieceIcons[5]);
             }
             else{
                 this.setBackground(null);
+                this.setIcon(pieceIcons[0]);
             }
         }
         if ("selected".equals(propertyName)) {
