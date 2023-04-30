@@ -3,6 +3,9 @@ package edu.gonzaga;
 import java.lang.management.PlatformManagedObject;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {
@@ -17,10 +20,15 @@ public class Board {
     private int lastPlayer = 2;
     private Boolean cardSelected = false;
     private Boolean pieceSelected = false;
+    private Icon player1Icon;
+    private Icon player2Icon;
 
-    public Board(int size, Hand h){
+
+    public Board(int size, Hand h, Icon p1Icon, Icon p2Icon){
         this.hand = h;
         this.size = size;
+        player1Icon = p1Icon;
+        player2Icon = p2Icon;
         this.board = new Square[size][size];
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
@@ -150,6 +158,14 @@ public class Board {
 
     private int getPlayer(Coordinate cord){
         return board[cord.getX()][cord.getY()].getPlayer();
+    }
+
+    public Icon getPlayer1Icon(){
+        return player1Icon;
+    }
+
+    public Icon getPlayer2Icon(){
+        return player2Icon;
     }
 
     public void boardButtonPressed(Coordinate cord){

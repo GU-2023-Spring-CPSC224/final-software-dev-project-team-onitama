@@ -40,12 +40,12 @@ public class NewGame {
     Boolean isCardSelected = false;
 
 
-    public NewGame(){
+    public NewGame(Icon player1Icon, Icon player2Icon){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
-        BoardUI app = new BoardUI();    // Create, then run GUI
+        board = new Board(5, hand, player1Icon, player2Icon);
+        BoardUI app = new BoardUI(player1Icon, player2Icon);    // Create, then run GUI
 
         app.runGUI();
         
@@ -62,8 +62,9 @@ public class NewGame {
     }
 
     public static void main(String [] args) {
-        BoardUI app = new BoardUI();    // Create, then run GUI
-        app.runGUI();
+        //BoardUI app = new BoardUI();    // Create, then run GUI
+        //app.runGUI();
+        //NewGame app = new NewGame(null, null)
     }
 
 

@@ -32,11 +32,11 @@ public class BoardUI {
     Integer playerTurn = 1;
 
 
-    public BoardUI(){
+    public BoardUI(Icon player1Icon, Icon player2Icon){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
+        board = new Board(5, hand, player1Icon, player2Icon);
 
 
         /*
@@ -52,8 +52,8 @@ public class BoardUI {
     }
 
     public static void main(String [] args) {
-        BoardUI app = new BoardUI();    // Create, then run GUI
-        app.runGUI();
+        //BoardUI app = new BoardUI();    // Create, then run GUI
+        //app.runGUI();
     }
 
     public void takeTurn(){
@@ -122,7 +122,7 @@ public class BoardUI {
             {
                 Coordinate temp = new Coordinate(i, j);
                 boardButtons[i][j] = new BoardButton(board, temp);
-                boardButtons[i][j].setIcon(background);
+                //boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }
         }
