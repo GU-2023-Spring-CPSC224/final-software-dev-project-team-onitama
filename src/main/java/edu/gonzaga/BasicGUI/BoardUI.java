@@ -27,28 +27,27 @@ public class BoardUI {
     JPanel boardPanel;
     JButton[][] boardButtons;
     CardButton[] cardButtons;
+    ImageIcon[] pieceIcons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
     Integer playerTurn = 1;
 
 
-    public BoardUI(Icon player1Icon, Icon player2Icon){
+
+    public BoardUI(ImageIcon[] arr){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand, player1Icon, player2Icon);
+        board = new Board(5, hand, arr);
+        pieceIcons = arr;
+    }
 
+    public BoardUI(){
+        hand = new Hand(5);
+        player1 = new Player(1,hand.getPlayer1Cards());
+        player2 = new Player(2,hand.getPlayer2Cards());
+        board = new Board(5, hand);
 
-        /*
-        System.out.println(hand);
-        System.out.println(player1);
-        System.out.println(player2);
-        hand.swap(player1.selectCard(1));
-        player1.updateCards(hand.getPlayer1Cards());
-        System.out.println(hand);
-        System.out.println(player1);
-        System.out.println(player2);
-        */
     }
 
     public static void main(String [] args) {
@@ -97,6 +96,7 @@ public class BoardUI {
         this.southPanel = genCardPanel();
         // Listener setup
         //addButtonCallbackHandlers();
+        
 
         // Window add panels and layout
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
@@ -107,13 +107,13 @@ public class BoardUI {
         mainWindowFrame.pack();
     }
 
+
     // Makes the board
     private JPanel genBoardPanel() {
 
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        ImageIcon background = new ImageIcon("boardBackground.png");
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
         for(int i=0; i < boardButtons.length; i++)
@@ -121,7 +121,8 @@ public class BoardUI {
             for(int j=0; j < boardButtons.length; j++)
             {
                 Coordinate temp = new Coordinate(i, j);
-                boardButtons[i][j] = new BoardButton(board, temp);
+                boardButtons[i][j] = new BoardButton(board, temp, pieceIcons);
+
                 //boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }

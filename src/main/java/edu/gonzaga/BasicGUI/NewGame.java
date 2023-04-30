@@ -23,6 +23,8 @@ public class NewGame {
     Player player1;
     Player player2;
     Board board;
+    String p1color;
+    String p2color;
 
 
     /*
@@ -36,16 +38,21 @@ public class NewGame {
     JPanel boardPanel;
     JButton[][] boardButtons;
     JButton[] cardButtons;
+    ImageIcon[] pieceIcons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
 
 
-    public NewGame(Icon player1Icon, Icon player2Icon){
+    public NewGame(String c1, String c2){
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand, player1Icon, player2Icon);
-        BoardUI app = new BoardUI(player1Icon, player2Icon);    // Create, then run GUI
+        p1color = c1;
+        p2color = c2;
+        makeIconArray();
+        board = new Board(5, hand, pieceIcons);
+        BoardUI app = new BoardUI(pieceIcons);    // Create, then run GUI
+        
 
         app.runGUI();
         
@@ -94,7 +101,7 @@ public class NewGame {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
-        this.mainWindowFrame.setLocation(100,100);
+        this.mainWindowFrame.setLocation(0,0);
         //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
@@ -103,6 +110,8 @@ public class NewGame {
         this.southPanel = new JPanel();
         this.westPanel = new JPanel();
 
+        // sets up icons
+        makeIconArray();
         // Board panel setup
         this.boardPanel = genBoardPanel();
         // tmp card setup
@@ -116,9 +125,22 @@ public class NewGame {
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.setExtendedState(1);
         mainWindowFrame.pack();
     }
 
+    private void makeIconArray(){
+        pieceIcons = new ImageIcon[6];
+        pieceIcons[0] = new ImageIcon("GameArt/boardBackground.png");   // Empty space
+        pieceIcons[1] = new ImageIcon("GameArt/" + p1color + ".png");                 // p1 pawn
+        pieceIcons[2] = new ImageIcon("GameArt/" + p1color + "King.png");             // p1 king
+        pieceIcons[3] = new ImageIcon("GameArt/" + p2color + ".png");                 // p2 pawn
+        pieceIcons[4] = new ImageIcon("GameArt/" + p2color + "King.png");             // p2 king
+        pieceIcons[5] = new ImageIcon("GameArt/possibleMove.png");      // possible move indicator
+        for(int i = 0; i < pieceIcons.length; i++){
+            pieceIcons[i] = new ImageIcon(pieceIcons[i].getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+        }
+    }
 
     // Makes the board
     private JPanel genBoardPanel() {

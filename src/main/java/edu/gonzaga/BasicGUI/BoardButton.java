@@ -18,17 +18,36 @@ public class BoardButton extends JButton implements PropertyChangeListener {
     Coordinate cord;
     boolean border;
     boolean selected;
-    Icon icon;
+    ImageIcon[] pieceIcons;
 
-    public BoardButton(Board b, Coordinate c) {
+
+    public BoardButton(Board b, Coordinate c, ImageIcon[] arr) {
         super("");
         board = b;
         cord = c;
+        pieceIcons = arr;
         squareToView = board.getSquare(cord);
         text = squareToView.toString();
         icon = getSquareIcon(text);
         this.setIcon(icon);
         this.setText(text);
+        switch(text){
+            case "0":
+                this.setIcon(pieceIcons[0]);
+                break;
+            case "r":
+                this.setIcon(pieceIcons[1]);
+                break;
+            case "R":
+                this.setIcon(pieceIcons[2]);
+                break;
+            case "b":
+                this.setIcon(pieceIcons[3]);
+                break;
+            case "B":
+                this.setIcon(pieceIcons[4]);
+                break;
+        }
         this.setHorizontalTextPosition(SwingConstants.CENTER);
         this.setVerticalTextPosition(SwingConstants.CENTER);
         squareToView.addPropertyChangeListener(this::propertyChange);
@@ -42,39 +61,28 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         );
     }
 
-/* 
-    void setSquareToView(Square newSquareToView) {
-        squareToView = newSquareToView;
-        this.setText(squareToView.toString());
-        squareToView.addPropertyChangeListener(this::propertyChange);
-        addActionListener(
-            new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    squareToView.setPiece('4');
-                }
-            }
-        );
+    private Icon getSquareIcon(String piece){
+        switch(text){
+            case "r":
+                return pieceIcons[1];
+            case "R":
+                return pieceIcons[2];
+            case "b":
+                return pieceIcons[3];
+            case "B":
+                return pieceIcons[4];
+        }
+        return pieceIcons[0];
     }
 
-    */
-    private Icon getSquareIcon(String peice){
-        switch(peice){
-            case "r":
-                return board.getPlayer1Icon();
-            case "b": 
-                return board.getPlayer2Icon();
-        }
-        ImageIcon empty = new ImageIcon("GameArt/boardBackground.png");
-        return empty;
-    }
 
     public void propertyChange(PropertyChangeEvent e) {
         String propertyName = e.getPropertyName();
         if ("squarePiece".equals(propertyName)) {
             //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
             text = e.getNewValue().toString();
-            icon = getSquareIcon(text);
+            System.out.println(text);
+            this.setIcon(getSquareIcon(text));
             this.setText(text);
             this.setIcon(icon);
             this.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -84,9 +92,11 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             border = ((boolean)e.getNewValue());
             if(border){
                 this.setBackground(Color.BLACK);
+                this.setIcon(pieceIcons[5]);
             }
             else{
                 this.setBackground(null);
+                //this.setIcon(pieceIcons[0]);
             }
         }
         if ("selected".equals(propertyName)) {
