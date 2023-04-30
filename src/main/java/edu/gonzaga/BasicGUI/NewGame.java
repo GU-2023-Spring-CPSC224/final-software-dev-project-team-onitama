@@ -17,7 +17,6 @@ public class NewGame {
     Board board;
     String p1color;
     String p2color;
-
     ImageIcon[] pieceIcons;
 
     public NewGame(String c1, String c2){
