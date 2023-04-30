@@ -47,11 +47,12 @@ public class NewGame {
         hand = new Hand(5);
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand, pieceIcons);
-        BoardUI app = new BoardUI();    // Create, then run GUI
         p1color = c1;
         p2color = c2;
-
+        makeIconArray();
+        board = new Board(5, hand, pieceIcons);
+        BoardUI app = new BoardUI(pieceIcons);    // Create, then run GUI
+        
         app.runGUI();
         
         /*
@@ -127,12 +128,12 @@ public class NewGame {
 
     private void makeIconArray(){
         pieceIcons = new ImageIcon[6];
-        pieceIcons[0] = new ImageIcon("boardBackground.png");   // Empty space
-        pieceIcons[1] = new ImageIcon(p1color + ".png");                 // p1 pawn
-        pieceIcons[2] = new ImageIcon(p1color + "King.png");             // p1 king
-        pieceIcons[3] = new ImageIcon(p2color + ".png");                 // p2 pawn
-        pieceIcons[4] = new ImageIcon(p2color + "King.png");             // p2 king
-        pieceIcons[5] = new ImageIcon("possibleMove.png");      // possible move indicator
+        pieceIcons[0] = new ImageIcon("GameArt/boardBackground.png");   // Empty space
+        pieceIcons[1] = new ImageIcon("GameArt/" + p1color + ".png");                 // p1 pawn
+        pieceIcons[2] = new ImageIcon("GameArt/" + p1color + "King.png");             // p1 king
+        pieceIcons[3] = new ImageIcon("GameArt/" + p2color + ".png");                 // p2 pawn
+        pieceIcons[4] = new ImageIcon("GameArt/" + p2color + "King.png");             // p2 king
+        pieceIcons[5] = new ImageIcon("GameArt/possibleMove.png");      // possible move indicator
     }
 
     // Makes the board

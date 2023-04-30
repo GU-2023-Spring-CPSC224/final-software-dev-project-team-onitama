@@ -18,11 +18,13 @@ public class BoardButton extends JButton implements PropertyChangeListener {
     Coordinate cord;
     boolean border;
     boolean selected;
+    ImageIcon[] pieceIcons;
 
-    public BoardButton(Board b, Coordinate c) {
+    public BoardButton(Board b, Coordinate c, ImageIcon[] arr) {
         super("");
         board = b;
         cord = c;
+        pieceIcons = arr;
         squareToView = board.getSquare(cord);
         text = squareToView.toString();
         this.setText(text);
@@ -61,6 +63,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         if ("squarePiece".equals(propertyName)) {
             //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
             text = e.getNewValue().toString();
+            System.out.println(text);
             this.setText(text);
             this.setHorizontalTextPosition(SwingConstants.CENTER);
             this.setVerticalTextPosition(SwingConstants.CENTER);

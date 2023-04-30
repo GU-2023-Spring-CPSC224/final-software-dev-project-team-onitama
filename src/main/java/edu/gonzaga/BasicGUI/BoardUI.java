@@ -27,9 +27,11 @@ public class BoardUI {
     JPanel boardPanel;
     JButton[][] boardButtons;
     CardButton[] cardButtons;
+    ImageIcon[] pieceIcons;
     Boolean isPieceSelected = false;
     Boolean isCardSelected = false;
     Integer playerTurn = 1;
+
 
 
     public BoardUI(ImageIcon[] arr){
@@ -37,6 +39,7 @@ public class BoardUI {
         player1 = new Player(1,hand.getPlayer1Cards());
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand, arr);
+        pieceIcons = arr;
     }
 
     public BoardUI(){
@@ -113,13 +116,32 @@ public class BoardUI {
         ImageIcon background = new ImageIcon("boardBackground.png");
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
+        String tmp;
         for(int i=0; i < boardButtons.length; i++)
         {
             for(int j=0; j < boardButtons.length; j++)
             {
                 Coordinate temp = new Coordinate(i, j);
-                boardButtons[i][j] = new BoardButton(board, temp);
-                boardButtons[i][j].setIcon(background);
+                boardButtons[i][j] = new BoardButton(board, temp, pieceIcons);
+                tmp = boardButtons[i][j].getText();
+                switch(tmp){
+                case "0":
+                    boardButtons[i][j].setIcon(pieceIcons[0]);
+                    break;
+                case "r":
+                    boardButtons[i][j].setIcon(pieceIcons[1]);
+                    break;
+                case "R":
+                    boardButtons[i][j].setIcon(pieceIcons[2]);
+                    break;
+                case "b":
+                    boardButtons[i][j].setIcon(pieceIcons[3]);
+                    break;
+                case "B":
+                    boardButtons[i][j].setIcon(pieceIcons[4]);
+                    break;
+                }
+                //boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
             }
         }

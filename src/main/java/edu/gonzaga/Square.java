@@ -42,8 +42,7 @@ public class Square {
         String oldPiece = this.piece;
         this.piece = newPiece;
         if (newPiece == "0"){
-            this.player = 0;
-            
+            this.player = 0; 
         }
         else if(newPiece == "R" || newPiece == "r"){
             this.player = 1;
