@@ -99,7 +99,7 @@ public class NewGame {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.mainWindowFrame.setSize(400, 400);
-        this.mainWindowFrame.setLocation(100,100);
+        this.mainWindowFrame.setLocation(0,0);
         //this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.boardPanel = new JPanel();
@@ -123,6 +123,7 @@ public class NewGame {
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.setExtendedState(1);
         mainWindowFrame.pack();
     }
 
@@ -149,26 +150,8 @@ public class NewGame {
         Square[][] tmp = board.getBoard();
         this.boardButtons = new JButton[5][5];
         for(Integer i=0; i < boardButtons.length; i++)
-            for(Integer j=0; j < boardButtons.length; j++){
+            for(Integer j=0; j < boardButtons.length; j++)
                 boardButtons[i][j] = new JButton("" + tmp[i][j]);
-                switch(boardButtons[i][j].getText()){
-                    case "0":
-                        boardButtons[i][j].setIcon(pieceIcons[0]);
-                        break;
-                    case "r":
-                        boardButtons[i][j].setIcon(pieceIcons[1]);
-                        break;
-                    case "R":
-                        boardButtons[i][j].setIcon(pieceIcons[2]);
-                        break;
-                    case "b":
-                        boardButtons[i][j].setIcon(pieceIcons[3]);
-                        break;
-                    case "B":
-                        boardButtons[i][j].setIcon(pieceIcons[4]);
-                        break;
-                }
-            }
 
         boardPanel.setLayout(new GridLayout(5,5));
         for(Integer i=0; i < boardButtons.length; i++)
