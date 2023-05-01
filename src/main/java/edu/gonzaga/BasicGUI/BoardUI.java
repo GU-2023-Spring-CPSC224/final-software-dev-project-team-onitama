@@ -15,15 +15,11 @@ public class BoardUI {
     Boolean isCardSelected = false;
     Integer playerTurn = 1;
 
-
-    /*
-     * Swing Stuff
-     */
     JFrame mainWindowFrame;
-    JPanel northPanel;
+    JPanel upperCardPanel;
     JPanel eastPanel;
-    JPanel southPanel;
-    JPanel westPanel;
+    JPanel lowerCardPanel;
+    JPanel intermediateCardPanel;
     JPanel boardPanel;
     JButton[][] boardButtons;
     CardButton[] cardButtons;
@@ -64,35 +60,29 @@ public class BoardUI {
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //this.mainWindowFrame.setPreferredSize(screenSize);
         this.mainWindowFrame.setLocation(100,100);
         this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.mainWindowFrame.setLayout(null);
 
         this.boardPanel = new JPanel();
-        this.northPanel = new JPanel();
+        this.upperCardPanel = new JPanel();
         this.eastPanel = new JPanel();
-        this.southPanel = new JPanel();
-        this.westPanel = new JPanel();
+        this.lowerCardPanel = new JPanel();
+        this.intermediateCardPanel = new JPanel();
 
         // Board panel setup
         this.boardPanel = genBoardPanel();
         genCardButtons();
         // tmp card setup
-        this.southPanel = genBottomCardPanel();
-        this.westPanel.add(cardButtons[4]);
-        this.northPanel = genTopCardPanel();
-        // Listener setup
-        //addButtonCallbackHandlers();
+        this.lowerCardPanel = genBottomCardPanel();
+        this.intermediateCardPanel.add(cardButtons[4]);
+        this.upperCardPanel = genTopCardPanel();
+
         
 
         // Window add panels and layout
-        boardPanel.setPreferredSize(new Dimension(500, 400));
-        mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.add(boardPanel);
+        
     }
 
 
@@ -101,6 +91,7 @@ public class BoardUI {
 
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        newBoardPanel.setBounds(525, 150, 500, 500);
 
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
