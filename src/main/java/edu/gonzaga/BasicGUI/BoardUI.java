@@ -66,30 +66,28 @@ public class BoardUI {
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.boardPanel = new JPanel();
 
-        // this.northPanel = new JPanel();
-        // this.eastPanel = new JPanel();
-        // this.southPanel = new JPanel();
-        // this.westPanel = new JPanel();
+        this.northPanel = new JPanel();
+        this.eastPanel = new JPanel();
+        this.southPanel = new JPanel();
+        this.westPanel = new JPanel();
 
 
-        // Board panel setup
-        //this.boardPanel = genBoardPanel();
+        //Board panel setup
         genBoardPanel();
-        //genCardButtons();
-        // tmp card setup
-        //this.southPanel = genBottomCardPanel();
-        //this.westPanel.add(cardButtons[4]);
-        //this.northPanel = genTopCardPanel();
+        genCardButtons();
+        //tmp card setup
+        this.southPanel = genBottomCardPanel();
+        this.westPanel.add(cardButtons[4]);
+        this.northPanel = genTopCardPanel();
 
 
-        mainWindowFrame.add(boardPanel);
 
 
-        //mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
-        // mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
-        // mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
-        // mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
-        // mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
 
     }
 
@@ -111,19 +109,18 @@ public class BoardUI {
                 boardButtons[i][j] = new BoardButton(board, temp, pieceIcons);
 
                 boardButtons[i][j].setFocusable(false);
-                boardPanel.add(boardButtons[i][j]);
             }
         }
 
 
-        // boardPanel.setLayout(new GridLayout(5,5));
-        // for(Integer i=0; i < boardButtons.length; i++)
-        // {
-        //     for(Integer j=0; j < boardButtons.length; j++)
-        //     {
-        //         boardPanel.add(boardButtons[j][i]);
-        //     }
-        // }
+        boardPanel.setLayout(new GridLayout(5,5));
+        for(Integer i=0; i < boardButtons.length; i++)
+        {
+            for(Integer j=0; j < boardButtons.length; j++)
+            {
+                boardPanel.add(boardButtons[j][i]);
+            }
+        }
             
     }
     
