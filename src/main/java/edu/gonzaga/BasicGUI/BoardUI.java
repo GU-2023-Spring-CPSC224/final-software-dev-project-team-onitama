@@ -57,7 +57,8 @@ public class BoardUI {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindowFrame.setLayout(null);
-
+        //mainWindowFrame.getContentPane().setBackground(new Color(75, 34, 4));//changing color of frame
+        mainWindowFrame.getContentPane().setBackground(new Color(187,202,131));//changing color of fram
 
 
         this.boardPanel = new JPanel();
@@ -75,6 +76,15 @@ public class BoardUI {
         lowerCardPanel.setBounds(475, 650, 600, 135);
         this.intermediateCardPanel.add(cardButtons[4]);
         intermediateCardPanel.setBounds(50, 315, 300, 180);
+        intermediateCardPanel.setEnabled(false);
+
+        // cardButtons[4].setClickable(false);
+        // cardButtons[4].setFocusable(false);
+
+        cardButtons[4].setFocusable(false);
+        //cardButtons[4].setEnabled(false);
+        
+        intermediateCardPanel.setBorder(null);
         this.upperCardPanel = genTopCardPanel();
         upperCardPanel.setBounds(475, 5, 600, 135);
 
@@ -135,7 +145,7 @@ public class BoardUI {
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         newCardPanel.setBorder(null);
-        newCardPanel.setOpaque(true);
+        newCardPanel.setOpaque(false);
 
 
         for(int i=0; i < 2; i++)

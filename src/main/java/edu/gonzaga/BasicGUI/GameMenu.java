@@ -30,17 +30,15 @@ public class GameMenu extends JFrame implements ActionListener
         optionsButton = new JButton();
         quitButton = new JButton();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
         gameTitleLabel.setBounds(570, 100, 400, 100);
         gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
-        gameTitleLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+        gameTitleLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
-
-        startMenuPanel.setBounds(570, 220, 400, 700);
-        startMenuPanel.setBackground(Color.lightGray);
 
 
         newGameButton.setBounds(600, 250, 350, 60);
@@ -48,28 +46,28 @@ public class GameMenu extends JFrame implements ActionListener
         newGameButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         newGameButton.setFocusable(false);
         newGameButton.addActionListener(this);
-        newGameButton.setForeground(Color.RED);
+        newGameButton.setForeground(Color.BLACK);
 
         instructionsButton.setBounds(600, 320, 350, 60);
         instructionsButton.setText("How to play");
         instructionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         instructionsButton.setFocusable(false);
         instructionsButton.addActionListener(this);
-        instructionsButton.setForeground(Color.RED);
+        instructionsButton.setForeground(Color.BLACK);
 
         optionsButton.setBounds(600, 390, 350, 60);
         optionsButton.setText("Options");
         optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         optionsButton.setFocusable(false);
         optionsButton.addActionListener(this);
-        optionsButton.setForeground(Color.RED);
+        optionsButton.setForeground(Color.BLACK);
 
         quitButton.setBounds(600, 460, 350, 60);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
         quitButton.addActionListener(this);
-        quitButton.setForeground(Color.RED);
+        quitButton.setForeground(Color.BLACK);
 
 
         frame.add(gameTitleLabel);

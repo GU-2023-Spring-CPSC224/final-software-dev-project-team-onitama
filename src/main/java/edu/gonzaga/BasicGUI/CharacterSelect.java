@@ -49,6 +49,7 @@ public class CharacterSelect extends JFrame implements ActionListener
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
+        this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
         
         characterButtonsArrayList = new ArrayList<JButton>();
 
