@@ -37,7 +37,8 @@ public class CardButton extends JButton implements PropertyChangeListener{
         this.setFont(this.getFont().deriveFont(0f));
         //this.setBackground(new Color(0, 0, 0, 0)); // Set the background color to transparent
         this.setOpaque(false);
-        this.setBorder(null);
+        this.setContentAreaFilled(false);
+        this.setBorderPainted(false);
         hand.addPropertyChangeListener(this::propertyChange);
         addActionListener(
             new ActionListener() {
@@ -84,6 +85,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     card = ((Card)e.getNewValue());
                     name = card.getName();
                     this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setOpaque(false);
+                    this.setContentAreaFilled(false);
+                    this.setBorderPainted(false);
                     this.setText(name);
                 }
                 break;
@@ -93,6 +97,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     card = ((Card)e.getNewValue());
                     name = card.getName();
                     this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setOpaque(false);
+                    this.setContentAreaFilled(false);
+                    this.setBorderPainted(false);
                     this.setText(name);
                 }
                 break;
@@ -102,6 +109,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     card = ((Card)e.getNewValue());
                     name = card.getName();
                     this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setOpaque(false);
+                    this.setContentAreaFilled(false);
+                    this.setBorderPainted(false);
                     this.setText(name);
                 }
                 break;
@@ -111,6 +121,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     card = ((Card)e.getNewValue());
                     name = card.getName();
                     this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setOpaque(false);
+                    this.setContentAreaFilled(false);
+                    this.setBorderPainted(false);
                     this.setText(name);
                 } 
                 break;
@@ -120,6 +133,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     card = ((Card)e.getNewValue());
                     name = card.getName();
                     this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setOpaque(false);
+                    this.setContentAreaFilled(false);
+                    this.setBorderPainted(false);
                     this.setText(name);
                 } 
                 break;
