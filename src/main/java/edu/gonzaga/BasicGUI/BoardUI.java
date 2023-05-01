@@ -6,31 +6,31 @@ import edu.gonzaga.*;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class BoardUI {
     Hand hand;
     Player player1;
     Player player2;
     Board board;
+    Boolean isPieceSelected = false;
+    Boolean isCardSelected = false;
+    Integer playerTurn = 1;
 
 
     /*
      * Swing Stuff
      */
     JFrame mainWindowFrame;
-    JPanel northPanel;
-    JPanel eastPanel;
-    JPanel southPanel;
+
+    JPanel upperCardPanel;
+    JPanel lowerCardPanel;
+    JPanel intermediateCardPanel;
     JPanel westPanel;
     JPanel boardPanel;
+
     JButton[][] boardButtons;
     CardButton[] cardButtons;
     ImageIcon[] pieceIcons;
-    Boolean isPieceSelected = false;
-    Boolean isCardSelected = false;
-    Integer playerTurn = 1;
 
 
 
@@ -40,19 +40,6 @@ public class BoardUI {
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand, arr);
         pieceIcons = arr;
-    }
-
-    public BoardUI(){
-        hand = new Hand(5);
-        player1 = new Player(1,hand.getPlayer1Cards());
-        player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
-
-    }
-
-    public static void main(String [] args) {
-        //BoardUI app = new BoardUI();    // Create, then run GUI
-        //app.runGUI();
     }
 
     public void takeTurn(){
@@ -68,49 +55,35 @@ public class BoardUI {
         board.chooseDestination(0);
         System.out.println(board.toString());
         player1.updateCards(hand.getPlayer1Cards());
-        /*
-        if (player.getNum() == 1)
-            player.updateCards(hand.getPlayer1Cards());
-        else if (player.getNum() == 2)
-            player.updateCards(hand.getPlayer2Cards());
-        */
     }
 
     // GUI Setup
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //this.mainWindowFrame.setPreferredSize(screenSize);
-        this.mainWindowFrame.setLocation(100,100);
-        this.mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.mainWindowFrame.setLayout(null);
+
+
 
         this.boardPanel = new JPanel();
-        this.northPanel = new JPanel();
-        this.eastPanel = new JPanel();
-        this.southPanel = new JPanel();
+        this.upperCardPanel = new JPanel();
+        this.intermediateCardPanel = new JPanel();
+        this.lowerCardPanel = new JPanel();
         this.westPanel = new JPanel();
 
-        // Board panel setup
-        this.boardPanel = genBoardPanel();
-        genCardButtons();
-        // tmp card setup
-        this.southPanel = genBottomCardPanel();
-        this.westPanel.add(cardButtons[4]);
-        this.northPanel = genTopCardPanel();
-        // Listener setup
-        //addButtonCallbackHandlers();
-        
 
-        // Window add panels and layout
-        boardPanel.setPreferredSize(new Dimension(500, 400));
-        mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
-        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainWindowFrame.pack();
+
+        //this.boardPanel = genBoardPanel();
+        genCardButtons();
+        this.lowerCardPanel = genBottomCardPanel();
+        this.intermediateCardPanel.add(cardButtons[4]);
+        this.upperCardPanel = genTopCardPanel();
+
+        mainWindowFrame.add(boardPanel);
+        mainWindowFrame.add(upperCardPanel);
+        mainWindowFrame.add(lowerCardPanel);
+        mainWindowFrame.add(westPanel);
+        
     }
 
 
@@ -119,6 +92,7 @@ public class BoardUI {
 
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        newBoardPanel.setBounds(525, 150, 500, 500);
 
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
@@ -156,15 +130,20 @@ public class BoardUI {
             cardButtons[i] = new CardButton(board, hand, i);
             cardButtons[i].setFocusable(false);
         }
+
     }
 
     private JPanel genBottomCardPanel(){
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        newCardPanel.setBounds(625, 475, 600, 300);
+        newCardPanel.setBorder(null);
 
 
         for(int i=0; i < 2; i++)
+        {
             newCardPanel.add(cardButtons[i]);
+        }
 
         //Tell panel to make a grid (like a spreadsheet) layout n rows, 2 columns
         newCardPanel.setLayout(new GridLayout(1, 2));    // Making it pretty
@@ -184,44 +163,14 @@ public class BoardUI {
         return newCardPanel;
     }
 
-
-    /* 
-    private void addButtonCallbackHandlers() {
-        for(Integer i=0; i < cardButtons.length; i++) {
-            final Integer insideI = i;
-            this.cardButtons[insideI].addActionListener(new ActionListener() {
-                Boolean pressed = false;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(pressed == false) {
-                        if(isCardSelected == false) {
-                            System.out.println("You clicked: " + cardButtons[insideI].getText());
-                            cardButtons[insideI].setBackground(Color.GRAY);
-                            pressed = true;
-                            isCardSelected = true;
-                        }
-                    }
-                    else if(pressed == true) {
-                        System.out.println("You un-clicked space: " + cardButtons[insideI].getText());
-                        cardButtons[insideI].setBackground(null);
-                        pressed = false;
-                        isCardSelected = false;
-                    }
-                }
-            });
-              
-        }
-
-    }
-    */
     //runs GUI
     void runGUI() {
         System.out.println("Starting GUI app");
         setupGUI();
 
         // Run the main window - begins GUI activity
-        mainWindowFrame.setVisible(true);
         mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainWindowFrame.setVisible(true);
         System.out.println("Done in GUI app");
     }
     

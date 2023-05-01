@@ -1,5 +1,6 @@
 package edu.gonzaga.BasicGUI;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +34,8 @@ public class CardButton extends JButton implements PropertyChangeListener{
         name = h.getNames()[n];
         ImageIcon tmp = new ImageIcon("GameArt/" + name + ".png");
         this.setIcon(tmp);
+        this.setBackground(new Color(0, 0, 0, 0)); // Set the background color to transparent
+        this.setBorder(null);
         hand.addPropertyChangeListener(this::propertyChange);
         addActionListener(
             new ActionListener() {
