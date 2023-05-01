@@ -72,6 +72,8 @@ public class BoardUI {
 
         // Board panel setup
         this.boardPanel = genBoardPanel();
+        boardPanel.setBounds(525, 150, 500, 500);
+
         genCardButtons();
         // tmp card setup
         this.lowerCardPanel = genBottomCardPanel();
@@ -91,7 +93,6 @@ public class BoardUI {
 
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        newBoardPanel.setBounds(525, 150, 500, 500);
 
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
