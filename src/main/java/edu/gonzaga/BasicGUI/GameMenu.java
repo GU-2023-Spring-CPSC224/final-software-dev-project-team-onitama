@@ -86,6 +86,7 @@ public class GameMenu extends JFrame implements ActionListener
         if (e.getSource() == newGameButton)
         {
             CharacterSelect c = new CharacterSelect();
+            //new NewGameOriginalBackup();
         }
         if (e.getSource() == instructionsButton)
         {

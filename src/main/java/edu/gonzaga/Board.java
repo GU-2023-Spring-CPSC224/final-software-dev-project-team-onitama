@@ -2,11 +2,7 @@ package edu.gonzaga;
 
 import java.lang.management.PlatformManagedObject;
 import java.util.ArrayList;
-
-
-
 import javax.swing.ImageIcon;
-
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {

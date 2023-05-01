@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewGame extends JFrame implements ActionListener
+public class NewGameOriginalBackup extends JFrame implements ActionListener
 {
     public static void main(String[] args)
     {
-        new NewGame();
+        NewGameOriginalBackup test =  new NewGameOriginalBackup();
     }
 
     private JLabel newGameLabel;
@@ -17,7 +17,7 @@ public class NewGame extends JFrame implements ActionListener
     private int defaultBoardDimension = 5;
 
 
-    NewGame()
+    NewGameOriginalBackup()
     {
 
         newGameLabel = new JLabel();
@@ -69,17 +69,6 @@ public class NewGame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == quitButton)
-        {
-            QuitDialougeBox q = new QuitDialougeBox();
-            if (q.getExitGame() == true)
-            {
-                dispose();
-            }
-            else if (q.getExitGame() == false)
-            {
-                q.dispose();
-            }
-        }
+
     }
 }
