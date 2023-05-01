@@ -25,7 +25,6 @@ public class BoardUI {
     JPanel upperCardPanel;
     JPanel lowerCardPanel;
     JPanel intermediateCardPanel;
-    JPanel westPanel;
     JPanel boardPanel;
 
     JButton[][] boardButtons;
@@ -69,20 +68,23 @@ public class BoardUI {
         this.upperCardPanel = new JPanel();
         this.intermediateCardPanel = new JPanel();
         this.lowerCardPanel = new JPanel();
-        this.westPanel = new JPanel();
 
 
 
         //this.boardPanel = genBoardPanel();
         genCardButtons();
+        this.boardPanel = genBoardPanel();
+        boardPanel.setBounds(525, 150, 500, 500);
         this.lowerCardPanel = genBottomCardPanel();
+        lowerCardPanel.setBounds(500, 725, 600, 100);
         this.intermediateCardPanel.add(cardButtons[4]);
         this.upperCardPanel = genTopCardPanel();
+        upperCardPanel.setBounds(500, 10, 600, 100);
 
         mainWindowFrame.add(boardPanel);
         mainWindowFrame.add(upperCardPanel);
         mainWindowFrame.add(lowerCardPanel);
-        mainWindowFrame.add(westPanel);
+        mainWindowFrame.add(intermediateCardPanel);
         
     }
 
@@ -92,7 +94,6 @@ public class BoardUI {
 
         JPanel newBoardPanel = new JPanel();
         newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        newBoardPanel.setBounds(525, 150, 500, 500);
 
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
@@ -136,8 +137,7 @@ public class BoardUI {
     private JPanel genBottomCardPanel(){
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        newCardPanel.setBounds(625, 475, 600, 300);
-        newCardPanel.setBorder(null);
+        //newCardPanel.setBorder(null);
 
 
         for(int i=0; i < 2; i++)
