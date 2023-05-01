@@ -151,6 +151,7 @@ public class BoardUI {
 
     private JPanel genTopCardPanel(){
         JPanel newCardPanel = new JPanel();
+        newCardPanel.setBorder(null);
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
