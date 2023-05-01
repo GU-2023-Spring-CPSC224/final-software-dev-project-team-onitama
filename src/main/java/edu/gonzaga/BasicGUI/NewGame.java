@@ -27,7 +27,7 @@ public class NewGame {
         pieceIcons[4] = new ImageIcon("GameArt/" + p2color + "King.png");             // p2 king
         pieceIcons[5] = new ImageIcon("GameArt/possibleMove.png");      // possible move indicator
         for(int i = 0; i < pieceIcons.length; i++){
-            pieceIcons[i] = new ImageIcon(pieceIcons[i].getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH));
+            pieceIcons[i] = new ImageIcon(pieceIcons[i].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
         }
     }
 }

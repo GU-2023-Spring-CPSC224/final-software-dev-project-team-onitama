@@ -2,9 +2,7 @@ package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
 import edu.gonzaga.*;
-
 import javax.swing.*;
-
 import java.awt.*;
 
 public class BoardUI {
@@ -16,16 +14,13 @@ public class BoardUI {
     Boolean isCardSelected = false;
     Integer playerTurn = 1;
 
-
-    /*
-     * Swing Stuff
-     */
+  
     JFrame mainWindowFrame;
-
     JPanel upperCardPanel;
     JPanel lowerCardPanel;
     JPanel intermediateCardPanel;
     JPanel boardPanel;
+
 
     JButton[][] boardButtons;
     CardButton[] cardButtons;
@@ -39,6 +34,7 @@ public class BoardUI {
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand, arr);
         pieceIcons = arr;
+        UIManager.put("Button.showMnemonics", Boolean.FALSE);
     }
 
     public void takeTurn(){
@@ -74,12 +70,13 @@ public class BoardUI {
         //this.boardPanel = genBoardPanel();
         genCardButtons();
         this.boardPanel = genBoardPanel();
-        boardPanel.setBounds(525, 150, 500, 500);
+        boardPanel.setBounds(525, 145, 500, 500);
         this.lowerCardPanel = genBottomCardPanel();
-        lowerCardPanel.setBounds(500, 725, 600, 100);
+        lowerCardPanel.setBounds(475, 650, 600, 135);
         this.intermediateCardPanel.add(cardButtons[4]);
+        intermediateCardPanel.setBounds(50, 315, 300, 180);
         this.upperCardPanel = genTopCardPanel();
-        upperCardPanel.setBounds(500, 10, 600, 100);
+        upperCardPanel.setBounds(475, 5, 600, 135);
 
         mainWindowFrame.add(boardPanel);
         mainWindowFrame.add(upperCardPanel);
@@ -93,7 +90,7 @@ public class BoardUI {
     private JPanel genBoardPanel() {
 
         JPanel newBoardPanel = new JPanel();
-        newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        //newBoardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // making array of buttons
         this.boardButtons = new BoardButton[5][5];
@@ -103,9 +100,9 @@ public class BoardUI {
             {
                 Coordinate temp = new Coordinate(i, j);
                 boardButtons[i][j] = new BoardButton(board, temp, pieceIcons);
-
-                //boardButtons[i][j].setIcon(background);
                 boardButtons[i][j].setFocusable(false);
+                boardButtons[i][j].setFocusPainted(false);
+                boardButtons[i][j].setBorderPainted(false);
             }
         }
 
@@ -137,11 +134,13 @@ public class BoardUI {
     private JPanel genBottomCardPanel(){
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-        //newCardPanel.setBorder(null);
+        newCardPanel.setBorder(null);
+        newCardPanel.setOpaque(true);
 
 
         for(int i=0; i < 2; i++)
         {
+            cardButtons[i].setOpaque(true);
             newCardPanel.add(cardButtons[i]);
         }
 

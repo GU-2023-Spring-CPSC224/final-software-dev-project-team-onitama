@@ -94,7 +94,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             if(border){
                 //this.setBackground(Color.BLACK);
                 //this.setIcon(pieceIcons[5]);
-                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+                this.setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
                 this.setBorderPainted(true);
             }
             else{
@@ -107,7 +107,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
             selected = ((boolean)e.getNewValue());
             if(selected){
                 //this.setBackground(Color.BLUE);
-                this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+                this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 4));
                 this.setBorderPainted(true);
                 
             }
