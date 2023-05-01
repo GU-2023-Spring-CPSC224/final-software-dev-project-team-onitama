@@ -92,21 +92,28 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         if ("possible".equals(propertyName)) {
             border = ((boolean)e.getNewValue());
             if(border){
-                this.setBackground(Color.BLACK);
+                //this.setBackground(Color.BLACK);
                 //this.setIcon(pieceIcons[5]);
+                this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+                this.setBorderPainted(true);
             }
             else{
-                this.setBackground(null);
+                //this.setBackground(null);
+                this.setBorderPainted(false);
                 //this.setIcon(pieceIcons[0]);
             }
         }
         if ("selected".equals(propertyName)) {
             selected = ((boolean)e.getNewValue());
             if(selected){
-                this.setBackground(Color.BLUE);
+                //this.setBackground(Color.BLUE);
+                this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+                this.setBorderPainted(true);
+                
             }
             else{
-                this.setBackground(null);
+                //this.setBackground(null);
+                this.setBorderPainted(false);
             }
         }
     }

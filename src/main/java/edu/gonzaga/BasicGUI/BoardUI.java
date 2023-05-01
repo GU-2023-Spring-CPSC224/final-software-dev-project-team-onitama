@@ -18,10 +18,10 @@ public class BoardUI {
 
 
     JFrame mainWindowFrame;
-    JPanel northPanel;
+    JPanel topCardButtons;
     JPanel eastPanel;
-    JPanel southPanel;
-    JPanel westPanel;
+    JPanel bottomCardButtons;
+    JPanel intermediateCardPanel;
     JPanel boardPanel;
     JPanel wrapperPanel;
     JButton[][] boardButtons;
@@ -64,30 +64,31 @@ public class BoardUI {
     void setupGUI() {
         this.mainWindowFrame = new JFrame("Simple GUI Onitama");
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.boardPanel = new JPanel();
-
-        this.northPanel = new JPanel();
+        this.topCardButtons = new JPanel();
         this.eastPanel = new JPanel();
-        this.southPanel = new JPanel();
-        this.westPanel = new JPanel();
+        this.bottomCardButtons = new JPanel();
+        this.intermediateCardPanel = new JPanel();
 
 
-        //Board panel setup
         genBoardPanel();
         genCardButtons();
-        //tmp card setup
-        this.southPanel = genBottomCardPanel();
-        this.westPanel.add(cardButtons[4]);
-        this.northPanel = genTopCardPanel();
-
-
+        this.bottomCardButtons = genBottomCardPanel();
+        this.intermediateCardPanel.add(cardButtons[4]);
+        this.topCardButtons = genTopCardPanel();
+        
+        // topCardButtons.setPreferredSize(new Dimension(500,100));
+        // bottomCardButtons.setPreferredSize(new Dimension(500,100));
+        // intermediateCardPanel.setPreferredSize(new Dimension(250,500));
+        // eastPanel.setPreferredSize(new Dimension(250,500));
 
 
         mainWindowFrame.getContentPane().add(BorderLayout.CENTER, boardPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, northPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.NORTH, topCardButtons);
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
-        mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
+        mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, bottomCardButtons);
+        mainWindowFrame.getContentPane().add(BorderLayout.WEST, intermediateCardPanel);
 
     }
 
