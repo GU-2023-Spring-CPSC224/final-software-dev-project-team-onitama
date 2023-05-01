@@ -31,6 +31,7 @@ public class BoardButton extends JButton implements PropertyChangeListener {
         //icon = getSquareIcon(text);
         //this.setIcon(icon);
         this.setText(text);
+        this.setFont(this.getFont().deriveFont(0f));
         switch(text){
             case "0":
                 this.setIcon(pieceIcons[0]);
