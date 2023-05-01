@@ -78,6 +78,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
+                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
                     this.setText(name);
                 }
                 break;
@@ -86,6 +87,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
+                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
                     this.setText(name);
                 }
                 break;
@@ -94,6 +96,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
+                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
                     this.setText(name);
                 }
                 break;
@@ -102,6 +105,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
+                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
                     this.setText(name);
                 } 
                 break;
@@ -110,6 +114,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
+                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
                     this.setText(name);
                 } 
                 break;
