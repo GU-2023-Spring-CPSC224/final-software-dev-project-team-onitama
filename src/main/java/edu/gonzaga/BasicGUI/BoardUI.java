@@ -2,18 +2,18 @@ package edu.gonzaga.BasicGUI;
 
 import edu.gonzaga.CardDeck.Card;
 import edu.gonzaga.*;
-
 import javax.swing.*;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class BoardUI {
     Hand hand;
     Player player1;
     Player player2;
     Board board;
+    Boolean isPieceSelected = false;
+    Boolean isCardSelected = false;
+    Integer playerTurn = 1;
 
 
     /*
@@ -28,9 +28,6 @@ public class BoardUI {
     JButton[][] boardButtons;
     CardButton[] cardButtons;
     ImageIcon[] pieceIcons;
-    Boolean isPieceSelected = false;
-    Boolean isCardSelected = false;
-    Integer playerTurn = 1;
 
 
 
@@ -40,19 +37,6 @@ public class BoardUI {
         player2 = new Player(2,hand.getPlayer2Cards());
         board = new Board(5, hand, arr);
         pieceIcons = arr;
-    }
-
-    public BoardUI(){
-        hand = new Hand(5);
-        player1 = new Player(1,hand.getPlayer1Cards());
-        player2 = new Player(2,hand.getPlayer2Cards());
-        board = new Board(5, hand);
-
-    }
-
-    public static void main(String [] args) {
-        //BoardUI app = new BoardUI();    // Create, then run GUI
-        //app.runGUI();
     }
 
     public void takeTurn(){
@@ -109,8 +93,6 @@ public class BoardUI {
         mainWindowFrame.getContentPane().add(BorderLayout.EAST, eastPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.SOUTH, southPanel);
         mainWindowFrame.getContentPane().add(BorderLayout.WEST, westPanel);
-        mainWindowFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainWindowFrame.pack();
     }
 
 
@@ -170,6 +152,7 @@ public class BoardUI {
         //newCardPanel.setLayout(new GridLayout(1, 5));    // Making it pretty
         //return newCardPanel;
     }
+    
     private JPanel genBottomCardPanel(){
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -182,6 +165,7 @@ public class BoardUI {
         newCardPanel.setLayout(new GridLayout(1, 2));    // Making it pretty
         return newCardPanel;
     }
+    
     private JPanel genTopCardPanel(){
         JPanel newCardPanel = new JPanel();
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -195,36 +179,6 @@ public class BoardUI {
         return newCardPanel;
     }
 
-
-    /* 
-    private void addButtonCallbackHandlers() {
-        for(Integer i=0; i < cardButtons.length; i++) {
-            final Integer insideI = i;
-            this.cardButtons[insideI].addActionListener(new ActionListener() {
-                Boolean pressed = false;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(pressed == false) {
-                        if(isCardSelected == false) {
-                            System.out.println("You clicked: " + cardButtons[insideI].getText());
-                            cardButtons[insideI].setBackground(Color.GRAY);
-                            pressed = true;
-                            isCardSelected = true;
-                        }
-                    }
-                    else if(pressed == true) {
-                        System.out.println("You un-clicked space: " + cardButtons[insideI].getText());
-                        cardButtons[insideI].setBackground(null);
-                        pressed = false;
-                        isCardSelected = false;
-                    }
-                }
-            });
-              
-        }
-
-    }
-    */
     //runs GUI
     void runGUI() {
         System.out.println("Starting GUI app");
