@@ -3,6 +3,7 @@ package edu.gonzaga.BasicGUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import edu.gonzaga.Board;
@@ -30,6 +31,8 @@ public class CardButton extends JButton implements PropertyChangeListener{
         hand = h;
         location = n;
         name = h.getNames()[n];
+        ImageIcon tmp = new ImageIcon("GameArt/" + name + ".png");
+        this.setIcon(tmp);
         hand.addPropertyChangeListener(this::propertyChange);
         addActionListener(
             new ActionListener() {
@@ -112,4 +115,9 @@ public class CardButton extends JButton implements PropertyChangeListener{
                 break;
         }
     }
+
+    public String getName(int i){
+        return name;
+    }
+
 }
