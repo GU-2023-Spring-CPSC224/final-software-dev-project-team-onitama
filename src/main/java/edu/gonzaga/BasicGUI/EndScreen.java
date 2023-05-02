@@ -33,17 +33,15 @@ public class EndScreen extends JFrame implements ActionListener{
         endPanel = new JPanel();
         quitButton = new JButton();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
-
-        /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
-        gameTitleLabel.setIcon(gameTitleImage);*/
-        endTitleLabel.setBounds(570, 115, 400, 100);
+        endTitleLabel.setBounds(610, 270, 315, 100);
         endTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
         endTitleLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
         endTitleLabel.setBackground(Color.white);
 
 
-        quitButton.setBounds(600, 460, 350, 60);
+        quitButton.setBounds(595, 435, 350, 60);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
