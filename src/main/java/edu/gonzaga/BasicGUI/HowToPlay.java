@@ -20,7 +20,7 @@ public class HowToPlay implements ActionListener
         mainWindowFrame = new GameFrame();
 
 
-        howToPlayLabel.setBounds(690, 100, 400, 100);
+        howToPlayLabel.setBounds(690, 15, 400, 100);
         howToPlayLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
         howToPlayLabel.setText("How to play");
         howToPlayLabel.setForeground(Color.WHITE);
@@ -36,10 +36,10 @@ public class HowToPlay implements ActionListener
         backButton.setForeground(Color.BLACK);
 
         instructionsTextArea = new JTextArea();
-        instructionsTextArea.setFont(new Font("MV Boli", Font.BOLD, 15));
+        instructionsTextArea.setFont(new Font("MV Boli", Font.BOLD, 18));
         instructionsTextArea.setEditable(false);
         instructionsTextArea.setPreferredSize(new Dimension(600, 400));
-        instructionsTextArea.setBounds(50, 200, 1430, 800);
+        instructionsTextArea.setBounds(50, 100, 1430, 800);
         instructionsTextArea.setLineWrap(true);
         instructionsTextArea.setWrapStyleWord(true);
         String instructionString = new String();
