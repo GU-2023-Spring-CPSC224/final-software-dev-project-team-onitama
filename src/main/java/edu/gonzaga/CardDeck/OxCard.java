@@ -9,10 +9,10 @@ public class OxCard extends Card{
         color = "red";
         Coordinate move1 = new Coordinate(0,1);
         Coordinate move2 = new Coordinate(0,-1);
-        Coordinate move3 = new Coordinate(1,0);
+        Coordinate move3 = new Coordinate(-1,0);
         Coordinate invMove1 = new Coordinate(0,-1);
         Coordinate invMove2 = new Coordinate(0,1);
-        Coordinate invMove3 = new Coordinate(-1,0);
+        Coordinate invMove3 = new Coordinate(1,0);
 
         moves.add(move1);
         moves.add(move2);

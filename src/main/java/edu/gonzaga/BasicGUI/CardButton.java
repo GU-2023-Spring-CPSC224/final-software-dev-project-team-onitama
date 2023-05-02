@@ -52,31 +52,31 @@ public class CardButton extends JButton implements PropertyChangeListener{
         //setupCallback();
     }
 
-    public void setupCallback() {
-        this.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    // public void setupCallback() {
+    //     this.addActionListener(new ActionListener() {
+    //         @Override
+    //         public void actionPerformed(ActionEvent e) {
                 
-                // if no piece is selected yet, set piece
-                if(!board.isCardSelected()) {
-                    board.setCurCard(hand.getCardByName(name));
-                    changeBorder(true);
-                    // if a card is also selected, generate the destinations
-                    if(board.isPieceSelected()) {
-                        board.generateDestinations();
-                    }
-                }
-                // if there already is a card selected
-                else {
-                    // if a card hasn't been selected, switch cur piece
-                    if(!board.isPieceSelected()) {
-                        board.setCurCard(hand.getCardByName(name));
-                    }
-                    // else if() check for same card to switch
-                }
-            }   
-        });
-    }
+    //             // if no piece is selected yet, set piece
+    //             if(!board.isCardSelected()) {
+    //                 board.setCurCard(hand.getCardByName(name));
+    //                 changeBorder(true);
+    //                 // if a card is also selected, generate the destinations
+    //                 if(board.isPieceSelected()) {
+    //                     board.generateDestinations();
+    //                 }
+    //             }
+    //             // if there already is a card selected
+    //             else {
+    //                 // if a card hasn't been selected, switch cur piece
+    //                 if(!board.isPieceSelected()) {
+    //                     board.setCurCard(hand.getCardByName(name));
+    //                 }
+    //                 // else if() check for same card to switch
+    //             }
+    //         }   
+    //     });
+    // }
 
     private void changeBorder(Boolean tf){
         if(tf){
@@ -120,7 +120,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
-                    this.setIcon(new ImageIcon("GameArt/" + name + "Flipped.png"));
+                    this.setIcon(new ImageIcon("GameArt/" + name + "Fliped.png"));
                     this.setOpaque(false);
                     this.setContentAreaFilled(false);
                     this.setBorderPainted(false);
@@ -132,7 +132,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
-                    this.setIcon(new ImageIcon("GameArt/" + name + "Flipped.png"));
+                    this.setIcon(new ImageIcon("GameArt/" + name + "Fliped.png"));
                     this.setOpaque(false);
                     this.setContentAreaFilled(false);
                     this.setBorderPainted(false);
