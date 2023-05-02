@@ -9,6 +9,8 @@ import java.io.File;
 
 public class CharacterSelect extends JFrame implements ActionListener
 {
+    JFrame mainWindowFrame;
+
     JLabel characterSelectLabel;
 
     JButton backButton;
@@ -32,24 +34,10 @@ public class CharacterSelect extends JFrame implements ActionListener
 
     ArrayList<JButton> characterButtonsArrayList;
 
-    public static void main(String[] args)
-    {
-        new CharacterSelect();
-    }
 
     CharacterSelect()
     {
-        Image backgroundImage = new ImageIcon("GameArt/potentialBackgroundWood.png").getImage();
-        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
-        this.setContentPane(backgroundPanel);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(true);//this makes the frame visible
-        this.setTitle("Onitama");//setting title
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//what happens when we close the window
-        this.setResizable(true);//we can change whether frame may be resized
-        this.getContentPane().setBackground(Color.WHITE);//changing color of frame
-        this.setLayout(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainWindowFrame = new GameFrame();  
         
         characterButtonsArrayList = new ArrayList<JButton>();
 
@@ -61,16 +49,16 @@ public class CharacterSelect extends JFrame implements ActionListener
         playerTwoSelectedButton = new JButton();
 
         characterSelectLabel = new JLabel();
-        characterSelectLabel.setBounds(640, 100, 400, 100);
+        characterSelectLabel.setBounds(640, 130, 400, 100);
         characterSelectLabel.setFont(new Font("MV Boli", Font.BOLD, 30));
         characterSelectLabel.setText("Character Select");
 
 
-        this.add(leftCharacterPanel);
-        this.add(rightCharacterPanel);
-        this.add(characterSelectLabel);
-        this.add(backButton);
-        this.add(readyButton);
+        mainWindowFrame.add(leftCharacterPanel);
+        mainWindowFrame.add(rightCharacterPanel);
+        mainWindowFrame.add(characterSelectLabel);
+        mainWindowFrame.add(backButton);
+        mainWindowFrame.add(readyButton);
     }
 
     public void setButtonsNotClickable(JButton selectedButton, int playerNum)
@@ -131,6 +119,7 @@ public class CharacterSelect extends JFrame implements ActionListener
         characterButton.setIcon(characterButtonImageIcon);
         characterButton.addActionListener(this);
         characterButton.putClientProperty("color", fileName);
+
         return characterButton;
     }
 
@@ -192,6 +181,28 @@ public class CharacterSelect extends JFrame implements ActionListener
         readyButton.setFocusable(false);
         readyButton.setForeground(Color.BLACK);
 
+        readyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource() == readyButton)
+                {
+                    if (playerOneCharacterSelected && playerTwoCharacterSelected)
+                    {
+                        new NewGame(playerOneSelectedButton.getClientProperty("color").toString(), playerTwoSelectedButton.getClientProperty("color").toString());
+
+                        System.out.println((String) playerOneSelectedButton.getClientProperty("color"));
+                        System.out.println((String) playerTwoSelectedButton.getClientProperty("color"));
+                    }
+                    else
+                    {
+                        System.out.println("Both players must select a character");
+                        //code to display message that both players must have selected their character
+                    }
+                }
+            }
+        });
+
         return readyButton;
     }
 
@@ -204,6 +215,17 @@ public class CharacterSelect extends JFrame implements ActionListener
         backButton.addActionListener(this);
         backButton.setFocusable(false);
         backButton.setForeground(Color.BLACK);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource() == backButton)
+                {
+                    mainWindowFrame.dispose();
+                }
+            }
+        });
         
         return backButton;
     }
@@ -252,10 +274,10 @@ public class CharacterSelect extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == backButton)
-        {
-            dispose();
-        }
+        // if (e.getSource() == backButton)
+        // {
+        //     dispose();
+        // }
 
         if (e.getSource() == bluePieceButton)
         {
@@ -293,21 +315,21 @@ public class CharacterSelect extends JFrame implements ActionListener
         }
 
 
-        if (e.getSource() == readyButton)
-        {
-            if (playerOneCharacterSelected && playerTwoCharacterSelected)
-            {
-                new NewGame(playerOneSelectedButton.getClientProperty("color").toString(), playerTwoSelectedButton.getClientProperty("color").toString());
+        // if (e.getSource() == readyButton)
+        // {
+        //     if (playerOneCharacterSelected && playerTwoCharacterSelected)
+        //     {
+        //         new NewGame(playerOneSelectedButton.getClientProperty("color").toString(), playerTwoSelectedButton.getClientProperty("color").toString());
 
-                System.out.println((String) playerOneSelectedButton.getClientProperty("color"));
-                System.out.println((String) playerTwoSelectedButton.getClientProperty("color"));
-            }
-            else
-            {
-                System.out.println("Both players must select a character");
-                //code to display message that both players must have selected their character
-            }
-        }
+        //         System.out.println((String) playerOneSelectedButton.getClientProperty("color"));
+        //         System.out.println((String) playerTwoSelectedButton.getClientProperty("color"));
+        //     }
+        //     else
+        //     {
+        //         System.out.println("Both players must select a character");
+        //         //code to display message that both players must have selected their character
+        //     }
+        // }
     }
 
 }

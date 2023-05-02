@@ -15,6 +15,8 @@ public class GameMenu extends JFrame implements ActionListener
     JPanel startMenuPanel;
     JLabel gameTitleLabel;
 
+    Options s;
+
     public static void main(String[] args)
     {
         new GameMenu();
@@ -34,9 +36,8 @@ public class GameMenu extends JFrame implements ActionListener
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
-        gameTitleLabel.setBounds(570, 115, 400, 100);
-        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
-        gameTitleLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        gameTitleLabel.setBounds(360, 125, 800, 100);
+        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
 
 
 
@@ -90,7 +91,7 @@ public class GameMenu extends JFrame implements ActionListener
         }
         if (e.getSource() == optionsButton)
         {
-            Options s = new Options();
+            s = new Options();
         }
         if (e.getSource() == quitButton)
         {
