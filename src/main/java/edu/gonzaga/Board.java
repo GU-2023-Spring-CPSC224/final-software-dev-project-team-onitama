@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import edu.gonzaga.BasicGUI.EndScreen;
 import edu.gonzaga.CardDeck.Card;
 
 public class Board {
@@ -215,6 +216,7 @@ public class Board {
                         System.out.print("player");
                         System.out.print(checkWin());
                         System.out.println(" Wins!");
+                        new EndScreen(checkWin());
                     }
                 }
             }
@@ -226,6 +228,7 @@ public class Board {
             }
         }
     }
+
 
     public void cardButtonPressed(int location){
         for(int i = 0; i < destinations.size(); i++){
