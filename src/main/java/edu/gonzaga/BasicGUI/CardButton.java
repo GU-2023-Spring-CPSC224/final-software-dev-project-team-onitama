@@ -35,7 +35,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
         ImageIcon tmp = new ImageIcon("GameArt/" + name + ".png");
         this.setIcon(tmp);
         this.setFont(this.getFont().deriveFont(0f));
-        //this.setBackground(new Color(0, 0, 0, 0)); // Set the background color to transparent
+        this.setBackground(new Color(0, 0, 0, 0)); // Set the background color to transparent
         this.setOpaque(false);
         this.setBorder(null);
         hand.addPropertyChangeListener(this::propertyChange);

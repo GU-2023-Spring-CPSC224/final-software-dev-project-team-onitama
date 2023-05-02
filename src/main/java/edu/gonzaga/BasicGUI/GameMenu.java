@@ -30,6 +30,8 @@ public class GameMenu extends JFrame implements ActionListener
         optionsButton = new JButton();
         quitButton = new JButton();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        
         
 
 

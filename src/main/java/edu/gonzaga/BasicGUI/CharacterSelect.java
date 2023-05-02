@@ -39,6 +39,9 @@ public class CharacterSelect extends JFrame implements ActionListener
 
     CharacterSelect()
     {
+        Image backgroundImage = new ImageIcon("GameArt/potentialBackgroundWood.png").getImage();
+        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+        this.setContentPane(backgroundPanel);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setVisible(true);//this makes the frame visible
         this.setTitle("Onitama");//setting title
@@ -47,9 +50,6 @@ public class CharacterSelect extends JFrame implements ActionListener
         this.getContentPane().setBackground(Color.WHITE);//changing color of frame
         this.setLayout(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
-        this.setIconImage(image.getImage()); //changes icon of frame
-        this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
         
         characterButtonsArrayList = new ArrayList<JButton>();
 

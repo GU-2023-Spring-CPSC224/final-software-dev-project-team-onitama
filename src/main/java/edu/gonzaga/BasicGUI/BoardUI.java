@@ -54,12 +54,17 @@ public class BoardUI {
 
     // GUI Setup
     void setupGUI() {
-        this.mainWindowFrame = new JFrame("Simple GUI Onitama");
+
+        // Image backgroundImage = new ImageIcon("GameArt/potentialBackgroundWood.png").getImage();
+        // BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+        // mainWindowFrame.setContentPane(backgroundPanel);
+
+
+        //this.mainWindowFrame = new JFrame("Simple GUI Onitama");
+
+        this.mainWindowFrame = new GameFrame();
         this.mainWindowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindowFrame.setLayout(null);
-        //mainWindowFrame.getContentPane().setBackground(new Color(75, 34, 4));//changing color of frame
-        mainWindowFrame.getContentPane().setBackground(new Color(187,202,131));//changing color of fram
-
 
         this.boardPanel = new JPanel();
         this.upperCardPanel = new JPanel();
@@ -85,6 +90,8 @@ public class BoardUI {
         //cardButtons[4].setEnabled(false);
         
         intermediateCardPanel.setBorder(null);
+        intermediateCardPanel.setOpaque(false);
+
         this.upperCardPanel = genTopCardPanel();
         upperCardPanel.setBounds(475, 5, 600, 135);
 
@@ -150,7 +157,7 @@ public class BoardUI {
 
         for(int i=0; i < 2; i++)
         {
-            cardButtons[i].setOpaque(true);
+            //cardButtons[i].setOpaque(false);
             newCardPanel.add(cardButtons[i]);
         }
 
@@ -161,8 +168,9 @@ public class BoardUI {
 
     private JPanel genTopCardPanel(){
         JPanel newCardPanel = new JPanel();
-        newCardPanel.setBorder(null);
         newCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        newCardPanel.setBorder(null);
+        newCardPanel.setOpaque(false);
 
 
         for(int i=2; i < 4; i++)

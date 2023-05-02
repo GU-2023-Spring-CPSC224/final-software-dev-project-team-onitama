@@ -14,7 +14,11 @@ public class GameFrame extends JFrame
         this.setResizable(true);//we can change whether frame may be resized
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
-        this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
+        //this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
+
+        Image backgroundImage = new ImageIcon("GameArt/potentialBackgroundWood.png").getImage();
+        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+        this.setContentPane(backgroundPanel);
         
         this.setLayout(null);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
