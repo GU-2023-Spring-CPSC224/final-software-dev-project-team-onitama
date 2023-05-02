@@ -10,8 +10,8 @@ public class BackgroundChanger implements ActionListener {
     private JFrame frame;
     private JPanel contentPane;
     private JButton changeButton;
-    private JLabel label;
     private ImageIcon backgroundImage;
+    int i = 0;
 
     public BackgroundChanger() {
         // Create the frame and set its properties
@@ -28,12 +28,6 @@ public class BackgroundChanger implements ActionListener {
         changeButton = new JButton("Change Background");
         changeButton.addActionListener(this);
 
-        // Create the label and set its properties
-        label = new JLabel();
-        label.setVerticalAlignment(JLabel.CENTER);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setText("This is the label text");
-
         // Load the initial background image
         backgroundImage = new ImageIcon("GameArt/lightWood.jpg");
         JLabel backgroundLabel = new JLabel(backgroundImage);
@@ -41,13 +35,11 @@ public class BackgroundChanger implements ActionListener {
 
         // Add the components to the content pane
         contentPane.add(changeButton, BorderLayout.NORTH);
-        contentPane.add(label, BorderLayout.SOUTH);
-
         JLabel myLabel = new JLabel("testing the label");
-        frame.add(myLabel);
 
         // Set the content pane of the frame
         frame.setContentPane(contentPane);
+        frame.add(myLabel);
 
         // Show the frame
         frame.setVisible(true);
@@ -55,8 +47,19 @@ public class BackgroundChanger implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (i == 0)
+        {
+            backgroundImage = new ImageIcon("GameArt/darkWoodBackground.png");
+            i = 1;
+        }
+        else if (i ==1)
+        {
+            backgroundImage = new ImageIcon("GameArt/lightWood.jpg");
+            i = 0;
+        }
         // Load the new background image
-        backgroundImage = new ImageIcon("GameArt/colorfulBricks.png");
+        // backgroundImage = new ImageIcon("GameArt/colorfulBricks.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
 
         // Get the components from the content pane
