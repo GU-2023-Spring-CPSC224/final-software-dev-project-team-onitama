@@ -37,6 +37,8 @@ public class GameMenu extends JFrame implements ActionListener
         gameTitleLabel.setBounds(570, 115, 400, 100);
         gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
         gameTitleLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        gameTitleLabel.setIcon(new ImageIcon("GameArt/Title.png"));
+
 
 
 
@@ -46,6 +48,8 @@ public class GameMenu extends JFrame implements ActionListener
         newGameButton.setFocusable(false);
         newGameButton.addActionListener(this);
         newGameButton.setForeground(Color.BLACK);
+        newGameButton.setIcon(new ImageIcon("GameArt/NewGame.png"));
+
 
         instructionsButton.setBounds(600, 320, 350, 60);
         instructionsButton.setText("How to play");
@@ -53,25 +57,30 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton.setFocusable(false);
         instructionsButton.addActionListener(this);
         instructionsButton.setForeground(Color.BLACK);
+        instructionsButton.setIcon(new ImageIcon("GameArt/Rules.png"));
 
-        optionsButton.setBounds(600, 390, 350, 60);
-        optionsButton.setText("Options");
-        optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
-        optionsButton.setFocusable(false);
-        optionsButton.addActionListener(this);
-        optionsButton.setForeground(Color.BLACK);
 
-        quitButton.setBounds(600, 460, 350, 60);
+        // optionsButton.setBounds(600, 390, 350, 60);
+        // optionsButton.setText("Options");
+        // optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
+        // optionsButton.setFocusable(false);
+        // optionsButton.addActionListener(this);
+        // optionsButton.setForeground(Color.BLACK);
+
+
+        quitButton.setBounds(600, 390, 350, 60);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
         quitButton.addActionListener(this);
         quitButton.setForeground(Color.BLACK);
+        quitButton.setIcon(new ImageIcon("GameArt/Quit.png"));
+
 
 
         frame.add(gameTitleLabel);
         frame.add(newGameButton);
-        frame.add(optionsButton);
+        //frame.add(optionsButton);
         frame.add(instructionsButton);
         frame.add(quitButton);
     }

@@ -25,6 +25,8 @@ public class CardButton extends JButton implements PropertyChangeListener{
     private String name;
     int location;
     Card card;
+    ImageIcon tmp;
+    boolean pressed = false;
     
 
     CardButton(Board b, Hand h, int n) {
@@ -33,7 +35,12 @@ public class CardButton extends JButton implements PropertyChangeListener{
         hand = h;
         location = n;
         name = h.getNames()[n];
-        ImageIcon tmp = new ImageIcon("GameArt/" + name + ".png");
+        if(location == 2 || location == 3){
+            tmp = new ImageIcon("GameArt/" + name + "Fliped.png");
+        }
+        else{
+            tmp = new ImageIcon("GameArt/" + name + ".png");
+        }
         this.setIcon(tmp);
         this.setFont(this.getFont().deriveFont(0f));
         this.setBackground(new Color(0, 0, 0, 0)); // Set the background color to transparent
@@ -46,45 +53,22 @@ public class CardButton extends JButton implements PropertyChangeListener{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     board.cardButtonPressed(location);
+                    changeBorder();
                 }
             }
         );
         //setupCallback();
     }
 
-    // public void setupCallback() {
-    //     this.addActionListener(new ActionListener() {
-    //         @Override
-    //         public void actionPerformed(ActionEvent e) {
-                
-    //             // if no piece is selected yet, set piece
-    //             if(!board.isCardSelected()) {
-    //                 board.setCurCard(hand.getCardByName(name));
-    //                 changeBorder(true);
-    //                 // if a card is also selected, generate the destinations
-    //                 if(board.isPieceSelected()) {
-    //                     board.generateDestinations();
-    //                 }
-    //             }
-    //             // if there already is a card selected
-    //             else {
-    //                 // if a card hasn't been selected, switch cur piece
-    //                 if(!board.isPieceSelected()) {
-    //                     board.setCurCard(hand.getCardByName(name));
-    //                 }
-    //                 // else if() check for same card to switch
-    //             }
-    //         }   
-    //     });
-    // }
-
-    private void changeBorder(Boolean tf){
-        if(tf){
+    private void changeBorder(){
+        if(pressed){
             this.setBorder(BorderFactory.createLineBorder(Color.GREEN,4));
             this.setBorderPainted(true);
+            pressed = true;
         }
         else{
             this.setBorderPainted(false);
+            pressed = false;
         }
     }
 
