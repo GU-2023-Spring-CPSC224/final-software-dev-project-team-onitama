@@ -98,21 +98,25 @@ public class Options implements ActionListener
     {
         if (e.getSource() == lightWoodButton)
         {
+            System.out.println("light wood button pressed");
             backgroundImageFileName = "lightWood.jpg";
             updateBackground("lightWood.jpg");
         }
         if (e.getSource() == darkWoodButton)
         {
+            System.out.println("dark wood button pressed");
             backgroundImageFileName = "darkWoodBackground.png";
             updateBackground("darkWoodBackground.png");
         }
         if (e.getSource() == stoneBackgroundButton)
         {
+            System.out.println("stoneBackgroundButton button pressed");
             backgroundImageFileName = "stoneBackground.jpg";
             updateBackground("stoneBackground.jpg");
         }
         if (e.getSource() == colorfulBricksButton)
         {
+            System.out.println(" colorfulBricksButton button pressed");
             backgroundImageFileName = "colorfulBricks.png";
             updateBackground("colorfulBricks.png");
         }
@@ -120,8 +124,11 @@ public class Options implements ActionListener
 
     public void updateBackground(String fileName)
     {
+        //mainWindowFrame.getContentPane().removeAll();
         Image backgroundImage = new ImageIcon(fileName).getImage();
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         mainWindowFrame.setContentPane(backgroundPanel);
+        mainWindowFrame.revalidate();
+        mainWindowFrame.repaint();
     }
 }

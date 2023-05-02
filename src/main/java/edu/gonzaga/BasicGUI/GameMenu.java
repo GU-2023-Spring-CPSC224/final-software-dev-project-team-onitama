@@ -36,9 +36,8 @@ public class GameMenu extends JFrame implements ActionListener
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
-        gameTitleLabel.setBounds(570, 100, 400, 100);
-        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
-        gameTitleLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        gameTitleLabel.setBounds(360, 125, 800, 100);
+        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
 
 
 

@@ -49,7 +49,7 @@ public class CharacterSelect extends JFrame implements ActionListener
         playerTwoSelectedButton = new JButton();
 
         characterSelectLabel = new JLabel();
-        characterSelectLabel.setBounds(640, 100, 400, 100);
+        characterSelectLabel.setBounds(640, 130, 400, 100);
         characterSelectLabel.setFont(new Font("MV Boli", Font.BOLD, 30));
         characterSelectLabel.setText("Character Select");
 
