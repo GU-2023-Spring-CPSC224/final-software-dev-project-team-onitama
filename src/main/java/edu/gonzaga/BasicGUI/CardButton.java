@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -59,12 +60,13 @@ public class CardButton extends JButton implements PropertyChangeListener{
                 // if no piece is selected yet, set piece
                 if(!board.isCardSelected()) {
                     board.setCurCard(hand.getCardByName(name));
+                    changeBorder(true);
                     // if a card is also selected, generate the destinations
                     if(board.isPieceSelected()) {
                         board.generateDestinations();
                     }
                 }
-                // if there already is a piece selected
+                // if there already is a card selected
                 else {
                     // if a card hasn't been selected, switch cur piece
                     if(!board.isPieceSelected()) {
@@ -74,6 +76,16 @@ public class CardButton extends JButton implements PropertyChangeListener{
                 }
             }   
         });
+    }
+
+    private void changeBorder(Boolean tf){
+        if(tf){
+            this.setBorder(BorderFactory.createLineBorder(Color.GREEN,4));
+            this.setBorderPainted(true);
+        }
+        else{
+            this.setBorderPainted(false);
+        }
     }
 
     public void propertyChange(PropertyChangeEvent e) {
@@ -108,7 +120,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
-                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setIcon(new ImageIcon("GameArt/" + name + "Flipped.png"));
                     this.setOpaque(false);
                     this.setContentAreaFilled(false);
                     this.setBorderPainted(false);
@@ -120,7 +132,7 @@ public class CardButton extends JButton implements PropertyChangeListener{
                     //System.out.println(("DieView sees value changed to: " + e.getNewValue()));
                     card = ((Card)e.getNewValue());
                     name = card.getName();
-                    this.setIcon(new ImageIcon("GameArt/" + name + ".png"));
+                    this.setIcon(new ImageIcon("GameArt/" + name + "Flipped.png"));
                     this.setOpaque(false);
                     this.setContentAreaFilled(false);
                     this.setBorderPainted(false);
