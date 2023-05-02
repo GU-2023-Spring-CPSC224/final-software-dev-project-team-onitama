@@ -31,9 +31,6 @@ public class GameMenu extends JFrame implements ActionListener
         quitButton = new JButton();
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        
-        
-
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
