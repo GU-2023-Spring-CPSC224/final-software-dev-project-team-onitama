@@ -20,7 +20,7 @@ public class HowToPlay implements ActionListener
         mainWindowFrame = new GameFrame();
 
 
-        howToPlayLabel.setBounds(690, 15, 400, 100);
+        howToPlayLabel.setBounds(690, 0, 400, 100);
         howToPlayLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
         howToPlayLabel.setText("How to play");
         howToPlayLabel.setForeground(Color.BLACK);
