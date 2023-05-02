@@ -12,16 +12,24 @@ public class GameFrame extends JFrame
         this.setTitle("Onitama");//setting title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//what happens when we close the window
         this.setResizable(true);//we can change whether frame may be resized
+
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
         //this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
 
-        Image backgroundImage = new ImageIcon("GameArt/potentialBackgroundWood.png").getImage();
+        Image backgroundImage = new ImageIcon("GameArt/darkWoodBackground.png").getImage();
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         this.setContentPane(backgroundPanel);
         
         this.setLayout(null);
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+    }
+
+    public void updateBackground(String fileName)
+    {
+        Image backgroundImage = new ImageIcon(fileName).getImage();
+        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+        this.setContentPane(backgroundPanel);
     }
 }

@@ -15,6 +15,8 @@ public class GameMenu extends JFrame implements ActionListener
     JPanel startMenuPanel;
     JLabel gameTitleLabel;
 
+    Options s;
+
     public static void main(String[] args)
     {
         new GameMenu();
@@ -90,7 +92,7 @@ public class GameMenu extends JFrame implements ActionListener
         }
         if (e.getSource() == optionsButton)
         {
-            Options s = new Options();
+            s = new Options();
         }
         if (e.getSource() == quitButton)
         {
