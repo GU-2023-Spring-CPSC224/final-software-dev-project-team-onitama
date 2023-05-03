@@ -36,45 +36,68 @@ public class GameMenu extends JFrame implements ActionListener
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
-        gameTitleLabel.setBounds(360, 125, 800, 100);
-        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
+        gameTitleLabel.setBounds(315, 100, 700, 300);
+        gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
 
 
 
-        newGameButton.setBounds(600, 250, 350, 60);
+        newGameButton.setBounds(500, 350, 500, 200);
         newGameButton.setText("New Game");
         newGameButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         newGameButton.setFocusable(false);
         newGameButton.addActionListener(this);
-        newGameButton.setForeground(Color.BLACK);
+        
+        
 
-        instructionsButton.setBounds(600, 320, 350, 60);
+
+        instructionsButton.setBounds(500, 500, 500, 200);
         instructionsButton.setText("How to play");
         instructionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         instructionsButton.setFocusable(false);
         instructionsButton.addActionListener(this);
         instructionsButton.setForeground(Color.BLACK);
 
-        optionsButton.setBounds(600, 390, 350, 60);
-        optionsButton.setText("Options");
-        optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
-        optionsButton.setFocusable(false);
-        optionsButton.addActionListener(this);
-        optionsButton.setForeground(Color.BLACK);
 
-        quitButton.setBounds(600, 460, 350, 60);
+        // optionsButton.setBounds(600, 390, 350, 60);
+        // optionsButton.setText("Options");
+        // optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
+        // optionsButton.setFocusable(false);
+        // optionsButton.addActionListener(this);
+        // optionsButton.setForeground(Color.BLACK);
+
+
+        quitButton.setBounds(500, 650, 500, 200);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
         quitButton.addActionListener(this);
         quitButton.setForeground(Color.BLACK);
+        
+
 
 
         frame.add(gameTitleLabel);
         frame.add(newGameButton);
-        frame.add(optionsButton);
+        //frame.add(optionsButton);
         frame.add(instructionsButton);
         frame.add(quitButton);
+        frame.setVisible(true);
+
+        newGameButton.setOpaque(false);
+        newGameButton.setContentAreaFilled(false);
+        newGameButton.setBorderPainted(false);
+        newGameButton.setIcon(new ImageIcon("GameArt/NewGameZ.png"));
+        instructionsButton.setOpaque(false);
+        instructionsButton.setContentAreaFilled(false);
+        instructionsButton.setBorderPainted(false);
+        instructionsButton.setIcon(new ImageIcon("GameArt/RulesZ.png"));
+        quitButton.setOpaque(false);
+        quitButton.setContentAreaFilled(false);
+        quitButton.setBorderPainted(false);
+        quitButton.setIcon(new ImageIcon("GameArt/QuitZ.png"));
+        gameTitleLabel.setIcon(new ImageIcon("GameArt/OnitamaZ.png"));
+        gameTitleLabel.setVisible(true);
+
     }
 
 
