@@ -41,16 +41,14 @@ public class GameMenu extends JFrame implements ActionListener
 
 
 
-        newGameButton.setBounds(500, 350, 500, 200);
+        newGameButton.setBounds(600, 400, 300, 150);
         newGameButton.setText("New Game");
         newGameButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         newGameButton.setFocusable(false);
         newGameButton.addActionListener(this);
         
         
-
-
-        instructionsButton.setBounds(500, 500, 500, 200);
+        instructionsButton.setBounds(600, 500, 300, 150);
         instructionsButton.setText("How to play");
         instructionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         instructionsButton.setFocusable(false);
@@ -58,15 +56,15 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton.setForeground(Color.BLACK);
 
 
-        // optionsButton.setBounds(600, 390, 350, 60);
-        // optionsButton.setText("Options");
-        // optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
-        // optionsButton.setFocusable(false);
-        // optionsButton.addActionListener(this);
-        // optionsButton.setForeground(Color.BLACK);
+        optionsButton.setBounds(600, 600, 300, 150);
+        optionsButton.setText("Options");
+        optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
+        optionsButton.setFocusable(false);
+        optionsButton.addActionListener(this);
+        optionsButton.setForeground(Color.BLACK);
 
 
-        quitButton.setBounds(500, 650, 500, 200);
+        quitButton.setBounds(600, 700, 300, 150);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
@@ -78,7 +76,7 @@ public class GameMenu extends JFrame implements ActionListener
 
         frame.add(gameTitleLabel);
         frame.add(newGameButton);
-        //frame.add(optionsButton);
+        frame.add(optionsButton);
         frame.add(instructionsButton);
         frame.add(quitButton);
         frame.setVisible(true);
@@ -86,15 +84,19 @@ public class GameMenu extends JFrame implements ActionListener
         newGameButton.setOpaque(false);
         newGameButton.setContentAreaFilled(false);
         newGameButton.setBorderPainted(false);
-        newGameButton.setIcon(new ImageIcon("GameArt/NewGameZ.png"));
+        newGameButton.setIcon(new ImageIcon("GameArt/NewGameZM.png"));
         instructionsButton.setOpaque(false);
         instructionsButton.setContentAreaFilled(false);
         instructionsButton.setBorderPainted(false);
-        instructionsButton.setIcon(new ImageIcon("GameArt/RulesZ.png"));
+        instructionsButton.setIcon(new ImageIcon("GameArt/RulesZM.png"));
+        optionsButton.setOpaque(false);
+        optionsButton.setContentAreaFilled(false);
+        optionsButton.setBorderPainted(false);
+        optionsButton.setIcon(new ImageIcon("GameArt/OptionsZM.png"));
         quitButton.setOpaque(false);
         quitButton.setContentAreaFilled(false);
         quitButton.setBorderPainted(false);
-        quitButton.setIcon(new ImageIcon("GameArt/QuitZ.png"));
+        quitButton.setIcon(new ImageIcon("GameArt/QuitZM.png"));
         gameTitleLabel.setIcon(new ImageIcon("GameArt/OnitamaZ.png"));
         gameTitleLabel.setVisible(true);
 
