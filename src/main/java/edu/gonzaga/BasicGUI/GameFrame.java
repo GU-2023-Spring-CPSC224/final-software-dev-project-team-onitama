@@ -15,7 +15,6 @@ public class GameFrame extends JFrame
 
         ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
         this.setIconImage(image.getImage()); //changes icon of frame
-        //this.getContentPane().setBackground(new Color(187,202,131));//changing color of frame
 
         Image backgroundImage = new ImageIcon("GameArt/darkWoodBackground.png").getImage();
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
@@ -23,6 +22,9 @@ public class GameFrame extends JFrame
         
         this.setLayout(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        ImageIcon windoWIconImage = new ImageIcon("GameArt/orange.png");
+        this.setIconImage(windoWIconImage.getImage());
 
     }
 

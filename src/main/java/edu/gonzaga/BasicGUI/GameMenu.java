@@ -36,19 +36,19 @@ public class GameMenu extends JFrame implements ActionListener
 
         /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
         gameTitleLabel.setIcon(gameTitleImage);*/
-        gameTitleLabel.setBounds(315, 100, 700, 300);
+        gameTitleLabel.setBounds(345, 100, 700, 300);
         gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
 
 
 
-        newGameButton.setBounds(600, 400, 300, 150);
+        newGameButton.setBounds(630, 320, 300, 150);
         newGameButton.setText("New Game");
         newGameButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         newGameButton.setFocusable(false);
         newGameButton.addActionListener(this);
         
         
-        instructionsButton.setBounds(600, 500, 300, 150);
+        instructionsButton.setBounds(630, 420, 300, 150);
         instructionsButton.setText("How to play");
         instructionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         instructionsButton.setFocusable(false);
@@ -56,7 +56,7 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton.setForeground(Color.BLACK);
 
 
-        optionsButton.setBounds(600, 600, 300, 150);
+        optionsButton.setBounds(630, 520, 300, 150);
         optionsButton.setText("Options");
         optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         optionsButton.setFocusable(false);
@@ -64,7 +64,7 @@ public class GameMenu extends JFrame implements ActionListener
         optionsButton.setForeground(Color.BLACK);
 
 
-        quitButton.setBounds(600, 700, 300, 150);
+        quitButton.setBounds(630, 620, 300, 150);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
