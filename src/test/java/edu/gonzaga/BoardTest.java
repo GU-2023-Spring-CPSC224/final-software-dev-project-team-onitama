@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
     
- /*   
+    
     @Test
     void testNumTwoDest() {
         Integer expectedValue = 2;
@@ -27,7 +27,8 @@ public class BoardTest {
         Integer expectedValue = 0;
         Card dragon = new EelCard("Eel");
         Coordinate piece = new Coordinate(0, 4); //bottom left
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         board.setCurCard(dragon);
         board.setCurPiece(piece);
         board.generateDestinations();
@@ -40,7 +41,8 @@ public class BoardTest {
         Boolean expectedValue = true;
         Coordinate piece = new Coordinate(0, 4);
         Coordinate dest = new Coordinate(0, 3);
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         Boolean actual = board.checkValidMove(piece, dest);
         assertEquals(expectedValue, actual);
     }
@@ -50,7 +52,8 @@ public class BoardTest {
         Boolean expectedValue = false;
         Coordinate piece = new Coordinate(0, 4);
         Coordinate dest = new Coordinate(1, 4);
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         Boolean actual = board.checkValidMove(piece, dest);
         assertEquals(expectedValue, actual);
     }
@@ -60,7 +63,8 @@ public class BoardTest {
         Boolean expectedValue = false;
         Coordinate piece = new Coordinate(0, 4);
         Coordinate dest = new Coordinate(2, 4);
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         Boolean actual = board.checkValidMove(piece, dest);
         assertEquals(expectedValue, actual);
     }
@@ -70,7 +74,8 @@ public class BoardTest {
         Boolean expectedValue = true;
         Coordinate piece = new Coordinate(0, 4);
         Coordinate dest = new Coordinate(0, 0);
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         Boolean actual = board.checkValidMove(piece, dest);
         assertEquals(expectedValue, actual);
     }
@@ -80,9 +85,9 @@ public class BoardTest {
         Boolean expectedValue = true;
         Coordinate piece = new Coordinate(0, 4);
         Coordinate dest = new Coordinate(2, 0);
-        Board board = new Board(5);
+        Hand hand = new Hand(5);
+        Board board = new Board(5, hand);
         Boolean actual = board.checkValidMove(piece, dest);
         assertEquals(expectedValue, actual);
     }
-*/
 }
