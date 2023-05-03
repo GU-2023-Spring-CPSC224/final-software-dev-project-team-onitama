@@ -18,7 +18,6 @@ public class BackgroundChanger implements ActionListener {
         frame = new JFrame("heres my frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
-        frame.setLocationRelativeTo(null);
 
 
         // Create the content pane and set its layout
@@ -48,18 +47,21 @@ public class BackgroundChanger implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (i == 0)
+        if (i % 3 == 0)
         {
             backgroundImage = new ImageIcon("GameArt/darkWoodBackground.png");
-            i = 1;
         }
-        else if (i ==1)
+        else if (i % 3 == 1)
         {
             backgroundImage = new ImageIcon("GameArt/lightWood.jpg");
-            i = 0;
         }
-        // Load the new background image
-        // backgroundImage = new ImageIcon("GameArt/colorfulBricks.png");
+        else if (i % 3 == 2)
+        {
+            backgroundImage = new ImageIcon("GameArt/colorfulBricks.png");
+        }
+        i++;
+
+        
         JLabel backgroundLabel = new JLabel(backgroundImage);
 
         // Get the components from the content pane
