@@ -1,44 +1,30 @@
 package edu.gonzaga.BasicGUI;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-public class HowToPlay extends JFrame implements ActionListener
+public class HowToPlay implements ActionListener
 {
-    public static void main(String[] args)
-    {
-        new HowToPlay();
-    }
 
     JLabel howToPlayLabel;
     JButton backButton;
     JTextArea instructionsTextArea;
+    JFrame mainWindowFrame;
 
 
     HowToPlay()
     {
         howToPlayLabel = new JLabel();
-
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(true);//this makes the frame visible
-        //this.setSize(600,600);//sets x & y dimensions
-        this.setTitle("Onitama");//setting title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//what happens when we close the window
-        this.setResizable(true);//we can change whether frame may be resized
-        this.getContentPane().setBackground(Color.WHITE);//changing color of frame
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
-        this.setIconImage(image.getImage()); //changes icon of frame
-        this.setLayout(null);
+        mainWindowFrame = new GameFrame();
 
 
-        howToPlayLabel.setBounds(690, 100, 400, 100);
-        howToPlayLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
+        howToPlayLabel.setBounds(690, 0, 400, 100);
+        howToPlayLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
         howToPlayLabel.setText("How to play");
+        howToPlayLabel.setForeground(Color.BLACK);
+
 
 
         backButton = new JButton();
@@ -50,29 +36,24 @@ public class HowToPlay extends JFrame implements ActionListener
         backButton.setForeground(Color.BLACK);
 
         instructionsTextArea = new JTextArea();
-        instructionsTextArea.setText("mystringtest");
-        instructionsTextArea.setFont(new Font("MV Boli", Font.BOLD, 15));
+        instructionsTextArea.setFont(new Font("MV Boli", Font.BOLD, 18));
         instructionsTextArea.setEditable(false);
         instructionsTextArea.setPreferredSize(new Dimension(600, 400));
-        instructionsTextArea.setBounds(50, 200, 1430, 800);
+        instructionsTextArea.setBounds(50, 90, 1430, 800);
         instructionsTextArea.setLineWrap(true);
         instructionsTextArea.setWrapStyleWord(true);
-        String instructionString = "You can never make a move that would cause a pawn to move off the board or move onto the same square as one of your own pawns.";
-        instructionString += "If your pawn moves onto a square that is occupied by one of your opponent's pawns, the opponent's pawn is captured and removed from the game. Put it back in the box.";
-        instructionString += "You must actually land on the piece to capture it - moving over or through a square occupied by an opponent's piece does not capture it.";
-        instructionsTextArea.setText(instructionString);
-        this.add(howToPlayLabel);
-        this.add(backButton);
-        this.add(instructionsTextArea);
+        String instructionString = new String();
+        instructionString += "Onitama is an elegant and simple game that captures the essence of martial arts. Each game is quick, usually 15 minutes in length.\n\n Combat at Onitama is simple and elegant, as befits a contest between two Masters. You and your opponent will take turns.\n\n On your turn, examine and choose one of the two Move cards in front of you. Then, select one of your pawns (student or master) and examine the available options. (The square grid will show you the way). Once you have decided where to move, select that location and move to the next player's turn.\n\n The black square in the middle of a card represents the space your chosen pawn occupies. The gray spaces show where your pawn can move, relative to its starting position. You can move your pawn to any one of the spaces indicated. Other pawns (yours or your opponents) and Temple Arches do not block the movement of your pawn across the board.\n\n After a turn has been completed, the card you used will be exchanged with the intermediate card on the left side of the board. This will now be the card that your opponent will get after their turn. This keeps repeating throughout the game, so be careful which card you’re giving to your opponent./n How do you win?\n\n There are two ways to prove that your Art is stronger — the Way of the Stone or the Way of the Stream:\n\n To win in the Way of the Stone, you must capture your opponent’s Master pawn.\n To win in the Way of the Stream, you must move your own Master pawn into your opponent’s Temple Arch space.\n\n Neither path to victory is easy! You will need careful strategy to achieve your goals.";
 
-        ImageIcon background = new ImageIcon("boardBackground.png");
-        Image img = background.getImage();
-        Image temp = img.getScaledInstance(1000,600,Image.SCALE_SMOOTH);
-        background = new ImageIcon(temp);
-        JLabel back = new JLabel(background);
-        back.setLayout(null);
-        back.setBounds(0,0,1000,600);
-        this.add(back);
+
+        instructionsTextArea.setText(instructionString);
+        instructionsTextArea.setForeground(Color.BLACK);
+        instructionsTextArea.setOpaque(false);
+
+
+        mainWindowFrame.add(howToPlayLabel);
+        mainWindowFrame.add(backButton);
+        mainWindowFrame.add(instructionsTextArea);
     }
 
     @Override
@@ -80,7 +61,7 @@ public class HowToPlay extends JFrame implements ActionListener
     {
         if (e.getSource() == backButton)
         {
-            dispose();
+            mainWindowFrame.dispose();
         }
     }
 }

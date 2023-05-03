@@ -15,6 +15,8 @@ public class GameMenu extends JFrame implements ActionListener
     JPanel startMenuPanel;
     JLabel gameTitleLabel;
 
+    Options s;
+
     public static void main(String[] args)
     {
         new GameMenu();
@@ -36,7 +38,7 @@ public class GameMenu extends JFrame implements ActionListener
         gameTitleLabel.setIcon(gameTitleImage);*/
         gameTitleLabel.setBounds(315, 100, 700, 300);
         gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
-        
+
 
 
         newGameButton.setBounds(500, 350, 500, 200);
@@ -112,7 +114,7 @@ public class GameMenu extends JFrame implements ActionListener
         }
         if (e.getSource() == optionsButton)
         {
-            Options s = new Options();
+            s = new Options();
         }
         if (e.getSource() == quitButton)
         {

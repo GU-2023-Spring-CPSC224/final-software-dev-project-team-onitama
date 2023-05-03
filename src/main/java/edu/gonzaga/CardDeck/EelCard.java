@@ -14,6 +14,7 @@ public class EelCard extends Card{
         Coordinate invMove2 = new Coordinate(-1,1);
         Coordinate invMove3 = new Coordinate(1,0);
 
+
         moves.add(move1);
         moves.add(move2);
         moves.add(move3);

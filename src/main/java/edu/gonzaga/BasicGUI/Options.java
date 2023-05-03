@@ -4,61 +4,131 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
-public class Options extends JFrame implements ActionListener
+public class Options implements ActionListener
 {
-    public static void main(String[] args)
-    {
-        new HowToPlay();
-    }
 
     JLabel optionsMenuLabel;
     JButton backButton;
+    JFrame mainWindowFrame;
+    String backgroundImageFileName;
+    JPanel backGroundOptionsPanel;
+
+    JButton lightWoodButton;
+    JButton darkWoodButton;
+    JButton stoneBackgroundButton;
+    JButton colorfulBricksButton;
 
 
     Options()
     {
+        mainWindowFrame = new GameFrame();
         optionsMenuLabel = new JLabel();
-
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setVisible(true);//this makes the frame visible
-        //this.setSize(600,600);//sets x & y dimensions
-        this.setTitle("Options");//setting title
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//what happens when we close the window
-        this.setResizable(true);//we can change whether frame may be resized
-        this.getContentPane().setBackground(Color.WHITE);//changing color of frame
-        this.setLayout(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
-        this.setIconImage(image.getImage()); //changes icon of frame
-
+        backGroundOptionsPanel = createbackGroundOptionsPanel();
 
         optionsMenuLabel.setBounds(690, 100, 400, 100);
         optionsMenuLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
         optionsMenuLabel.setText("Options");
 
-
-
-
         backButton = new JButton();
         backButton.setText("Back");
         backButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         backButton.setBounds(1410, 725, 100, 50);
-        backButton.addActionListener(this);
+        //backButton.addActionListener(this);
         backButton.setFocusable(false);
         backButton.setForeground(Color.BLACK);
 
-        this.add(optionsMenuLabel);
-        this.add(backButton);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (e.getSource() == backButton)
+                {
+                    mainWindowFrame.dispose();
+                }
+            }
+        });
+
+        mainWindowFrame.add(optionsMenuLabel);
+        mainWindowFrame.add(backButton);
+        mainWindowFrame.add(backGroundOptionsPanel);
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e)
+    public JPanel createbackGroundOptionsPanel()
     {
-        if (e.getSource() == backButton)
+        JPanel panel = new JPanel();
+        panel.setBounds(500, 250, 400, 400);
+        panel.setLayout(new GridLayout(2,2));
+        darkWoodButton = createbackgroundButtons("darkWoodBackground.png");
+        lightWoodButton = createbackgroundButtons("lightWood.jpg");
+        stoneBackgroundButton = createbackgroundButtons("stoneBackground.jpg");
+        colorfulBricksButton = createbackgroundButtons("colorfulBricks.png");
+
+
+        panel.add(darkWoodButton);
+        panel.add(lightWoodButton);
+        panel.add(stoneBackgroundButton);
+        panel.add(colorfulBricksButton);
+
+        return panel;
+    }
+
+    public JButton createbackgroundButtons(String fileName)
+    {
+        JButton backgroundButton = new JButton();
+        String filePath = new String();
+        filePath += "GameArt/" + fileName;
+        File imageFile = new File(filePath);
+        ImageIcon backGroundButtonImageIcon = new ImageIcon(imageFile.getAbsolutePath());
+        backgroundButton.setIcon(backGroundButtonImageIcon);
+        backgroundButton.addActionListener(this);
+
+        return backgroundButton;
+    }
+
+    public String getBackgroundImageFileName()
+    {
+        return backgroundImageFileName;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) 
+    {
+        if (e.getSource() == lightWoodButton)
         {
-            dispose();
+            System.out.println("light wood button pressed");
+            backgroundImageFileName = "lightWood.jpg";
+            updateBackground("lightWood.jpg");
         }
+        if (e.getSource() == darkWoodButton)
+        {
+            System.out.println("dark wood button pressed");
+            backgroundImageFileName = "darkWoodBackground.png";
+            updateBackground("darkWoodBackground.png");
+        }
+        if (e.getSource() == stoneBackgroundButton)
+        {
+            System.out.println("stoneBackgroundButton button pressed");
+            backgroundImageFileName = "stoneBackground.jpg";
+            updateBackground("stoneBackground.jpg");
+        }
+        if (e.getSource() == colorfulBricksButton)
+        {
+            System.out.println(" colorfulBricksButton button pressed");
+            backgroundImageFileName = "colorfulBricks.png";
+            updateBackground("colorfulBricks.png");
+        }
+    }
+
+    public void updateBackground(String fileName)
+    {
+        //mainWindowFrame.getContentPane().removeAll();
+        Image backgroundImage = new ImageIcon(fileName).getImage();
+        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
+        mainWindowFrame.setContentPane(backgroundPanel);
+        mainWindowFrame.revalidate();
+        mainWindowFrame.repaint();
     }
 }

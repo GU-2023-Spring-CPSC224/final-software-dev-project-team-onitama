@@ -12,9 +12,6 @@ import java.beans.PropertyChangeSupport;
 
 public class Hand {
     private ArrayList<Card> cards = new ArrayList<Card>();
-    private ArrayList<Card> player1Cards = new ArrayList<Card>();
-    private ArrayList<Card> player2Cards = new ArrayList<Card>();
-    private Card intermediate;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public Hand (int size){
@@ -81,29 +78,6 @@ public class Hand {
             }
 
         }
-        for(Integer i = 0; i < cards.size(); i++)
-            System.out.println(cards.get(i).getName());
-        //for (int i = 0; i < size; i++){
-        //    int x = random.nextInt(cardNames.size());
-        //    cards.add(new Card(cardNames.get(x)));
-        //}
-        for (int i = 0; i < cards.size()/2; i++){
-            player1Cards.add(cards.get(i));
-        }
-        for (int i = cards.size()/2; i < cards.size()-1; i++){
-            player2Cards.add(cards.get(i));
-        }
-        intermediate = cards.get(cards.size()-1);
-    }
-
-    private void update(){
-        for (int i = 0; i < cards.size()/2; i++){
-            player1Cards.set(i,cards.get(i));
-        }
-        for (int i = cards.size()/2; i < cards.size()-1; i++){
-            player2Cards.set(i-cards.size()/2,cards.get(i));
-        }
-        intermediate = cards.get(cards.size()-1);
     }
 
     public void swap(Card playerCard){
@@ -117,7 +91,6 @@ public class Hand {
         cards.set(location, cards.get(cards.size() - 1));
         cards.set(cards.size() - 1, oldCard);
         Card newCard = cards.get(location);
-        update();
         switch(location){
             case 0:
                 this.pcs.firePropertyChange("spot0", oldCard, newCard);
@@ -139,14 +112,6 @@ public class Hand {
     }
     public Card getCardAt(int location){
         return cards.get(location);
-    }
-
-    public ArrayList<Card> getPlayer1Cards(){
-        return player1Cards;
-    }
-
-    public ArrayList<Card> getPlayer2Cards(){
-        return player2Cards;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -178,15 +143,6 @@ public class Hand {
                 return cards.get(i);
         //doesnt like me otherwise
         return cards.get(0);
-    }
-
-    public Character whosHand(Card card) {
-        if(player1Cards.contains(card))
-            return 'r';
-        if(player2Cards.contains(card))
-            return 'b';
-        else
-            return '0';
     }
 
 }
