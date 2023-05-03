@@ -13,9 +13,6 @@ public class GameFrame extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//what happens when we close the window
         this.setResizable(true);//we can change whether frame may be resized
 
-        ImageIcon image = new ImageIcon("OnitamaLogo.png"); //creates an image icon
-        this.setIconImage(image.getImage()); //changes icon of frame
-
         Image backgroundImage = new ImageIcon("GameArt/darkWoodBackground.png").getImage();
         BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         this.setContentPane(backgroundPanel);

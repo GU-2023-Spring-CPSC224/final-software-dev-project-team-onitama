@@ -34,8 +34,6 @@ public class GameMenu extends JFrame implements ActionListener
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
-        /*ImageIcon gameTitleImage = new ImageIcon("OnitamaLettering.png");
-        gameTitleLabel.setIcon(gameTitleImage);*/
         gameTitleLabel.setBounds(345, 100, 700, 300);
         gameTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 20));
 
@@ -56,15 +54,15 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton.setForeground(Color.BLACK);
 
 
-        optionsButton.setBounds(630, 520, 300, 150);
-        optionsButton.setText("Options");
-        optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
-        optionsButton.setFocusable(false);
-        optionsButton.addActionListener(this);
-        optionsButton.setForeground(Color.BLACK);
+        // optionsButton.setBounds(630, 520, 300, 150);
+        // optionsButton.setText("Options");
+        // optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
+        // optionsButton.setFocusable(false);
+        // optionsButton.addActionListener(this);
+        // optionsButton.setForeground(Color.BLACK);
 
 
-        quitButton.setBounds(630, 620, 300, 150);
+        quitButton.setBounds(630, 520, 300, 150);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
@@ -114,10 +112,10 @@ public class GameMenu extends JFrame implements ActionListener
         {
             HowToPlay h = new HowToPlay();
         }
-        if (e.getSource() == optionsButton)
-        {
-            s = new Options();
-        }
+        // if (e.getSource() == optionsButton)
+        // {
+        //     s = new Options();
+        // }
         if (e.getSource() == quitButton)
         {
             System.exit(0);

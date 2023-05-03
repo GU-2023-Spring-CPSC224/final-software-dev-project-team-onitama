@@ -35,18 +35,23 @@ public class EndScreen extends JFrame implements ActionListener{
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         
 
-        endTitleLabel.setBounds(610, 270, 315, 100);
+        endTitleLabel.setBounds(610, 250, 315, 150);
         endTitleLabel.setFont(new Font("MV Boli", Font.BOLD, 40));
-        endTitleLabel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
         endTitleLabel.setBackground(Color.white);
 
 
-        quitButton.setBounds(595, 435, 350, 60);
+        quitButton.setBounds(595, 395, 350, 150);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
         quitButton.setFocusable(false);
         quitButton.addActionListener(this);
         quitButton.setForeground(Color.BLACK);
+        quitButton.setOpaque(false);
+        quitButton.setContentAreaFilled(false);
+        quitButton.setBorderPainted(false);
+        quitButton.setIcon(new ImageIcon("GameArt/QuitZM.png"));
+
+        
 
 
         frame.add(endTitleLabel);
