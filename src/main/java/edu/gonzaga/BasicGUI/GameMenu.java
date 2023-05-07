@@ -15,8 +15,6 @@ public class GameMenu extends JFrame implements ActionListener
     JPanel startMenuPanel;
     JLabel gameTitleLabel;
 
-    Options s;
-
     public static void main(String[] args)
     {
         new GameMenu();
@@ -54,14 +52,6 @@ public class GameMenu extends JFrame implements ActionListener
         instructionsButton.setForeground(Color.BLACK);
 
 
-        // optionsButton.setBounds(630, 520, 300, 150);
-        // optionsButton.setText("Options");
-        // optionsButton.setFont(new Font("MV Boli", Font.BOLD, 15));
-        // optionsButton.setFocusable(false);
-        // optionsButton.addActionListener(this);
-        // optionsButton.setForeground(Color.BLACK);
-
-
         quitButton.setBounds(630, 520, 300, 150);
         quitButton.setText("Quit");
         quitButton.setFont(new Font("MV Boli", Font.BOLD, 15));
@@ -69,7 +59,6 @@ public class GameMenu extends JFrame implements ActionListener
         quitButton.addActionListener(this);
         quitButton.setForeground(Color.BLACK);
         
-
 
 
         frame.add(gameTitleLabel);
@@ -99,7 +88,6 @@ public class GameMenu extends JFrame implements ActionListener
         gameTitleLabel.setVisible(true);
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e)
