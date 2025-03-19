@@ -9,25 +9,12 @@ build:
 test:
 	@echo "Running all tests"
 	mvn test
-
+clean:
+	@echo "Cleaning Game"
+	mvn clean
 mvn-run:
-	@echo "Running Final Game main - see pom.xml for arguments passed"
+	@echo "Running Final Game main"
 	mvn exec:java
-
-run: build
-	@echo "Running Yahtzee main without maven overhead"
-	java -jar target/finalgame-*.jar
-
-fast-run:
-	java -jar target/finalgame-*.jar
-
-spellcheck:
-	-codespell src/
-
-setup-dependencies:
-	apt update
-	apt install -y maven python3-pip checkstyle
-	pip3 install codespell
 
 javadoc:
 	@echo "Creating javadoc materials"
